@@ -94,7 +94,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
 
     # Set your domain name here
-    ALLOWED_HOSTS = ['master-contrats-poitiers.heroku.com']
+    ALLOWED_HOSTS = ['mastercontratspoitiers.herokuapp.com']
 
     # Database
     db_from_env = dj_database_url.config(conn_max_age=500)
