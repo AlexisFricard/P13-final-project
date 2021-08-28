@@ -1,0 +1,87 @@
+{% extends "index.html" %}
+{% load static %}
+{% block body %}
+<header class="top-asso">
+    <div class="row justify-content-center mt-5 align-items-center">
+        <img src="{% static 'assets/img/logo/logo.jpg' %}" class="logo-asso"></br>
+        <h3 class="text-light py-1 mt-2 text-center title_after">Association Master Contrats en droit français et européen</h3>
+    </div>
+</header>
+<section class="container-fluid mt-3 bg-light text-dark slidefromleft" id="pres-asso">
+    <div class="row justify-content-center slidefromleft">
+        <div class="col-lg-8 text-start ">
+            <h3 class="mt-0 text-primary" >Rejoignez-nous !</h3>
+            <div class='row'>
+                <p class="col-lg-12 px-3 text-start text-dark fs-6 mb-4">
+                    L'association Master Contrats en droit français et européen a été créé et elle est géré par les étudiants. 
+                    </br>Elle a pour vocation de favoriser l'entraide, les rencontres et la construction d'un réseau 
+                    entre les différentes promotions du Master.                 
+
+                </p>
+                <a class="btn mx-2 py-1 px-2 bg-primary text-light w-25" id="mail-link" href="mailto:M2ContratsPoitiers@gmail.com">
+                    Nous contacter
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-4 text-start">
+            <h3 class="mt-0 text-primary">Les plus...</h3>
+            <ul class="text-dark px-0 fs-5 mb-4 text-start">
+                <li class="my-1 fs-6">Accès à des liens très utiles</li> <!--(renvoi à la page relative à la clinique juridique
+                de l’Université de Poitiers : https://droit.univ-poitiers.fr/la-faculte/clinique-juridique/ ) -->
+                <!-- <li class="my-1 fs-6">Accès à un chat d'entraide</li> -->
+                <li class="my-1 fs-6">Accès à une aide personnalisée</li>
+                <li class="my-1 fs-6">Accès aux soirées/évenements organisés par l'association</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="container-fluid bg-light pb-5 text-dark slidefromleft" id="office">
+    <h3 class="text-primary py-1 mt-2 text-center title_after">Le bureau</h3>
+    <div class="col-lg-12 row mx-0 justify-content-center">
+        <div class="col-lg-3 mt-3 px-0 x-0" id="card-peda">
+            <div class="row justify-content-center">
+                <a class="col-lg-12 box-img-dir text-center" target="_blanck" href="https://fr.linkedin.com/in/adrien-breton-08730a107">
+                    <img class="img-dir col-lg-12" src="https://media-exp1.licdn.com/dms/image/C5603AQFz93siC7u01Q/profile-displayphoto-shrink_200_200/0/1576415538977?e=1635379200&v=beta&t=Pp-GyIDfXoq0d1RPO-p3jf5WmkvIuny6k2hfPFb6SrU">
+                </a>
+                <p class="mt-1 col-lg-12 fs-6 fw-bolder text-center">Adrien Breton</p>
+                <p class="col-lg-12 fs-6 text-center">
+                    Président
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-3 mt-3 px-0 mx-0" id="card-peda">
+            <div class="row justify-content-center">
+                <a class="col-lg-12 box-img-dir text-center">
+                    <img class="img-dir col-lg-12" src="{% static 'assets/img/Victoire.JPG' %}">
+                </a>
+                <p class="mt-1 col-lg-12 fs-6 px-0 fw-bolder text-center">Victoire Dellamaggiore</p>
+                <p class="col-lg-12 fs-6 text-center">
+                    Vice-présidente
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-3 mt-3 px-0 mx-0" id="card-peda">
+            <div class="row justify-content-center">
+                <a class="col-lg-12 box-img-dir text-center" target="_blanck" href="https://fr.linkedin.com/in/m%C3%A9lodie-rambaud-57519b1a3">
+                    <img class="img-dir col-lg-12" src="{% static 'assets/img/Mélodie.jpg' %}">
+                </a>
+                <p class="mt-1 col-lg-12 fs-6 fw-bolder text-center">Mélodie Rambaud</p>
+                <p class="col-lg-12 fs-6 text-center">
+                    Secrétaire
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-3 mt-3 px-0 mx-0" id="card-peda">
+            <div class="row justify-content-center">
+                <a class="col-lg-12 box-img-dir text-center" target="_blanck" href="https://fr.linkedin.com/in/ar050519">
+                    <img class="img-dir col-lg-12" src="https://media-exp1.licdn.com/dms/image/C4E03AQFRwEBwnuo1UA/profile-displayphoto-shrink_200_200/0/1568398689109?e=1635379200&v=beta&t=MtrpehwZNyofKPRg4wYjc_dzjvvMBBTm9TJbL1zBFYE">
+                </a>
+                <p class="mt-1 col-lg-12 fs-6 fw-bolder text-center">Amaury Reboul</p>
+                <p class="col-lg-12 fs-6 text-center">
+                    Trésorier
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

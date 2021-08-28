@@ -1,0 +1,191 @@
+{% extends "template_ref.html" %}
+{% load static %}
+{% load convert_markdown %}
+{% block body %}
+<!-- Masthead-->
+<!-- Actuality-->
+<section class="container-fluid row mx-0 justify-content-center align-items-center" id="actu">
+    <div class="row px-0 justify-content-center align-items-center" id="BarreActu">
+        <div id="sideBarreActu" class="col-lg-3 row">
+            <p class="col-lg-12 mt-3 fs-5 fs-w-bolder text-start">Vous êtes..</p>
+            <div class="col-lg-12 h-75 px-0 row align-items-center justify-content-around">
+                <a class="nav-link px-0  are-you col-lg-12 my-0 fs-6" href="/association">
+                    <img src="{% static 'assets/img/logo/profil_g.png' %}" class="col-lg-2 px-0">
+                    Etudiant
+                </a>
+                
+                <a class="nav-link px-0  are-you col-lg-12 my-0 fs-6" href="/association">
+                    <img src="{% static 'assets/img/logo/profil_r.png' %}" class="col-lg-2 px-0">
+                    Ancien élève
+                </a>
+                <a class="nav-link px-0  are-you col-lg-12 my-0 fs-6" href="/association">
+                    <img src="{% static 'assets/img/logo/profil_y.png' %}" class="col-lg-2 px-0">
+                    Partenaire
+                </a>
+                <a class="nav-link px-0  are-you col-lg-12 my-0 fs-6" href="/association">
+                    <img src="{% static 'assets/img/logo/profil_b.png' %}" class="col-lg-2 px-0">
+                   Devenir un partenaire
+                </a>
+            </div>
+        </div>
+        <!-- Carousel-->
+        <div id="carouselExampleCaptions" class="carousel text-center slide justify-content-center mt-2" data-bs-ride="carousel">
+            <div class="carousel-inner justify-content-center">
+                {% for actuality in actualities %}
+                <div class="carousel-item" id="card-actu">
+                    <a class="nav-link" href="/actuality?actuId={{actuality.id}}">
+                        {% if not actuality.img_exist %}
+                        <img src="{% static 'assets/img/bannerpalette/red.png' %}" id="img-actu">
+                        {% else %}
+                        <img src="{{media_location}}{{ actuality.img_link }}" id="img-actu">
+                        {% endif %}
+                    </a>
+                    <div class="row mx-2 my-2" id="content-actu">
+                        <p class="my-0 fs-6 text-center"><strong>{{ actuality.title }}</strong></p>
+                        {% if actuality.same_day %}
+                        <p class="text-center px-4 my-0 fs-6">Le {{ actuality.start }}</br></p>
+                        {% else %}
+                        <p class="text-start px-2 my-0 fs-6">Du {{ actuality.start }}</p>
+                        <p class="text-start px-2 fs-6">au {{ actuality.end }}</br></p>
+                        {% endif %}
+                        <a class="" href="/actualité?actuId={{actuality.id}}">
+                            <button class="btn bg-primary text-light fs-6">
+                                En savoir plus...</br>
+                            </button>
+                        </a>
+                        <div class="w-100 fs-5" style="display: none;">{{ actuality.article|convert_markdown|safe }}</div></br>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="carousel-item active" id="card-actu">
+                    <a class="nav-link">
+                        <img src="{% static 'assets/img/bannerpalette/red.png' %}" id="img-actu">
+                    </a>
+                    <div class="row mx-2 my-2" id="content-actu">
+                        <p class="my-0 fs-6 text-center"><strong>Nouveau !</strong></p>
+                        <p class="text-start px-2 fs-6 my-0">
+                            L'Association fait peau neuve avec un site web
+                            pour encore mieux vous orienter !</br>
+                        </p>
+                        <a class="h-25" href="#index-pad">
+                            <button class="btn bg-primary text-light fs-6">
+                                En savoir plus...</br>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Directors word-->
+<section class="container-fluid px-0 py-3 bg-primary text-light slidefromleft">
+    <div class="bg-primary row justify-content-center slidefromleft py-3">
+        <div class="text-center text-light fs-5 px-3 pt-3" id="director-word">
+            &#171; [...] Le Master <i>Contrats en droit français et européen</i> jouit d’une solide réputation dans les milieux 
+            universitaires et professionnels. Il attire des étudiants particulièrement intéressés par ce qui 
+            constitue le cœur de l’activité économique : le contrat, dans toute sa diversité, et qui ont une 
+            affinité particulière avec la dimension européenne et internationale des contrats et des affaires... &#187;</br>
+            </br>
+        </div>
+        <div class="text-end text-light fs-5 px-3" id="director-word"> 
+            </br>Hélène Boucard et Lionel Andreu</br>
+            Professeurs de droit privé et sciences criminelles à l’Université de Poitiers </br>
+            Codirecteurs du Master Droit des affaires, Contrats en droit français et européen</br>
+        </div>
+    </div>
+</section>
+<section class="px-0 row justify-content-center pb-5 text-dark slidefromleft" id="index-pad">
+    <div class="row justify-content-around px-3 mt-4" id="blockIndexCard">
+        <div class="row index-card px-0">
+            <div class="index-card-title">
+                <p class="text-primary my-1 fs-4">Les liens rapides</p>
+            </div>
+            <div class="index-card-content row px-0 pb-2 align-items-center justify-content-center">
+                <img class="" src="{% static 'assets/img/logo/click.png' %}" id="logo-click">
+                <a class="nav-link text-dark px-4 fs-6 my-0 text-start" target="_blanck" href="/https://ent.univ-poitiers.fr">Lien vers l'ENT</a>
+                <a class="nav-link text-dark px-4 fs-6 my-0 text-start" target="_blanck" href="https://erdp.labo.univ-poitiers.fr/">Lien vers le labo de l'ERDP</a>
+                <a class="nav-link text-dark px-4 fs-6 my-0 text-start" target="_blanck" href="https://www.vitalis-poitiers.fr/">Des bus ? Vitalis !</a>
+                <a class="nav-link text-dark px-4 fs-6 my-0 text-start" target="_blanck" href="https://www.crous-poitiers.fr/">Vous êtes boursier ?</a>
+                <a class="nav-link text-dark px-4 fs-6 my-0 text-start" href="/presentation">Découvrez le Master</a>
+                <a class="nav-link text-dark px-4 fs-6 my-0 text-start" href="/after">Et ses débouchés</a>
+            </div>
+        </div>
+        <div class="row index-card px-0">
+            <div class="index-card-title">
+                <p class="text-primary my-1 fs-4">Pourquoi adhérer ?</p>
+            </div>
+            <div class="index-card-content row pb-2 px-0 align-items-center justify-content-center">
+                <img class="px-0" src="{% static 'assets/img/logo/logo.jpg' %}" id="logo-banner">
+                <p class="text-center px-4 fs-6 my-0">Accès à des liens très utiles</p>
+                <!-- <p class="text-center px-4 fs-6 my-0">Accès à un chat d'entraide</p> -->
+                <p class="text-center px-4 fs-6 my-0">Accès à une aide personnalisée</p>
+                <p class="text-center px-4 fs-6 my-0">Accès aux soirées et aux évenements organisés par l'association</p>
+                <a id="btn-know-more" class="btn mx-2 py-1 px-2 bg-primary text-light fs-6" href="/association">
+                    En savoir plus...
+                </a>
+            </div>
+        </div>
+        <div class="row index-card px-0">
+            <div class="index-card-title">
+                <p class="text-primary my-1 fs-4">Les liens de l'Université</p>
+            </div>
+            <div class="index-card-content pb-2 row px-0 align-items-center justify-content-center">
+                <img class="px-0" src="https://www.univ-poitiers.fr/wp-content/uploads/sites/10/2019/03/logo-universite-poitiers.svg" id="logo-click">
+                <a class="nav-link text-dark px-4 fs-6 my-0 text-start" target="_blanck" href="https://www.univ-poitiers.fr/inscriptions-administratives-2021/">
+                    Inscriptions 2021
+                </a>
+                <a class="nav-link text-dark px-4 fs-6 my-0 text-start" target="_blanck" href="https://www.univ-poitiers.fr/covid-19-espace-dinformation-pour-les-etudiants/">
+                    COVID-19 - Infos pour les étudiants
+                </a>
+                <a class="nav-link text-dark px-4 fs-6 my-0 text-start" target="_blanck" href="http://formations.univ-poitiers.fr/fr/index/master-XB/master-XB/master-droit-des-affaires-JATDBMXC//m2-parcours-contrats-en-droit-francais-et-europeen-JATDLE32.html">
+                    Les informations sur le M2
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- LOCALISATION -->
+<section class="bg-purple text-dark slidefromleft row px-0" id="geo">
+    <div class="row justify-content-center py-3 mx-1">
+        <div class="col-lg-4 contact-left">
+            <strong><p class="mt-3 fs-5 text-start text-light">Université & Bibliothèque Universitaire</p></strong>
+            <div class="">
+                <p class="mt-3 fs-6 text-start text-light">43 Place Charles de Gaulle</br>86000 Poitiers</p>
+                <p class="mt-3 fs-6 text-start text-light">05 49 45 30 00</p>
+                <p class="mt-3 fs-6 text-start text-light">droit.univ-poitiers.fr</p>
+            </div>
+        </div>
+        <div class='row col-lg-4 align-items-center'>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d815.2593161194155!2d0.34307280773295806!3d46.58339131276631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47fdbe71d22ee7b5%3A0x810749027c31b19a!2sFacult%C3%A9%20de%20Droit%20-%20Universit%C3%A9%20de%20Poitiers!5e0!3m2!1sfr!2sfr!4v1627574911130!5m2!1sfr!2sfr"
+                width="80%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+        </div>
+        <div class="col-lg-4 contact-right">
+            <strong>
+                <p class="mt-3 fs-5 text-end text-light">
+                    Association 
+                    Master Contrats en droit
+                    français et européen
+                </p>
+            </strong>
+            <div class="">
+                <p class="mt-3 fs-6 text-end text-light">43 Place Charles de Gaulle</br>86000 Poitiers</p>
+                <p class="mt-3 fs-6 text-end text-light">M2ContratsPoitiers@gmail.com</p>
+                <!-- <p class="mt-3 fs-6 text-end text-light">
+                    Pour faire un don
+                    <a class="btn text-light mx-1 py-0 px-1 bg-primary">
+                        Cliquez-ici
+                    </a>
+                </p> -->
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

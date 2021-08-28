@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+{% load static %}
+{% block body %}
+<header class="top-ourstudent">
+</header>
+<section id="box-ourstudent">
+    {% if promotions %}
+    {% for promotion in promotions %}
+    <div class="bg-light py-3 text-dark slidefromleft row mx-0 justify-content-center" id="section-promo">
+        <h3 class="text-primary py-1 mt-2 text-center title_after w-75">{{ promotion.banner }}</h3>
+        <div class="row justify-content-center">
+            <img class="col-lg-6" src="{{media_location}}{{ promotion.img_title }}">
+            <div class="col-lg-4 fs-6">
+                {{ promotion.description }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="bg-light py-3 text-dark slidefromleft row mx-0 justify-content-center" id="section-promo">
+        <h3 class="text-primary py-1 mt-2 text-center title_after w-75">Promotion 2020 - 2021</h3>
+        <div class="row justify-content-center">
+            <img class="col-lg-6" src="{% static 'assets/img/promo2021.jpg' %}">
+            <div class="col-lg-4 fs-6">
+                De gauche à droite, à partir du haut:</br>
+                machin, machin, machin
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

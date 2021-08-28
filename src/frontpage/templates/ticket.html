@@ -1,0 +1,17 @@
+{% extends "template_ref.html" %}
+{% load static %}
+{% load convert_markdown %}
+{% block body %}
+{% if user.is_authenticated %}
+<div class="" id="connection-page">
+    <div class="row px-0 justify-content-center w-100" id="box-signin">
+        <div class="col-lg-5 row px-3 py-3 bg-light justify-content-center" id="signin-form">
+            {% for message in messages %}
+                De {{ message.author }} le {{ message.date }}</br>
+                {{ message.msg}}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
