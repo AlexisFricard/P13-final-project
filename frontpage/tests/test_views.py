@@ -63,7 +63,7 @@ class TemplateTest(TestCase):
 
         # TODO: Mock actu object
 
-    def test_user_connection(self):
+    def test_myspace(self):
 
         # Unconected User
         request = RequestFactory().get("/myspace")
@@ -89,7 +89,7 @@ class TemplateTest(TestCase):
         view = myspace(request)
         assert view.status_code == 200
 
-    def test_manage_anonymous(self):
+    def test_manage(self):
 
         # Test anonymous
         request = RequestFactory().get("/manage")
