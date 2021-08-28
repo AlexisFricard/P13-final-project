@@ -109,17 +109,27 @@ USE_TZ = True
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-DB_NAME = "mastercontratspoitiers"
-DB_USER = os.getenv("dev_django")
-DB_PASSWORD = os.getenv("dev_password")
+if os.getenv('ENV') == "GITHUB":
+    DB_NAME = os.getenv("DB_NAME")
+    DB_USER = os.getenv("DB_USER")
+    DB_PASSWORD = os.getenv("DB_PASSWORD")
+    DB_HOST = os.getenv("DB_HOST")
+else:
+    DB_NAME = os.getenv("BUCKET_NAME")
+    DB_USER = os.getenv("dev_django")
+    DB_PASSWORD = os.getenv("dev_password")
+    DB_HOST = "localhost"
+
+DB_PORT = "5432"
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': DB_NAME,
         'USER': DB_USER,
         'PASSWORD': DB_PASSWORD,
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'HOST': DB_HOST,
+        'PORT': DB_PORT,
     }
 }
 
