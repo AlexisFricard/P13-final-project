@@ -17,14 +17,13 @@ Prerequisites:
 ### Step 1 - Basique settings:
 ***After clone repo..*** 
   
-**Inside *../P13-Projet-final/***
+**Inside *<word dir>/***
 ```bash
 >> pip install virtualenv
 
 >> python3 -m venv <ENV_NAME>
 >> <ENV_NAME>\scripts\activate
 
->> CD src
 >> pip install -r requirements.txt
 ```
 ### Step 2- Environments variables:
@@ -52,14 +51,23 @@ Prerequisites:
 
 ***Setting up local Docker container on port 6379*** 
 ```bash
-(env)../src/>> pip install redis
+(env)../P13-final-project/>> pip install redis
 
-(env)../src/>> docker run -p 6379:6379 -d redis:5
+(env)../P13-final-project/>> docker run -p 6379:6379 -d redis:5
 ```
-
-### Set 4 - Launch app localy
+### Set 4 - Install database models
 ```bash
-(env)../src/>> python3 manage.py runserver --settings=mastercontrat.dev_settings
+(env)../P13-final-project/>> python3 manage.py migrate
+(env)../P13-final-project/>> python3 manage.py makemigrations frontpage
+(env)../P13-final-project/>> python3 manage.py migrate frontpage
+```
+### Set 5 - Create your superuser
+```bash
+(env)../P13-final-project/>> python3 manage.py createsuperuser
+```
+### Set 6 - Launch app localy
+```bash
+(env)../P13-final-project/>> python3 manage.py runserver --settings=mastercontrat.dev_settings
 ```
 ---
 * ## For Production - *with* Heroku
