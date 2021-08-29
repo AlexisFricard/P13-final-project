@@ -91,7 +91,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
 
     # Heroku settings (disable collecstatic)
     django_heroku.settings(locals(), staticfiles=False)
-    DEBUG = False
+    DEBUG = True
 
     # Set your domain name here
     ALLOWED_HOSTS = ['mastercontratspoitiers.herokuapp.com']
