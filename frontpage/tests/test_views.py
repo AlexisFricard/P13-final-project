@@ -105,7 +105,7 @@ class TemplateTest(TestCase):
     def test_myaccount(self):
 
         request = RequestFactory().get("/myaccount")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username='atobellamy')
 
         middleware = SessionMiddleware()
         middleware.process_request(request)
@@ -129,7 +129,7 @@ class TemplateTest(TestCase):
         assert view.url == "/"
 
 
-class TestStudent:
+class TestStudent(TestCase):
     def test_manage_student(self):
 
         request = RequestFactory().get("/manage")
@@ -194,7 +194,7 @@ class TestStudent:
         assert view.status_code == 302
 
 
-class TestStaff:
+class TestStaff(TestCase):
     def test_manage_staff(self):
 
         request = RequestFactory().get("/manage")
