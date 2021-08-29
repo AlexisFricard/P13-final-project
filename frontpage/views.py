@@ -261,23 +261,25 @@ def ticket(request):
         messages_object = AuthorMessageTicket.objects.filter(
             ticket_id=t_id
             ).order_by('date')
+        if messages_object:
+            if (messages_object[0].author == request.user.username or
+                    request.user.is_staff):    # noqa
 
-        if (messages_object[0].author == request.user.username or
-                request.user.is_staff):    # noqa
+                list_of_messages = []
+                for msg in messages_object:
+                    list_of_messages.append({
+                        "author":   msg.author,
+                        "msg":      msg.message,
+                        "date":     msg.date
+                    })
 
-            list_of_messages = []
-            for msg in messages_object:
-                list_of_messages.append({
-                    "author":   msg.author,
-                    "msg":      msg.message,
-                    "date":     msg.date
-                })
+                data = {
+                    "messages": list_of_messages
+                }
 
-            data = {
-                "messages": list_of_messages
-            }
-
-            return render(request, "ticket.html", data)
+                return render(request, "ticket.html", data)
+            else:
+                return redirect("myspace")
         else:
             return redirect("myspace")
 

@@ -7,7 +7,6 @@ from frontpage.models import (
     Ticket, AuthorMessageTicket
 )
 import os
-import pytest
 
 from django.test import RequestFactory, TestCase
 from django.contrib.auth.models import AnonymousUser, User
@@ -22,19 +21,47 @@ from frontpage.views import (
 )
 
 
-@pytest.fixture
-def create_student_user():
+# Method to return User object
+def create_user(name):
+    if name == "student":
+        staff = 0
+    else:
+        staff = 1
+
     User.objects.create_user(
-        username="student",
-        email="student@test.fr",
+        username=name,
+        email=f"{name}@test.fr",
         password="azerty123",
-        is_staff=0
+        is_staff=staff
     )
+    return User.objects.get(username=name)
 
 
-@pytest.fixture
-def delete_student_user():
-    User.objects.get(username="student").delete()
+def delete_user(name):
+    User.objects.get(username=name).delete()
+
+
+# Method to return Ticket object
+def create_ticket(name):
+    Ticket.objects.create(
+        title="ticket-test",
+        state=1,
+        author=name
+        )
+
+    ticket_obj = Ticket.objects.get(title="ticket-test")
+
+    AuthorMessageTicket.objects.create(
+        author=name,
+        message="test",
+        ticket_id=ticket_obj.id
+    )
+    return ticket_obj
+
+
+def delete_ticket(_ticket_id):
+    Ticket.objects.get(id=_ticket_id).delete()
+    AuthorMessageTicket.objects.get(ticket_id=_ticket_id).delete()
 
 
 class TemplateTest(TestCase):
@@ -121,28 +148,29 @@ class TemplateTest(TestCase):
     def test_myaccount(self):
 
         request = RequestFactory().get("/myaccount")
-        request.user = User.objects.get(username='student')
+        request.user = create_user("student")
 
         middleware = SessionMiddleware()
         middleware.process_request(request)
         request.session.save()
 
         view = myaccount(request)
+
+        delete_user("student")
+
         assert view.status_code == 200
 
-    def test_log_out(self, create_student_user, delete_student_user):
+    def test_log_out(self):
 
         request = RequestFactory().post("/log_out")
-        create_student_user()
-        request.user = User.objects.get(username="student")
-
+        request.user = create_user("student")
         middleware = SessionMiddleware()
         middleware.process_request(request)
         request.session.save()
 
         view = log_out(request)
 
-        delete_student_user()
+        delete_user("student")
 
         assert view.status_code == 302
         assert view.url == "/"
@@ -152,7 +180,7 @@ class TestStudent(TestCase):
     def test_manage_student(self):
 
         request = RequestFactory().get("/manage")
-        request.user = User.objects.get(username="studenttest")
+        request.user = create_user("student")
 
         middleware = SessionMiddleware()
         middleware.process_request(request)
@@ -160,56 +188,73 @@ class TestStudent(TestCase):
         request.session.save()
 
         view = manage(request)
+
+        delete_user("student")
+
         assert view.status_code == 302
         assert view.url == "/monEspace"
 
     def test_myspace_student(self):
 
         request = RequestFactory().get("/myspace")
-        request.user = User.objects.get(username="studenttest")
+        request.user = create_user("student")
 
         middleware = SessionMiddleware()
         middleware.process_request(request)
         request.session.save()
 
         view = myspace(request)
+
+        delete_user("student")
+
         assert view.status_code == 200
 
     def test_helpdashboard_student(self):
 
         request = RequestFactory().get("/helpdashboard")
-        request.user = User.objects.get(username="studenttest")
+        request.user = create_user("student")
 
         middleware = SessionMiddleware()
         middleware.process_request(request)
         request.session.save()
 
         view = helpdashboard(request)
+
+        delete_user("student")
+
         assert view.status_code == 302
         assert view.url == "/monEspace"
 
     def test_ticket_student(self):
 
         # With user's ticket
-        request = RequestFactory().get("/ticket?id=23")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        ticket_obj = create_ticket("student")
+        request = RequestFactory().get(f"/ticket?id={ticket_obj.id}")
+        request.user = create_user("student")
 
         middleware = SessionMiddleware()
         middleware.process_request(request)
         request.session.save()
 
         view = ticket(request)
+
+        delete_user("student")
+
         assert view.status_code == 200
 
         # With another user's ticket
-        request = RequestFactory().get("/ticket?id=23")
-        request.user = User.objects.get(username="studenttest")
+        request = RequestFactory().get("/ticket?id=10")
+        request.user = create_user("student")
 
         middleware = SessionMiddleware()
         middleware.process_request(request)
         request.session.save()
 
         view = ticket(request)
+
+        delete_user("student")
+        delete_ticket(ticket_obj.id)
+
         assert view.status_code == 302
 
 
@@ -217,7 +262,7 @@ class TestStaff(TestCase):
     def test_manage_staff(self):
 
         request = RequestFactory().get("/manage")
-        request.user = User.objects.get(username="stafftest")
+        request.user = create_user("staff")
 
         middleware = SessionMiddleware()
         middleware.process_request(request)
@@ -225,31 +270,42 @@ class TestStaff(TestCase):
         request.session.save()
 
         view = manage(request)
+
+        delete_user("staff")
+
         assert view.status_code == 302
         assert view.url == "/monEspace"
 
     def test_helpdashboard_staff(self):
 
         request = RequestFactory().get("/helpdashboard")
-        request.user = User.objects.get(username="stafftest")
+        request.user = create_user("staff")
 
         middleware = SessionMiddleware()
         middleware.process_request(request)
         request.session.save()
 
         view = helpdashboard(request)
+
+        delete_user("staff")
+
         assert view.status_code == 200
 
     def test_ticket_staff(self):
 
-        request = RequestFactory().get("/ticket?id=23")
-        request.user = User.objects.get(username="stafftest")
+        ticket_obj = create_ticket("student")
+        request = RequestFactory().get(f"/ticket?id={ticket_obj.id}")
+        request.user = create_user("staff")
 
         middleware = SessionMiddleware()
         middleware.process_request(request)
         request.session.save()
 
         view = ticket(request)
+
+        delete_user("staff")
+        delete_ticket(ticket_obj.id)
+
         assert view.status_code == 200
 
 
@@ -259,8 +315,8 @@ class TestSuperUser:
         # Connect superuser
         request = RequestFactory().post("/myspace")
         request.POST = {
-            'username': os.getenv('dev_django'),
-            'password': os.getenv('dev_password'),
+            'username': os.getenv('M2_SUPERUSER'),
+            'password': os.getenv('M2_PASSWORD'),
         }
 
         middleware = SessionMiddleware()
@@ -274,7 +330,7 @@ class TestSuperUser:
     def test_manage_superuser(self):
 
         request = RequestFactory().get("/manage")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username=os.getenv('M2_SUPERUSER'))
 
         middleware = SessionMiddleware()
         middleware.process_request(request)
@@ -288,7 +344,7 @@ class TestSuperUser:
 
         # Create user
         request = RequestFactory().post("/add_user")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username=os.getenv('M2_SUPERUSER'))
         request.POST = {
             'firstname': "name",
             'lastname': "test",
@@ -307,7 +363,7 @@ class TestSuperUser:
         # Test exceptions
         # 1 - Empty Field
         request = RequestFactory().post("/add_user")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username=os.getenv('M2_SUPERUSER'))
         request.POST = {
             'firstname': "",
             'lastname': "test",
@@ -325,7 +381,7 @@ class TestSuperUser:
 
         # 2 - Not same email
         request = RequestFactory().post("/add_user")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username=os.getenv('M2_SUPERUSER'))
         request.POST = {
             'firstname': "name",
             'lastname': "test",
@@ -343,7 +399,7 @@ class TestSuperUser:
 
         # 3 - Allready exist
         request = RequestFactory().post("/add_user")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username=os.getenv('M2_SUPERUSER'))
         request.POST = {
             'firstname': "name",
             'lastname': "test",
@@ -368,7 +424,7 @@ class TestSuperUser:
         # Actuality
         # Create
         request = RequestFactory().post("/add_data")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username=os.getenv('M2_SUPERUSER'))
         request.POST = {
             'title': "name",
             'article': "#test",
@@ -388,7 +444,7 @@ class TestSuperUser:
 
         # Create false
         request = RequestFactory().post("/add_data")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username=os.getenv('M2_SUPERUSER'))
         request.POST = {
             'title': "name",
             'article': "#test",
@@ -407,7 +463,7 @@ class TestSuperUser:
 
         # Create without title
         request = RequestFactory().post("/add_data")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username=os.getenv('M2_SUPERUSER'))
         request.POST = {
             'title': "",
             'article': "#test",
@@ -432,7 +488,7 @@ class TestSuperUser:
         # Faq
         # Create
         request = RequestFactory().post("/add_data")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username=os.getenv('M2_SUPERUSER'))
         request.POST = {
             'question': "name",
             'text': "test",
@@ -449,7 +505,7 @@ class TestSuperUser:
 
         # Create false
         request = RequestFactory().post("/add_data")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username=os.getenv('M2_SUPERUSER'))
         request.POST = {
             'question': "name",
             'text': "",
@@ -471,7 +527,7 @@ class TestSuperUser:
         # link
         # Create
         request = RequestFactory().post("/add_data")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username=os.getenv('M2_SUPERUSER'))
         request.POST = {
             'title': "name",
             'link': "test",
@@ -488,7 +544,7 @@ class TestSuperUser:
 
         # Create false
         request = RequestFactory().post("/add_data")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username=os.getenv('M2_SUPERUSER'))
         request.POST = {
             'title': "",
             'link': "test",
@@ -510,7 +566,7 @@ class TestSuperUser:
         # testimony
         # Create
         request = RequestFactory().post("/add_data")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username=os.getenv('M2_SUPERUSER'))
         request.POST = {
             'text': "name",
             'author': "test",
@@ -527,7 +583,7 @@ class TestSuperUser:
 
         # Create false
         request = RequestFactory().post("/add_data")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username=os.getenv('M2_SUPERUSER'))
         request.POST = {
             'text': "",
             'author': "test",
@@ -550,7 +606,7 @@ class TestSuperUser:
         # promotion
         # Create
         request = RequestFactory().post("/add_data")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username=os.getenv('M2_SUPERUSER'))
         request.POST = {
             'title': "name",
             'img_title': "test",
@@ -567,7 +623,7 @@ class TestSuperUser:
 
         # Create false
         request = RequestFactory().post("/add_data")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username=os.getenv('M2_SUPERUSER'))
         request.POST = {
             'title': "",
             'img_title': "test",
@@ -590,7 +646,7 @@ class TestSuperUser:
         # ticket
         # Create
         request = RequestFactory().post("/add_data")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username=os.getenv('M2_SUPERUSER'))
         request.POST = {
             'title': "name",
             'text': "test",
@@ -606,7 +662,7 @@ class TestSuperUser:
 
         # Create false
         request = RequestFactory().post("/add_data")
-        request.user = User.objects.get(username=os.getenv('dev_django'))
+        request.user = User.objects.get(username=os.getenv('M2_SUPERUSER'))
         request.POST = {
             'title': "",
             'text': "test",
@@ -646,12 +702,3 @@ class TestError:
         request = RequestFactory().get("")
         view = error_500(request)
         assert view.status_code == 200
-
-# Identifiant de connexion :
-# studenttest
-# Mot de passe :
-# uD3FvtAQdI
-# Identifiant de connexion :
-# stafftest
-# Mot de passe :
-# vJYzqLwyA8
