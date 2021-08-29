@@ -40,6 +40,8 @@ jobs:
         DB_HOST: ${{ secrets.DB_HOST }}
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         ENV: ${{ secrets.ENV }}
+        M2_SUPERUSER: ${{ secrets.M2_SUPERUSER }}
+        M2_PASSWORD: ${{ secrets.M2_PASSWORD }}
       run: |
         pytest
 
