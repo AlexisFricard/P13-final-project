@@ -339,8 +339,9 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.removeChild(modalContainer);
         };
     };
+    /********* Testimony *********/
     if (document.getElementById('addTem')) {
-        /********* Begin of alert box delete profil *********/
+        
         let modalContainer = document.createElement('div');
         modalContainer.setAttribute('id', 'modal');
         let customBox = document.createElement('div');
@@ -358,7 +359,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 '</br>Secteur : </br><form id="form-control"><select id="select">' +
                 '<option>Avocature et Magistrature' +
                 '<option>Secteur privé et public' + 
-                '<option>Recherche' +
+                '<option>Enseignements et recherches' +
                 '</select></form>');
             customBox.innerHTML += '</br><button class="btn my-1 mx-2 bg-primary text-light" id="modal-close">Annuler</button>';
             customBox.innerHTML += '<button class="btn my-1 bg-primary text-light" id="modal-submit">Envoyer</button>';
@@ -403,8 +404,9 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.removeChild(modalContainer);
         };
     };
+    /********* Promotion *********/
     if (document.getElementById('addPromo')) {
-        /********* Begin of alert box delete profil *********/
+        
         let modalContainer = document.createElement('div');
         modalContainer.setAttribute('id', 'modal');
         let customBox = document.createElement('div');
