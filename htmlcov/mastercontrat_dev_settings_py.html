@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
-    <title>Coverage for src\mastercontrat\dev_settings.py: 100%</title>
+    <title>Coverage for mastercontrat\dev_settings.py: 88%</title>
     <link rel="icon" sizes="32x32" href="favicon_32.png">
     <link rel="stylesheet" href="style.css" type="text/css">
     <script type="text/javascript" src="jquery.min.js"></script>
@@ -17,14 +17,14 @@
 <body class="pyfile">
 <div id="header">
     <div class="content">
-        <h1>Coverage for <b>src\mastercontrat\dev_settings.py</b> :
-            <span class="pc_cov">100%</span>
+        <h1>Coverage for <b>mastercontrat\dev_settings.py</b> :
+            <span class="pc_cov">88%</span>
         </h1>
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
-            27 statements &nbsp;
-            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">27 run</button>
-            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">0 missing</button>
+            34 statements &nbsp;
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">30 run</button>
+            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">4 missing</button>
             <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
         </h2>
     </div>
@@ -163,92 +163,102 @@
     <p id="t109" class="pln"><span class="n"><a href="#t109">109</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t110" class="pln"><span class="n"><a href="#t110">110</a></span><span class="t"><span class="com"># Database</span>&nbsp;</span><span class="r"></span></p>
     <p id="t111" class="pln"><span class="n"><a href="#t111">111</a></span><span class="t"><span class="com"># https://docs.djangoproject.com/en/3.2/ref/settings/#databases</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t112" class="run"><span class="n"><a href="#t112">112</a></span><span class="t"><span class="nam">DB_NAME</span> <span class="op">=</span> <span class="str">"mastercontratspoitiers"</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t113" class="run"><span class="n"><a href="#t113">113</a></span><span class="t"><span class="nam">DB_USER</span> <span class="op">=</span> <span class="nam">os</span><span class="op">.</span><span class="nam">getenv</span><span class="op">(</span><span class="str">"dev_django"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t114" class="run"><span class="n"><a href="#t114">114</a></span><span class="t"><span class="nam">DB_PASSWORD</span> <span class="op">=</span> <span class="nam">os</span><span class="op">.</span><span class="nam">getenv</span><span class="op">(</span><span class="str">"dev_password"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t115" class="run"><span class="n"><a href="#t115">115</a></span><span class="t"><span class="nam">DATABASES</span> <span class="op">=</span> <span class="op">{</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t116" class="pln"><span class="n"><a href="#t116">116</a></span><span class="t">    <span class="str">'default'</span><span class="op">:</span> <span class="op">{</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t117" class="pln"><span class="n"><a href="#t117">117</a></span><span class="t">        <span class="str">'ENGINE'</span><span class="op">:</span> <span class="str">'django.db.backends.postgresql_psycopg2'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t118" class="pln"><span class="n"><a href="#t118">118</a></span><span class="t">        <span class="str">'NAME'</span><span class="op">:</span> <span class="nam">DB_NAME</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t119" class="pln"><span class="n"><a href="#t119">119</a></span><span class="t">        <span class="str">'USER'</span><span class="op">:</span> <span class="nam">DB_USER</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t120" class="pln"><span class="n"><a href="#t120">120</a></span><span class="t">        <span class="str">'PASSWORD'</span><span class="op">:</span> <span class="nam">DB_PASSWORD</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t121" class="pln"><span class="n"><a href="#t121">121</a></span><span class="t">        <span class="str">'HOST'</span><span class="op">:</span> <span class="str">'localhost'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t122" class="pln"><span class="n"><a href="#t122">122</a></span><span class="t">        <span class="str">'PORT'</span><span class="op">:</span> <span class="str">'5432'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t123" class="pln"><span class="n"><a href="#t123">123</a></span><span class="t">    <span class="op">}</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t124" class="pln"><span class="n"><a href="#t124">124</a></span><span class="t"><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t125" class="pln"><span class="n"><a href="#t125">125</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t126" class="run"><span class="n"><a href="#t126">126</a></span><span class="t"><span class="nam">DEBUG</span> <span class="op">=</span> <span class="key">True</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t127" class="run"><span class="n"><a href="#t127">127</a></span><span class="t"><span class="nam">ALLOWED_HOSTS</span> <span class="op">=</span> <span class="op">[</span><span class="str">"*"</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t128" class="pln"><span class="n"><a href="#t128">128</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t129" class="pln"><span class="n"><a href="#t129">129</a></span><span class="t"><span class="com"># Static files (CSS, JavaScript, Images)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t130" class="pln"><span class="n"><a href="#t130">130</a></span><span class="t"><span class="com"># https://docs.djangoproject.com/en/3.2/howto/static-files/</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t131" class="pln"><span class="n"><a href="#t131">131</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t132" class="pln"><span class="n"><a href="#t132">132</a></span><span class="t"><span class="com"># Static files settings</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t133" class="pln"><span class="n"><a href="#t133">133</a></span><span class="t"><span class="com"># TODO: disable it to do :</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t134" class="pln"><span class="n"><a href="#t134">134</a></span><span class="t"><span class="com">#       --> collecstatic</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t135" class="pln"><span class="n"><a href="#t135">135</a></span><span class="t"><span class="com">#       --> Test photo upload</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t136" class="pln"><span class="n"><a href="#t136">136</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t137" class="run"><span class="n"><a href="#t137">137</a></span><span class="t"><span class="nam">STATIC_URL</span> <span class="op">=</span> <span class="str">'/static/'</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t138" class="run"><span class="n"><a href="#t138">138</a></span><span class="t"><span class="nam">STATIC_ROOT</span> <span class="op">=</span> <span class="nam">os</span><span class="op">.</span><span class="nam">path</span><span class="op">.</span><span class="nam">join</span><span class="op">(</span><span class="nam">BASE_DIR</span><span class="op">,</span> <span class="str">"static"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t139" class="run"><span class="n"><a href="#t139">139</a></span><span class="t"><span class="nam">MEDIA_URL</span> <span class="op">=</span> <span class="str">'/media/'</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t140" class="pln"><span class="n"><a href="#t140">140</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t141" class="pln"><span class="n"><a href="#t141">141</a></span><span class="t"><span class="com"># AWS SETTINGS</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t142" class="pln"><span class="n"><a href="#t142">142</a></span><span class="t"><span class="com"># TODO: enable it to do:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t143" class="pln"><span class="n"><a href="#t143">143</a></span><span class="t"><span class="com">#       --> collecstatic</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t144" class="pln"><span class="n"><a href="#t144">144</a></span><span class="t"><span class="com">#       --> Test photo upload</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t145" class="pln"><span class="n"><a href="#t145">145</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t146" class="pln"><span class="n"><a href="#t146">146</a></span><span class="t"><span class="com"># AWS_ACCESS_KEY_ID = os.getenv('ACCESS_KEY_ID')</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t147" class="pln"><span class="n"><a href="#t147">147</a></span><span class="t"><span class="com"># AWS_SECRET_ACCESS_KEY = os.getenv('SECRET_ACCESS_KEY')</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t148" class="pln"><span class="n"><a href="#t148">148</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t149" class="pln"><span class="n"><a href="#t149">149</a></span><span class="t"><span class="com"># AWS_STORAGE_BUCKET_NAME = os.getenv("BUCKET_NAME")</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t150" class="pln"><span class="n"><a href="#t150">150</a></span><span class="t"><span class="com"># AWS_S3_REGION_NAME = os.getenv('S3_REGION_NAME')</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t151" class="pln"><span class="n"><a href="#t151">151</a></span><span class="t"><span class="com"># AWS_S3_HOST = 's3.%s.scw.cloud' % (AWS_S3_REGION_NAME,)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t152" class="pln"><span class="n"><a href="#t152">152</a></span><span class="t"><span class="com"># AWS_S3_ENDPOINT_URL = 'https://%s' % (AWS_S3_HOST,)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t153" class="pln"><span class="n"><a href="#t153">153</a></span><span class="t"><span class="com"># AWS_S3_OBJECT_PARAMETERS = {</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t154" class="pln"><span class="n"><a href="#t154">154</a></span><span class="t"><span class="com">#     'CacheControl': 'max-age=86400',</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t155" class="pln"><span class="n"><a href="#t155">155</a></span><span class="t"><span class="com"># }</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t156" class="pln"><span class="n"><a href="#t156">156</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t157" class="pln"><span class="n"><a href="#t157">157</a></span><span class="t"><span class="com"># AWS STATIC SETTINGS</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t112" class="run"><span class="n"><a href="#t112">112</a></span><span class="t"><span class="key">if</span> <span class="nam">os</span><span class="op">.</span><span class="nam">getenv</span><span class="op">(</span><span class="str">'ENV'</span><span class="op">)</span> <span class="op">==</span> <span class="str">"GITHUB"</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t113" class="mis show_mis"><span class="n"><a href="#t113">113</a></span><span class="t">    <span class="nam">DB_NAME</span> <span class="op">=</span> <span class="nam">os</span><span class="op">.</span><span class="nam">getenv</span><span class="op">(</span><span class="str">"DB_NAME"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t114" class="mis show_mis"><span class="n"><a href="#t114">114</a></span><span class="t">    <span class="nam">DB_USER</span> <span class="op">=</span> <span class="nam">os</span><span class="op">.</span><span class="nam">getenv</span><span class="op">(</span><span class="str">"DB_USER"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t115" class="mis show_mis"><span class="n"><a href="#t115">115</a></span><span class="t">    <span class="nam">DB_PASSWORD</span> <span class="op">=</span> <span class="nam">os</span><span class="op">.</span><span class="nam">getenv</span><span class="op">(</span><span class="str">"DB_PASSWORD"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t116" class="mis show_mis"><span class="n"><a href="#t116">116</a></span><span class="t">    <span class="nam">DB_HOST</span> <span class="op">=</span> <span class="nam">os</span><span class="op">.</span><span class="nam">getenv</span><span class="op">(</span><span class="str">"DB_HOST"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t117" class="pln"><span class="n"><a href="#t117">117</a></span><span class="t"><span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t118" class="run"><span class="n"><a href="#t118">118</a></span><span class="t">    <span class="nam">DB_NAME</span> <span class="op">=</span> <span class="nam">os</span><span class="op">.</span><span class="nam">getenv</span><span class="op">(</span><span class="str">"BUCKET_NAME"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t119" class="run"><span class="n"><a href="#t119">119</a></span><span class="t">    <span class="nam">DB_USER</span> <span class="op">=</span> <span class="nam">os</span><span class="op">.</span><span class="nam">getenv</span><span class="op">(</span><span class="str">"dev_django"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t120" class="run"><span class="n"><a href="#t120">120</a></span><span class="t">    <span class="nam">DB_PASSWORD</span> <span class="op">=</span> <span class="nam">os</span><span class="op">.</span><span class="nam">getenv</span><span class="op">(</span><span class="str">"dev_password"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t121" class="run"><span class="n"><a href="#t121">121</a></span><span class="t">    <span class="nam">DB_HOST</span> <span class="op">=</span> <span class="str">"localhost"</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t122" class="pln"><span class="n"><a href="#t122">122</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t123" class="run"><span class="n"><a href="#t123">123</a></span><span class="t"><span class="nam">DB_PORT</span> <span class="op">=</span> <span class="str">"5432"</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t124" class="pln"><span class="n"><a href="#t124">124</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t125" class="run"><span class="n"><a href="#t125">125</a></span><span class="t"><span class="nam">DATABASES</span> <span class="op">=</span> <span class="op">{</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t126" class="pln"><span class="n"><a href="#t126">126</a></span><span class="t">    <span class="str">'default'</span><span class="op">:</span> <span class="op">{</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t127" class="pln"><span class="n"><a href="#t127">127</a></span><span class="t">        <span class="str">'ENGINE'</span><span class="op">:</span> <span class="str">'django.db.backends.postgresql_psycopg2'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t128" class="pln"><span class="n"><a href="#t128">128</a></span><span class="t">        <span class="str">'NAME'</span><span class="op">:</span> <span class="nam">DB_NAME</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t129" class="pln"><span class="n"><a href="#t129">129</a></span><span class="t">        <span class="str">'USER'</span><span class="op">:</span> <span class="nam">DB_USER</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t130" class="pln"><span class="n"><a href="#t130">130</a></span><span class="t">        <span class="str">'PASSWORD'</span><span class="op">:</span> <span class="nam">DB_PASSWORD</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t131" class="pln"><span class="n"><a href="#t131">131</a></span><span class="t">        <span class="str">'HOST'</span><span class="op">:</span> <span class="nam">DB_HOST</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t132" class="pln"><span class="n"><a href="#t132">132</a></span><span class="t">        <span class="str">'PORT'</span><span class="op">:</span> <span class="nam">DB_PORT</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t133" class="pln"><span class="n"><a href="#t133">133</a></span><span class="t">    <span class="op">}</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t134" class="pln"><span class="n"><a href="#t134">134</a></span><span class="t"><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t135" class="pln"><span class="n"><a href="#t135">135</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t136" class="run"><span class="n"><a href="#t136">136</a></span><span class="t"><span class="nam">DEBUG</span> <span class="op">=</span> <span class="key">True</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t137" class="run"><span class="n"><a href="#t137">137</a></span><span class="t"><span class="nam">ALLOWED_HOSTS</span> <span class="op">=</span> <span class="op">[</span><span class="str">"*"</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t138" class="pln"><span class="n"><a href="#t138">138</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t139" class="pln"><span class="n"><a href="#t139">139</a></span><span class="t"><span class="com"># Static files (CSS, JavaScript, Images)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t140" class="pln"><span class="n"><a href="#t140">140</a></span><span class="t"><span class="com"># https://docs.djangoproject.com/en/3.2/howto/static-files/</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t141" class="pln"><span class="n"><a href="#t141">141</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t142" class="pln"><span class="n"><a href="#t142">142</a></span><span class="t"><span class="com"># Static files settings</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t143" class="pln"><span class="n"><a href="#t143">143</a></span><span class="t"><span class="com"># TODO: disable it to do :</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t144" class="pln"><span class="n"><a href="#t144">144</a></span><span class="t"><span class="com">#       --> collecstatic</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t145" class="pln"><span class="n"><a href="#t145">145</a></span><span class="t"><span class="com">#       --> Test photo upload</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t146" class="pln"><span class="n"><a href="#t146">146</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t147" class="run"><span class="n"><a href="#t147">147</a></span><span class="t"><span class="nam">STATIC_URL</span> <span class="op">=</span> <span class="str">'/static/'</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t148" class="run"><span class="n"><a href="#t148">148</a></span><span class="t"><span class="nam">STATIC_ROOT</span> <span class="op">=</span> <span class="nam">os</span><span class="op">.</span><span class="nam">path</span><span class="op">.</span><span class="nam">join</span><span class="op">(</span><span class="nam">BASE_DIR</span><span class="op">,</span> <span class="str">"static"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t149" class="run"><span class="n"><a href="#t149">149</a></span><span class="t"><span class="nam">MEDIA_URL</span> <span class="op">=</span> <span class="str">'/media/'</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t150" class="pln"><span class="n"><a href="#t150">150</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t151" class="pln"><span class="n"><a href="#t151">151</a></span><span class="t"><span class="com"># AWS SETTINGS</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t152" class="pln"><span class="n"><a href="#t152">152</a></span><span class="t"><span class="com"># TODO: enable it to do:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t153" class="pln"><span class="n"><a href="#t153">153</a></span><span class="t"><span class="com">#       --> collecstatic</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t154" class="pln"><span class="n"><a href="#t154">154</a></span><span class="t"><span class="com">#       --> Test photo upload</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t155" class="pln"><span class="n"><a href="#t155">155</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t156" class="pln"><span class="n"><a href="#t156">156</a></span><span class="t"><span class="com"># AWS_ACCESS_KEY_ID = os.getenv('ACCESS_KEY_ID')</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t157" class="pln"><span class="n"><a href="#t157">157</a></span><span class="t"><span class="com"># AWS_SECRET_ACCESS_KEY = os.getenv('SECRET_ACCESS_KEY')</span>&nbsp;</span><span class="r"></span></p>
     <p id="t158" class="pln"><span class="n"><a href="#t158">158</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t159" class="pln"><span class="n"><a href="#t159">159</a></span><span class="t"><span class="com"># AWS_LOCATION = 'static'</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t160" class="pln"><span class="n"><a href="#t160">160</a></span><span class="t"><span class="com"># AWS_DEFAULT_ACL = 'public-read'</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t161" class="pln"><span class="n"><a href="#t161">161</a></span><span class="t"><span class="com"># AWS_QUERYSTRING_AUTH = False</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t162" class="pln"><span class="n"><a href="#t162">162</a></span><span class="t"><span class="com"># AWS_S3_SIGNATURE_VERSION = 's3v4'</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t163" class="pln"><span class="n"><a href="#t163">163</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t164" class="pln"><span class="n"><a href="#t164">164</a></span><span class="t"><span class="com"># STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t165" class="pln"><span class="n"><a href="#t165">165</a></span><span class="t"><span class="com"># STATIC_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, AWS_LOCATION)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t159" class="pln"><span class="n"><a href="#t159">159</a></span><span class="t"><span class="com"># AWS_STORAGE_BUCKET_NAME = os.getenv("BUCKET_NAME")</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t160" class="pln"><span class="n"><a href="#t160">160</a></span><span class="t"><span class="com"># AWS_S3_REGION_NAME = os.getenv('S3_REGION_NAME')</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t161" class="pln"><span class="n"><a href="#t161">161</a></span><span class="t"><span class="com"># AWS_S3_HOST = 's3.%s.scw.cloud' % (AWS_S3_REGION_NAME,)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t162" class="pln"><span class="n"><a href="#t162">162</a></span><span class="t"><span class="com"># AWS_S3_ENDPOINT_URL = 'https://%s' % (AWS_S3_HOST,)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t163" class="pln"><span class="n"><a href="#t163">163</a></span><span class="t"><span class="com"># AWS_S3_OBJECT_PARAMETERS = {</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t164" class="pln"><span class="n"><a href="#t164">164</a></span><span class="t"><span class="com">#     'CacheControl': 'max-age=86400',</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t165" class="pln"><span class="n"><a href="#t165">165</a></span><span class="t"><span class="com"># }</span>&nbsp;</span><span class="r"></span></p>
     <p id="t166" class="pln"><span class="n"><a href="#t166">166</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t167" class="pln"><span class="n"><a href="#t167">167</a></span><span class="t"><span class="com"># PUBLIC_MEDIA_LOCATION = 'media/'</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t168" class="pln"><span class="n"><a href="#t168">168</a></span><span class="t"><span class="com"># MEDIA_URL = (</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t169" class="pln"><span class="n"><a href="#t169">169</a></span><span class="t"><span class="com">#     f'{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}' +</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t170" class="pln"><span class="n"><a href="#t170">170</a></span><span class="t"><span class="com">#     f'/{PUBLIC_MEDIA_LOCATION}'</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t171" class="pln"><span class="n"><a href="#t171">171</a></span><span class="t"><span class="com"># )</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t172" class="pln"><span class="n"><a href="#t172">172</a></span><span class="t"><span class="com"># DEFAULT_FILE_STORAGE = 'frontpage.storage_backends.PublicMediaStorage'</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t167" class="pln"><span class="n"><a href="#t167">167</a></span><span class="t"><span class="com"># AWS STATIC SETTINGS</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t168" class="pln"><span class="n"><a href="#t168">168</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t169" class="pln"><span class="n"><a href="#t169">169</a></span><span class="t"><span class="com"># AWS_LOCATION = 'static'</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t170" class="pln"><span class="n"><a href="#t170">170</a></span><span class="t"><span class="com"># AWS_DEFAULT_ACL = 'public-read'</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t171" class="pln"><span class="n"><a href="#t171">171</a></span><span class="t"><span class="com"># AWS_QUERYSTRING_AUTH = False</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t172" class="pln"><span class="n"><a href="#t172">172</a></span><span class="t"><span class="com"># AWS_S3_SIGNATURE_VERSION = 's3v4'</span>&nbsp;</span><span class="r"></span></p>
     <p id="t173" class="pln"><span class="n"><a href="#t173">173</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t174" class="pln"><span class="n"><a href="#t174">174</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t175" class="pln"><span class="n"><a href="#t175">175</a></span><span class="t"><span class="com"># Default primary key field type</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t176" class="pln"><span class="n"><a href="#t176">176</a></span><span class="t"><span class="com"># https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t177" class="pln"><span class="n"><a href="#t177">177</a></span><span class="t"><span class="com"># DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t178" class="pln"><span class="n"><a href="#t178">178</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t179" class="pln"><span class="n"><a href="#t179">179</a></span><span class="t"><span class="com"># Channels Specific</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t180" class="run"><span class="n"><a href="#t180">180</a></span><span class="t"><span class="nam">CHANNEL_LAYERS</span> <span class="op">=</span> <span class="op">{</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t181" class="pln"><span class="n"><a href="#t181">181</a></span><span class="t">    <span class="str">'default'</span><span class="op">:</span> <span class="op">{</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t182" class="pln"><span class="n"><a href="#t182">182</a></span><span class="t">        <span class="str">'BACKEND'</span><span class="op">:</span> <span class="str">'channels_redis.core.RedisChannelLayer'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t183" class="pln"><span class="n"><a href="#t183">183</a></span><span class="t">        <span class="str">'CONFIG'</span><span class="op">:</span> <span class="op">{</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t184" class="pln"><span class="n"><a href="#t184">184</a></span><span class="t">            <span class="str">"hosts"</span><span class="op">:</span> <span class="op">[</span><span class="op">(</span><span class="str">'127.0.0.1'</span><span class="op">,</span> <span class="num">6379</span><span class="op">)</span><span class="op">]</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t185" class="pln"><span class="n"><a href="#t185">185</a></span><span class="t">        <span class="op">}</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t186" class="pln"><span class="n"><a href="#t186">186</a></span><span class="t">    <span class="op">}</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t187" class="pln"><span class="n"><a href="#t187">187</a></span><span class="t"><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t174" class="pln"><span class="n"><a href="#t174">174</a></span><span class="t"><span class="com"># STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t175" class="pln"><span class="n"><a href="#t175">175</a></span><span class="t"><span class="com"># STATIC_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, AWS_LOCATION)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t176" class="pln"><span class="n"><a href="#t176">176</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t177" class="pln"><span class="n"><a href="#t177">177</a></span><span class="t"><span class="com"># PUBLIC_MEDIA_LOCATION = 'media/'</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t178" class="pln"><span class="n"><a href="#t178">178</a></span><span class="t"><span class="com"># MEDIA_URL = (</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t179" class="pln"><span class="n"><a href="#t179">179</a></span><span class="t"><span class="com">#     f'{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}' +</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t180" class="pln"><span class="n"><a href="#t180">180</a></span><span class="t"><span class="com">#     f'/{PUBLIC_MEDIA_LOCATION}'</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t181" class="pln"><span class="n"><a href="#t181">181</a></span><span class="t"><span class="com"># )</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t182" class="pln"><span class="n"><a href="#t182">182</a></span><span class="t"><span class="com"># DEFAULT_FILE_STORAGE = 'frontpage.storage_backends.PublicMediaStorage'</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t183" class="pln"><span class="n"><a href="#t183">183</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t184" class="pln"><span class="n"><a href="#t184">184</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t185" class="pln"><span class="n"><a href="#t185">185</a></span><span class="t"><span class="com"># Default primary key field type</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t186" class="pln"><span class="n"><a href="#t186">186</a></span><span class="t"><span class="com"># https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t187" class="pln"><span class="n"><a href="#t187">187</a></span><span class="t"><span class="com"># DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'</span>&nbsp;</span><span class="r"></span></p>
     <p id="t188" class="pln"><span class="n"><a href="#t188">188</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t189" class="pln"><span class="n"><a href="#t189">189</a></span><span class="t"><span class="com"># TODO: Email service for passwords_reset and send user username &amp; password</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t190" class="run"><span class="n"><a href="#t190">190</a></span><span class="t"><span class="nam">EMAIL_BACKEND</span> <span class="op">=</span> <span class="str">"django.core.mail.backends.filebased.EmailBackend"</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t191" class="run"><span class="n"><a href="#t191">191</a></span><span class="t"><span class="nam">EMAIL_FILE_PATH</span> <span class="op">=</span> <span class="nam">str</span><span class="op">(</span><span class="nam">BASE_DIR</span><span class="op">.</span><span class="nam">joinpath</span><span class="op">(</span><span class="str">'sent_emails'</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t189" class="pln"><span class="n"><a href="#t189">189</a></span><span class="t"><span class="com"># Channels Specific</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t190" class="run"><span class="n"><a href="#t190">190</a></span><span class="t"><span class="nam">CHANNEL_LAYERS</span> <span class="op">=</span> <span class="op">{</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t191" class="pln"><span class="n"><a href="#t191">191</a></span><span class="t">    <span class="str">'default'</span><span class="op">:</span> <span class="op">{</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t192" class="pln"><span class="n"><a href="#t192">192</a></span><span class="t">        <span class="str">'BACKEND'</span><span class="op">:</span> <span class="str">'channels_redis.core.RedisChannelLayer'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t193" class="pln"><span class="n"><a href="#t193">193</a></span><span class="t">        <span class="str">'CONFIG'</span><span class="op">:</span> <span class="op">{</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t194" class="pln"><span class="n"><a href="#t194">194</a></span><span class="t">            <span class="str">"hosts"</span><span class="op">:</span> <span class="op">[</span><span class="op">(</span><span class="str">'127.0.0.1'</span><span class="op">,</span> <span class="num">6379</span><span class="op">)</span><span class="op">]</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t195" class="pln"><span class="n"><a href="#t195">195</a></span><span class="t">        <span class="op">}</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t196" class="pln"><span class="n"><a href="#t196">196</a></span><span class="t">    <span class="op">}</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t197" class="pln"><span class="n"><a href="#t197">197</a></span><span class="t"><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t198" class="pln"><span class="n"><a href="#t198">198</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p id="t199" class="pln"><span class="n"><a href="#t199">199</a></span><span class="t"><span class="com"># TODO: Email service for passwords_reset and send user username &amp; password</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t200" class="run"><span class="n"><a href="#t200">200</a></span><span class="t"><span class="nam">EMAIL_BACKEND</span> <span class="op">=</span> <span class="str">"django.core.mail.backends.filebased.EmailBackend"</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t201" class="run"><span class="n"><a href="#t201">201</a></span><span class="t"><span class="nam">EMAIL_FILE_PATH</span> <span class="op">=</span> <span class="nam">str</span><span class="op">(</span><span class="nam">BASE_DIR</span><span class="op">.</span><span class="nam">joinpath</span><span class="op">(</span><span class="str">'sent_emails'</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
 </div>
 <div id="footer">
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.5</a>,
-            created at 2021-08-28 17:24 +0200
+            created at 2021-08-29 13:43 +0200
         </p>
     </div>
 </div>
