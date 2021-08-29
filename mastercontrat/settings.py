@@ -91,10 +91,10 @@ if os.environ.get('ENV') == 'PRODUCTION':
 
     # Heroku settings (disable collecstatic)
     django_heroku.settings(locals(), staticfiles=False)
-    DEBUG = True
+    DEBUG = False
 
     # Set your domain name here
-    ALLOWED_HOSTS = ['mastercontratspoitiers.herokuapp.com']
+    ALLOWED_HOSTS = ['www.masteraffairescontrats-poitiers.fr']
 
     # Database
     db_from_env = dj_database_url.config(conn_max_age=500)
