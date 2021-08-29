@@ -7,6 +7,7 @@ from frontpage.models import (
     Ticket, AuthorMessageTicket
 )
 import os
+import pytest
 
 from django.test import RequestFactory, TestCase
 from django.contrib.auth.models import AnonymousUser, User
@@ -19,6 +20,21 @@ from frontpage.views import (
     add_data, add_user, helpdashboard,
     error_400, error_403, error_404, error_500
 )
+
+
+@pytest.fixture
+def create_student_user():
+    User.objects.create_user(
+        username="student",
+        email="student@test.fr",
+        password="azerty123",
+        is_staff=0
+    )
+
+
+@pytest.fixture
+def delete_student_user():
+    User.objects.get(username="student").delete()
 
 
 class TemplateTest(TestCase):
@@ -105,7 +121,7 @@ class TemplateTest(TestCase):
     def test_myaccount(self):
 
         request = RequestFactory().get("/myaccount")
-        request.user = User.objects.get(username='atobellamy')
+        request.user = User.objects.get(username='student')
 
         middleware = SessionMiddleware()
         middleware.process_request(request)
@@ -114,16 +130,19 @@ class TemplateTest(TestCase):
         view = myaccount(request)
         assert view.status_code == 200
 
-    def test_log_out(self):
+    def test_log_out(self, create_student_user, delete_student_user):
 
         request = RequestFactory().post("/log_out")
-        request.user = User.objects.get(username="studenttest")
+        create_student_user()
+        request.user = User.objects.get(username="student")
 
         middleware = SessionMiddleware()
         middleware.process_request(request)
         request.session.save()
 
         view = log_out(request)
+
+        delete_student_user()
 
         assert view.status_code == 302
         assert view.url == "/"
