@@ -24,26 +24,36 @@
             <div class="row px-0 col-lg-12">
                 <div class="col-lg-3 bg-light fs-6 px-0">
                     {% for ticket in tickets %}
-                    <p class="fs-6 py-1 px-2 my-0  border-lbr">{{ ticket.date }}</p>
+                    <p class="fs-6 py-2 px-2 my-0  border-lbr">{{ ticket.date }}</p>
                     {% endfor %}
                 </div>
                 <div class="col-lg-3 bg-light fs-6 px-0">
                     {% for ticket in tickets %}
-                    <p class="fs-6 py-1 px-2 my-0 border-lbr">{{ ticket.title }}</p>
+                    <p class="fs-6 py-2 px-2 my-0 border-lbr">{{ ticket.title }}</p>
                     {% endfor %}
                 </div>
                 <div class="col-lg-3 bg-light fs-6 px-0">
                     {% for ticket in tickets %}
                     {% if ticket.state == True %}
-                    <p class="fs-6 py-1 px-2 my-0 border-lbr">Ouvert</p>
+                    <p class="fs-6 py-2 px-2 my-0 border-lbr">Ouvert
+                        <label class="switch mx-5">
+                            <input type="checkbox">
+                            <span class="slider round" ></span>
+                        </label>
+                    </p>
                     {% else %}
-                    <p class="fs-6 py-1 px-2 my-0 border-lbr">Fermée</p>
+                    <p class="fs-6 py-2 px-2 my-0 border-lbr">Fermée
+                        <label class="switch">
+                            <input type="checkbox" checked="true">
+                            <span class="slider round" ></span>
+                        </label>
+                    </p>
                     {% endif %}
                     {% endfor %}
                 </div>
                 <div class="col-lg-3 bg-light fs-6 px-0">
                     {% for ticket in tickets %}
-                    <p class="fs-6 py-1 px-2 my-0 border-lbr"><a href="/ticket?id={{ticket.id}}" target="_blank">Voir ticket n°{{ticket.id}}</a></p>
+                    <p class="fs-6 py-2 px-2 my-0 border-lbr"><a href="/ticket?id={{ticket.id}}" target="_blank">Voir ticket n°{{ticket.id}}</a></p>
                     {% endfor %}
                 </div>
         </div>
