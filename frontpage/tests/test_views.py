@@ -299,6 +299,7 @@ class TestStaff(TestCase):
 
         middleware = SessionMiddleware()
         middleware.process_request(request)
+
         request.session.save()
 
         view = ticket(request)
@@ -306,7 +307,7 @@ class TestStaff(TestCase):
         delete_user("staff")
         delete_ticket(ticket_obj.id)
 
-        assert view.status_code == 200
+        assert view.status_code == 302
 
 
 class TestSuperUser:
