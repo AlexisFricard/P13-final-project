@@ -258,39 +258,42 @@ def ticket(request):
 
     if request.method == "GET":
         t_id = request.GET.get("id")
-        ticket_object = Ticket.objects.get(id=t_id)
-        messages_object = AuthorMessageTicket.objects.filter(
-            ticket_id=t_id
-            ).order_by('date')
-        is_staff = request.user.is_staff
-        if messages_object:
-            if (messages_object[0].author == request.user.username or
-                    is_staff):    # noqa
+        try:
+            ticket_object = Ticket.objects.get(id=t_id)
+            messages_object = AuthorMessageTicket.objects.filter(
+                ticket_id=t_id
+                ).order_by('date')
+            is_staff = request.user.is_staff
+            if messages_object:
+                if (messages_object[0].author == request.user.username or
+                        is_staff):    # noqa
 
-                list_of_messages = []
-                for msg in messages_object:
-                    author_object = User.objects.get(username=msg.author)
-                    if author_object.is_staff:
-                        user_class = "staff-msg"
-                    else:
-                        user_class = "student-msg"
-                    list_of_messages.append({
-                        "author":   msg.author,
-                        "msg":      msg.message,
-                        "date":     msg.date,
-                        "user_class": user_class
-                    })
+                    list_of_messages = []
+                    for msg in messages_object:
+                        author_object = User.objects.get(username=msg.author)
+                        if author_object.is_staff:
+                            user_class = "staff-msg"
+                        else:
+                            user_class = "student-msg"
+                        list_of_messages.append({
+                            "author":   msg.author,
+                            "msg":      msg.message,
+                            "date":     msg.date,
+                            "user_class": user_class
+                        })
 
-                data = {
-                    "messages": list_of_messages,
-                    "is_open": ticket_object.state
-                }
+                    data = {
+                        "messages": list_of_messages,
+                        "is_open": ticket_object.state
+                    }
 
-                return render(request, "ticket.html", data)
+                    return render(request, "ticket.html", data)
+                else:
+                    return redirect("myspace")
             else:
                 return redirect("myspace")
-        else:
-            return redirect("myspace")
+        except:    # noqa
+           return redirect("myspace") 
 
 
 @login_required
