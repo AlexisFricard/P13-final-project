@@ -270,7 +270,7 @@ def ticket(request):
                 list_of_messages = []
                 for msg in messages_object:
                     author_object = User.objects.get(username=msg.author)
-                    if author_object.is_staff == True:
+                    if author_object.is_staff:
                         user_class = "staff-msg"
                     else:
                         user_class = "student-msg"

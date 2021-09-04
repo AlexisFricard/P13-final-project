@@ -24,9 +24,9 @@ from frontpage.views import (
 # Method to return User object
 def create_user(name):
     if name == "student":
-        staff = 0
+        staff = False
     else:
-        staff = 1
+        staff = True
 
     User.objects.create_user(
         username=name,
@@ -385,7 +385,7 @@ class TestSuperUser:
         request.POST = {
             'firstname': "name",
             'lastname': "test",
-            'email': "ail@test.io",
+            'email': "mail@test.io",
             'emailconfirm': "mail@test.io",
             "staff": "true"
         }
