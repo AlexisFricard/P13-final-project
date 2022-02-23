@@ -6,7 +6,6 @@ from mastercontrat import wsgi  # noqa
 
 from django.test import RequestFactory
 from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.sessions.middleware import SessionMiddleware
 from frontpage.tests.constants import ANONYMOUS
 from association.views import association
 from association.models import MemberOffice
@@ -66,12 +65,9 @@ def test_association():
             role='treasurer'
         )
 
-    request = RequestFactory().get("/association")
+    request = RequestFactory().get("")
     request.user = ANONYMOUS
     request.method = 'GET'
-    middleware = SessionMiddleware()
-    middleware.process_request(request)
-    request.session.save()
 
     view = association(request)
 

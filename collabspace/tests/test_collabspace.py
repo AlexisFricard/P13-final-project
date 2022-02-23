@@ -24,10 +24,6 @@ def test_myspace():
     request = RequestFactory().get("")
     request.user = STUDENT
 
-    middleware = SessionMiddleware()
-    middleware.process_request(request)
-    request.session.save()
-
     faq = create_faq()
     link = create_link()
 
