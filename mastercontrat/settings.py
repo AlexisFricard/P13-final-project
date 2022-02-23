@@ -1,3 +1,4 @@
+
 """
 Django settings for mastercontrat project.
 """
@@ -122,6 +123,18 @@ if os.getenv('ENV') == "PRODUCTION":
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES = {"default": {}}
     DATABASES['default'].update(db_from_env)
+
+elif os.getenv('ENV') == "GITHUB":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.getenv('DB_NAME'),
+            'USER': os.getenv('DB_USER'),
+            'PASSWORD': os.getenv('DB_PASSWORD'),
+            'HOST': os.getenv('DB_HOST'),
+            'PORT': 5432,
+        }
+    }
 else:
     DATABASES = {
         'default': {
