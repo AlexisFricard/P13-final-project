@@ -8,10 +8,11 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 import chat.routing
 
 
-if os.getenv("ENV") == ("PRODUCTION" or "GITHUB"):
+
+if os.environ.get('ENV') == "DEV":
     os.environ.setdefault(
         'DJANGO_SETTINGS_MODULE',
-        'mastercontrat.settings'
+        'mastercontrat.dev_settings'
         )
 
     application = ProtocolTypeRouter({
@@ -26,7 +27,7 @@ if os.getenv("ENV") == ("PRODUCTION" or "GITHUB"):
 else:
     os.environ.setdefault(
         'DJANGO_SETTINGS_MODULE',
-        'mastercontrat.dev_settings'
+        'mastercontrat.settings'
         )
 
     application = ProtocolTypeRouter({
