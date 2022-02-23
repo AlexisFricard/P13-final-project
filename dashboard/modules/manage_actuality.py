@@ -6,11 +6,7 @@ from django.contrib.auth.decorators import login_required
 from frontpage.models import Actuality
 
 from modules.check_url import check_url
-
-# TODO PROD SETTINGS
-# from mastercontrat.settings import STATIC_URL
-# TODO DEV SETTINGS:
-from mastercontrat.dev_settings import STATIC_URL
+from mastercontrat.settings import STATIC_URL
 
 
 @login_required
