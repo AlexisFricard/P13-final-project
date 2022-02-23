@@ -7,11 +7,11 @@ from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 import chat.routing
 
-if os.getenv("ENV") != "PRODUCTION":
 
+if os.getenv("ENV") == ("PRODUCTION" or "GITHUB"):
     os.environ.setdefault(
         'DJANGO_SETTINGS_MODULE',
-        'mastercontrat.dev_settings'
+        'mastercontrat.settings'
         )
 
     application = ProtocolTypeRouter({
@@ -22,10 +22,11 @@ if os.getenv("ENV") != "PRODUCTION":
             )
         ),
     })
+
 else:
     os.environ.setdefault(
         'DJANGO_SETTINGS_MODULE',
-        'mastercontrat.settings'
+        'mastercontrat.dev_settings'
         )
 
     application = ProtocolTypeRouter({
