@@ -16,8 +16,6 @@ def test_association():
     request = RequestFactory().get("")
     request.user = ANONYMOUS
 
-    view = association(request)
-
     pres = MemberOffice.objects.create(
         name="testpres",
         link='formationtest',
