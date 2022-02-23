@@ -13,9 +13,6 @@ from association.models import MemberOffice
 
 def test_association():
 
-    request = RequestFactory().get("")
-    request.user = ANONYMOUS
-
     try:
         MemberOffice.objects.get(role='president')
         pres = False
@@ -68,7 +65,7 @@ def test_association():
             role='treasurer'
         )
 
-    request = RequestFactory().get("")
+    request = RequestFactory().get("/association")
     request.user = ANONYMOUS
 
     view = association(request)
