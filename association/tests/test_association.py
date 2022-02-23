@@ -67,6 +67,7 @@ def test_association():
 
     request = RequestFactory().get("/association")
     request.user = ANONYMOUS
+    request.method = 'GET'
 
     view = association(request)
 
