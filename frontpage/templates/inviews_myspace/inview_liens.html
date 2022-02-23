@@ -1,0 +1,20 @@
+{% extends "myspace.html" %}
+{% load static %}
+{% load convert_markdown %}
+{% block inview %}
+<div class="container overlay" style="min-height: 581px;background: url({% static 'images/backgrounds/photo3.jpg' %});background-size:cover">
+    <div class="row align-items-start">
+      <div class="col-md-12 order-2 order-md-1">
+          <h2 class="section-title" style="font-family:futura">Les liens utiles</h2>
+          {% for linkloaded in links %}
+          <div id="{{linkloaded.id}}" class="col-12 py-1 box-link" style="max-height:90px;overflow:hidden">
+              <a href="{{ linkloaded.link }}" target="_blank" class="d-inline-block text-color" style="position: absolute;right: 0;top: 0;"><i style="font-size: 30px" class="ti-plus"></i></a>
+              <h4>
+                  {{ linkloaded.title }}
+              </h4>
+              
+          </div>
+          {% endfor %}
+    </div>
+  </div>
+{% endblock %}

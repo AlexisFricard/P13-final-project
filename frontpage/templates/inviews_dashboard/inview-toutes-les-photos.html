@@ -1,0 +1,19 @@
+{% extends "dashboard.html" %}
+{% load static %}
+{% load convert_markdown %}
+{% block inview %}
+<!-- about us -->
+    <div class="section container-fluid overlay">
+        <div class="row align-items-start justify-content-center">
+            <div class="col-md-12 row">
+                <h2 class="section-title py-5 text-center w-100" style="font-family:futura">Les photos ajoutées</h2>
+                {% for img in imgs %}
+                <div class="col-md-3 p-5" style="padding:20px;">
+                    <img class="w-100" src="{{media_url}}{{img.image}}">
+                    <p style="line-break: anywhere;">{{ img.image }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

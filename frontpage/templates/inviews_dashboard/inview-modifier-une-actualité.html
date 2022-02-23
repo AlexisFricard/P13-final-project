@@ -1,0 +1,217 @@
+{% extends "dashboard.html" %}
+{% load static %}
+{% load convert_markdown %}
+{% block inview %}
+<!-- about us -->
+    <div class="section container-fluid overlay">
+      <div class="row align-items-start justify-content-center">
+        <div class="col-md-10 order-2 order-md-1">
+            <h2 class="section-title py-5 text-center" style="font-family:futura">Modifier les actualités</h2>
+            {% for actu in actus %}
+            <div id="@{{actu.id}}" class="col-12 my-1 py-1 box-actu bg-primary" style="max-height:40px;overflow:hidden">
+                <h3 class="text-white">{{actu.title}}</h3>
+                <a onClick="" id="b@{{actu.id}}" class="d-inline-block text-color" style="position: absolute;right: 10px;top: 10px;"><i style="font-size: 20px;color:#fff" id="i@{{ actu.id }}" class="ti-arrow-down"></i></a>
+                <form class="bg-white p-5" method="post" action="/mod_data?id={{actu.id}}&dbdata=actuality">
+                    {% csrf_token %}
+                    <div class="col-12 my-2">
+
+                        <h4>Paramètres de l'actualité</h4>
+                        Active :
+                        {% if actu.state %}
+                        <input  checked class="mb-3" name="is_state" type="checkbox"/>
+                        {% else %}
+                        <input  class="mb-3" name="is_state" type="checkbox"/>
+                        {% endif %}<br>
+
+                        <input type="text" name="box" value="actuality" style="display: none;"/>
+                        Titre
+                        <input autocomplete='off' type="text" name="title" class="form-control" value="{{actu.title}}"/>
+                    </div>
+                    
+                    <div class="row col-lg-12">
+                        <div class="col-lg-6">
+                            Date de début
+                            <input autocomplete='off' type="date" name="start" class="form-control"/>
+                        </div>
+                        <div class="col-lg-6">
+                            Date de fin
+                            <input autocomplete='off' type="date" name="end" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="col-12 pt-3">
+                        Lien vers site exterieur : <input id="ext_link_btn_2" type="checkbox" onclick="checkchange2(this)"/><br>
+                        <input id="external_link" autocomplete='off' type="text" class="form-control mt-2" name="ext_link" value="{{actu.external_link}}">
+                        <script type="text/javascript">
+                            function checkchange2(checkbox)
+                            {
+                                if (checkbox.checked)
+                                {
+                                    document.getElementById('external_link').setAttribute('style', "display:block");
+                                }
+                                else
+                                {
+                                    document.getElementById('external_link').setAttribute('style', "display:none");
+                                }
+                            }
+                        </script>
+                    </div>
+                    <div class="col-12 py-3" id="1">
+                        Petite description (Accueil & Actualités)
+                        <textarea required id="text-area1" style="resize:none;height:150px" maxlength="110" autocomplete='off' row="6" cols="20" type="text" class="form-control" name="short_desc" placeholder="110 caractères maximum">{{actu.short_desc}}</textarea>
+                            <!-- Style for text-area -->
+                        <a style="padding-left:20px;width:35px" id="#" onClick="" class="btn btn-primary btn-style p-0 mb-5 px-2"><i class="ti-back-left"></i></a>
+                        <a style="width:35px" id="**" onClick="" class="btn btn-primary btn-style p-0 mb-5 px-2"><strong>B</strong></a>
+                        <a style="width:35px" id="*" onClick="" class="btn btn-primary btn-style p-0 mb-5 px-2"><i>it</i></a>
+                        <a style="width:35px" id="***" onClick="" class="btn btn-primary btn-style p-0 mb-5 px-2"><i><strong>IB</strong></i></a><br>
+                        <!-- Style for text-area -->
+                    </div>
+                    <div class="col-12 py-3" id="2" style="margin-top:-50px">
+                        Article (Actualité)
+                        <textarea required id="text-area2" style="resize:none;height:150px;" maxlength="1000" autocomplete='off' row="6" cols="30" type="text" class="form-control" name="article" placeholder="1000 caractères maximum">{{actu.article}}</textarea>
+                            <!-- Style for text-area -->
+                        <a style="padding-left:20px;width:35px" id="#" onClick="" class="btn btn-primary btn-style p-0 mb-5 px-2"><i class="ti-back-left"></i></a>
+                        <a style="width:35px" id="**" onClick="" class="btn btn-primary btn-style p-0 mb-5 px-2"><strong>B</strong></a>
+                        <a style="width:35px" id="*" onClick="" class="btn btn-primary btn-style p-0 mb-5 px-2"><i>it</i></a>
+                        <a style="width:35px" id="***" onClick="" class="btn btn-primary btn-style p-0 mb-5 px-2"><i><strong>IB</strong></i></a><br>
+                        <!-- Style for text-area -->
+                    </div>
+                    <div class="col-12 my-2">
+                        <h4 >Choix de l'image</h4>
+                        <div class="col-12 text-center h4">
+                            Portrait
+                            <label class="switch" style="display: inline-block !important">
+                                {% if actu.format %}
+                                <input checked class="mx-5" id="format" name="format" type="checkbox">
+                                {% else %}
+                                <input class="mx-5" id="format" name="format" type="checkbox">
+                                {% endif %}
+                                <span style="margin:0" class="slider round">
+                            </label>
+                            Paysage
+                        </div>
+                        L'image provient-elle d'un autre site ? : <input id="ext_link_btn" type="checkbox" onclick="checkchange(this)"/>
+                        <div id="ext_link" class="col-12 px-0 mt-3" style="display:none">
+                            <input autocomplete='off' type="text" name="link_ext" class="form-control" value="{{actu.img_title}}"/>
+                        </div>
+                        <select id="select-img" type="text" name="link" class="form-control my-3" >
+                            <option value="{{actu.img_title}}">{{actu.img_title}}</option>
+                            {% for img in imgs %}
+                            <option value="{{img.image}}">{{img.image}}</option>
+                            {% endfor %}
+                        </select>
+                        <script type="text/javascript">
+                            function checkchange(checkbox)
+                            {
+                                if (checkbox.checked)
+                                {
+                                    document.getElementById('ext_link').setAttribute('style', "display:block");
+                                    document.getElementById('select-img').setAttribute('style', "display:none");
+                                }
+                                else
+                                {
+                                    document.getElementById('ext_link').setAttribute('style', "display:none");
+                                    document.getElementById('select-img').setAttribute('style', "display:block");
+                                }
+                            }
+                        </script>
+
+                    </div>
+                    <br>
+                    <div class="col-12 py-2">
+                        <input style="margin-top:10px;padding: 6px 15px" type="submit" value="Modifier" class="btn btn-primary">
+                        <a style="margin-top:10px;padding: 6px 15px" href="/del_?id={{actu.id}}&t=actu" class="btn btn-primary">Supprimer</a>
+                        <!-- <a onClick="" id="btn-show" class="btn btn-primary btn-prev mt-2">PRÉVISUALISER</a> -->
+                    </div>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% if response %}
+<!-- MODAL RESPONSE -->
+<div class="modal fade show bg-primary align-items-center" id="modal" style="padding-right: 9px; display: flex;">
+    <div class="modal-dialog modal-lg p-5" role="document">
+        <div class="modal-content rounded-0 border-0 p-5">
+            {% if response_error %}
+            <img class="modal-dialog" style='width:300px' src="{% static 'images/gifs/alert.gif' %}">
+            {% else %}
+            <img class="modal-dialog" style='width:300px' src="{% static 'images/gifs/validate.gif' %}">
+            {% endif %}
+            <h4 class="text-center">{{ response_text }}</h4>
+            <button class="btn btn-secondary" id="modal-close">FERMER</button>
+            <script>
+                document.getElementById('modal-close').addEventListener(
+                    'click',
+                    function() {
+                        document.getElementById('modal').setAttribute(
+                            'class',
+                            'modal fade'
+                        )
+                        document.getElementById('modal').setAttribute(
+                            'style',
+                            ''
+                        )
+                    }
+                )
+            </script>
+        </div>
+    </div>
+</div>
+<!-- MODAL RESPONSE -->
+{% endif %}
+<!-- /about us -->
+<script>
+    let list_of_actu = document.getElementsByClassName('box-actu')
+    for (let actu of list_of_actu) {
+        let id_actu = actu.id;
+        let btn_show = document.getElementById('b' + id_actu);
+        btn_show.addEventListener('click', function() {
+            if ('ti-arrow-down' == document.getElementById('i' + id_actu).getAttribute('class')) {
+                document.getElementById(id_actu).setAttribute('style', '');
+                document.getElementById('i' + id_actu).setAttribute('class', 'ti-arrow-up')
+            }
+            else {
+                document.getElementById(id_actu).setAttribute('style', 'max-height:40px;overflow:hidden');
+                document.getElementById('i' + id_actu).setAttribute('class', 'ti-arrow-down')
+            }
+            
+        })
+    };
+</script>
+<!-- Style for text-area -->
+<script>
+    function modificateText(idoftextarea, style){
+        var textArea = document.getElementById(idoftextarea);
+        var text =textArea.value;
+        var indexStart=textArea.selectionStart;
+        var indexEnd=textArea.selectionEnd;
+        let newText = (
+            text.substring(0, indexStart) +
+            style +
+            text.substring(indexStart, indexEnd) + 
+            style +
+            text.substring(indexEnd)
+        )
+        return(newText)
+        
+    }
+
+    
+    let list_of_style_btn = document.getElementsByClassName('btn-style')
+
+    for (let btn of list_of_style_btn) {
+        btn.addEventListener('click', function() {
+            let id_ = btn.parentNode.id
+            let AREA = document.getElementById('text-area' + id_)
+            if (btn.id != "#") {
+                AREA.value = modificateText('text-area' + id_, btn.id)
+            }
+            else {
+                AREA.value = AREA.value + btn.id + '\n'
+            } 
+        })
+    };
+</script>
+<!-- Style for text-area -->
+{% endblock %}

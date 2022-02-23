@@ -1,112 +1,301 @@
-{% extends "index.html" %}
+{% extends "template_ref.html" %}
 {% load static %}
+{% load convert_markdown %}
 {% block body %}
-<header class="top-after">
-</header>
-<section class="container-fluid bg-light pb-5 text-dark slidefromleft" id="section-testim">
-    <h3 class="text-primary py-1 mt-2 text-center title_after">Secteurs privé et public</h3>
-    <div class="w-100 py-3 row justify-content-center">
-        <div class="col-lg-10 bg-grey fs-6 px-3 py-3 w-75 text-justify">
-            &#171; Après l’obtention de ma Licence de droit au Centre universitaire de la Charente à 
-            Angoulême (rebaptisé depuis Campus des Vallois), j’ai effectué le Master 1 Droit des affaires 
-            de l’Université de Poitiers avant de m’orienter vers le Master 2 <i>Contrats en droit français et 
-            européen</i> (promotion 2016-2017). Mon diplôme obtenu, j’intègre rapidement un cabinet 
-            d’avocats dans lequel je travaille pendant deux ans et demie en tant que juriste spécialisé en 
-            droit commercial et des sociétés. Durant ces deux années et demie, je traite de fusions-acquisitions et de cessions de fonds de commerce. En parallèle, je dispense des travaux dirigés
-            en droit de la concurrence et de la distribution dans le même Master 1 Droit des affaires. Je
-            décide ensuite de partir au Luxembourg afin de suivre une formation spécialisée en droit 
-            bancaire et financier puis reviens à Poitiers. Je travaille désormais chez Emil Frey France, 
-            premier réseau français de concessionnaire automobile comme juriste en droit des sociétés.</br>
-            Mon année au sein du Master 2 <i>Contrats en droit français et européen</i> m’a permis 
-            d’acquérir de solides bases en droit des contrats et des affaires, que j’ai enrichies grâce à mes 
-            différentes expériences professionnelles. &#187;
-        </div>
-        <div class="text-end fs-6 bg-light">
-            </br>Benjamin Tolleron - Promotion 2016-2017</br>
-            Salarié du privé</br>
+<!-- page title -->
+<div id="page-name" style="display: none;">Témoignages</div>
+<section style="background-position: center;background-size: cover;" class="page-title-section overlay" data-background="{% static 'images/backgrounds/photo6.JPG' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <ul class="list-inline custom-breadcrumb">
+                    <li class="list-inline-item">
+                        <a style="font-family:futura" class="h1 text-primary font-secondary" href="@@page-link">
+                            Les débouchés de la formation
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-    {% for tem in testimony %}
-    {% if tem.sector == "Secteur privé et public" %}
-    <div class="w-100 py-3 row justify-content-center">
-        <div class="col-lg-10 bg-grey fs-6 px-3 py-3 w-75 text-justify">
-            &#171; {{ tem.text }} &#187;
-        </div>
-        <div class="text-end fs-6 bg-light">
-            </br>{{ tem.author }}
-        </div>
-    {% endif %}
-    {% endfor %}
-    <h3 class="text-primary py-1 mt-2 text-center title_after">Avocature et Magistrature</h3>
-    <div class="w-100 py-3 row justify-content-center">
-        <div class="col-lg-10 bg-grey fs-6 px-3 py-3 w-75 text-justify">
-            &#171; Attirée très tôt par le droit des contrats, dès ma deuxième année de licence, j’ai choisi 
-            d’effectuer en France le Master 2 <i>Contrats en droit français et européen</i> à l’Université de 
-            Poitiers en 2016.</br>
-            Sur le plan professionnel, ce master m’a donné l’occasion de découvrir en profondeur les droits
-            français et européen des contrats et m’a permis de m’ouvrir à de multiples systèmes étrangers 
-            tels que les droits allemand et italien. Tout au long de l’année, j’ai poursuivi mes études dans 
-            un cadre méthodologique générique et flexible. Les enseignements dispensés s’inscrivaient, en 
-            outre, parfaitement dans la logique de mon projet professionnel, mon objectif principal étant de 
-            devenir juge et docteur en droit privé.</br>
-            Sur le plan personnel, l’expérience prolongée en France m’a offert l’opportunité d’allier l’utile 
-            à l’agréable ; d’explorer, en profondeur, ce pays fantastique, animé, et ouvert à toutes les 
-            cultures, d'interagir avec sa chaleureuse et accueillante population. Plongée au cœur de ce pays 
-            envoûtant, j’ai progressé dans mes études juridiques sans même m’en apercevoir.</br>
-            Revenue au Liban une fois mon diplôme obtenu, j’ai préparé et réussi le concours d’entrée à 
-            l’École nationale de la magistrature. J’ai également commencé une thèse de doctorat sur <i>Le 
-            transfert conventionnel de la propriété immobilière (étude comparée : droit français – droit 
-            libanais)</i> sous la direction de Madame le Professeur Rose-Noëlle Schütz. J’assure également 
-            des travaux dirigés à l’Université Saint-Esprit de Kaslik. &#187;
-        </div>
-        <div class="text-end fs-6 bg-light">
-            </br>Pia Zgheib - Promotion 2016-2017</br>
-            Doctorante en droit privé à l’Université de Poitiers</br>
-            Élève-Magistrat à l’ENM-Liban</br>
-            Chargée de Travaux dirigés à l’Université Saint-Esprit de Kaslik-Liban</br>
-        </div>
-    </div>
-    {% for tem in testimony %}
-    {% if tem.sector == "Avocature et Magistrature" %}
-    <div class="w-100 py-3 row justify-content-center">
-        <div class="col-lg-10 bg-grey fs-6 px-3 py-3 w-75 text-justify">
-            &#171; {{ tem.text }} &#187;
-        </div>
-        <div class="text-end fs-6 bg-light">
-            </br>{{ tem.author }}
-        </div>
-    {% endif %}
-    {% endfor %}
-    <h3 class="text-primary py-1 mt-2 text-center title_after">Enseignement et recherche</h3>
-    <div class="py-3 w-100 row justify-content-center">
-        <div class="col-lg-10 bg-grey fs-6 px-3 py-3 w-75 text-justify">
-            &#171; Lorsque j’ai intégré le Master 2 <i>Contrats en droit français et européen</i> j’étais titulaire, d’un 
-            Master 1 en <i>Droit des affaires</i> et d’un Master 2 <i>Gestion fiscale</i> à l’issue duquel j’ai travaillé 
-            deux ans en cabinet d’expertise comptable et de commissariat aux comptes. Cette année au sein 
-            du Master 2 Contrats fut l’occasion de revenir au droit privé et d’approfondir mes compétences 
-            en droit des contrats et en droit des obligations grâce à une équipe pédagogique d’horizons 
-            différents, mêlant approches pratique et théorique des matières enseignées. Intéressée par la 
-            doctrine, j’ai fait le choix de rédiger un mémoire de recherche qui m’a conduite à entreprendre 
-            la rédaction d’une thèse de doctorat sur <i>La propriété immobilière au prisme du droit de la 
-            construction</i> sous la direction de Madame le Professeur Marianne Faure-Abbad, au sein de 
-            l’Équipe de recherche en droit privé, laboratoire d’appui du Master. &#187;
-        </div>
-        <div class="text-end fs-6 bg-light">
-            </br>Lucie Portron - Promotion 2014-2015</br>
-            Doctorante en droit privé à l’Université de Poitiers</br>
-            Chargée de Travaux dirigés à l’Université de Poitiers</br>
-        </div>
-    </div>
-    {% for tem in testimony %}
-    {% if tem.sector == "Recherche" %}
-    <div class="w-100 py-3 row justify-content-center">
-        <div class="col-lg-10 bg-grey fs-6 px-3 py-3 w-75 text-justify">
-            &#171; {{ tem.text }} &#187;
-        </div>
-        <div class="text-end fs-6 bg-light">
-            </br>{{ tem.author }}
-        </div>
-    {% endif %}
-    {% endfor %}
 </section>
+<!-- hero slider -->
+<div class="row overlay">
+    <div class="col-12">
+      <!-- teacher category list -->
+      <ul class="list-inline text-center filter-controls mb-5">
+        <li class="list-inline-item m-3 text-uppercase active" data-filter="all">Tout</li>
+        <li class="list-inline-item m-3 text-uppercase" data-filter="SPP">Secteur privé et public</li>
+        <li class="list-inline-item m-3 text-uppercase" data-filter="AM">Avocature et Magistrature</li>
+        <li class="list-inline-item m-3 text-uppercase" data-filter="ER">Enseignement et recherche</li>
+      </ul>
+    </div>
+</div>
+    <section class="section overlay bg-cover pb-5">
+        <div class="container">
+            <h3 style="color:#900c2f;font-family:futura">Secteur privé et public</h3>
+            {% if "Secteur privé et public" in testimony_type %}
+            <div class="hero-slider">
+                <div class="hero-slider-item">
+                    <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="60" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">
+                            <p style="text-align: justify;">
+                                &#171; Après l’obtention de ma Licence de droit au Centre universitaire de la Charente à 
+                                Angoulême (rebaptisé depuis Campus des Vallois), j’ai effectué le Master 1 Droit des affaires 
+                                de l’Université de Poitiers avant de m’orienter vers le Master 2 <i>Contrats en droit français et 
+                                européen</i> (promotion 2016-2017). Mon diplôme obtenu, j’intègre rapidement un cabinet 
+                                d’avocats dans lequel je travaille pendant deux ans et demie en tant que juriste spécialisé en 
+                                droit commercial et des sociétés. Durant ces deux années et demie, je traite de fusions-acquisitions et de cessions de fonds de commerce. En parallèle, je dispense des travaux dirigés
+                                en droit de la concurrence et de la distribution dans le même Master 1 Droit des affaires. Je
+                                décide ensuite de partir au Luxembourg afin de suivre une formation spécialisée en droit 
+                                bancaire et financier puis reviens à Poitiers. Je travaille désormais chez Emil Frey France, 
+                                premier réseau français de concessionnaire automobile comme juriste en droit des sociétés.</br>
+                                Mon année au sein du Master 2 <i>Contrats en droit français et européen</i> m’a permis 
+                                d’acquérir de solides bases en droit des contrats et des affaires, que j’ai enrichies grâce à mes 
+                                différentes expériences professionnelles. &#187; 
+                            </p>
+                            <span class="text-dark">
+                                Benjamin Tolleron<br>
+                                Promotion 2016-2017
+                                <p>Salarié du privé</p>
+                            </span>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                {% for tem in testimony %}
+                {% if tem.sector == "Secteur privé et public" %}
+                <div class="hero-slider-item">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="60" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">
+                                {{ tem.text|convert_markdown|safe }} 
+                                <span class="text-dark">
+                                    {{ tem.author}}<br>
+                                    Promotion {{ tem.promotion }}
+                                    {{ tem.job|convert_markdown|safe }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="60" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">
+                            <p style="text-align: justify;">
+                                &#171; Après l’obtention de ma Licence de droit au Centre universitaire de la Charente à 
+                                Angoulême (rebaptisé depuis Campus des Vallois), j’ai effectué le Master 1 Droit des affaires 
+                                de l’Université de Poitiers avant de m’orienter vers le Master 2 <i>Contrats en droit français et 
+                                européen</i> (promotion 2016-2017). Mon diplôme obtenu, j’intègre rapidement un cabinet 
+                                d’avocats dans lequel je travaille pendant deux ans et demie en tant que juriste spécialisé en 
+                                droit commercial et des sociétés. Durant ces deux années et demie, je traite de fusions-acquisitions et de cessions de fonds de commerce. En parallèle, je dispense des travaux dirigés
+                                en droit de la concurrence et de la distribution dans le même Master 1 Droit des affaires. Je
+                                décide ensuite de partir au Luxembourg afin de suivre une formation spécialisée en droit 
+                                bancaire et financier puis reviens à Poitiers. Je travaille désormais chez Emil Frey France, 
+                                premier réseau français de concessionnaire automobile comme juriste en droit des sociétés.</br>
+                                Mon année au sein du Master 2 <i>Contrats en droit français et européen</i> m’a permis 
+                                d’acquérir de solides bases en droit des contrats et des affaires, que j’ai enrichies grâce à mes 
+                                différentes expériences professionnelles. &#187; 
+                            </p>
+                            <span class="text-dark">
+                                Benjamin Tolleron<br>
+                                Promotion 2016-2017
+                                <p>Salarié du privé</p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+    <section class="section overlay bg-cover py-5" >
+        <div class="container">
+            <h3 style="color:#900c2f;font-family:futura">Avocature et Magistrature</h3>
+            {% if "Avocature et Magistrature" in testimony_type %}
+            <div class="hero-slider">
+                <div class="hero-slider-item">
+                    <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="60" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">
+                            <p style="text-align: justify;">
+                                &#171; Attirée très tôt par le droit des contrats, dès ma deuxième année de licence, j’ai choisi 
+                                d’effectuer en France le Master 2 <i>Contrats en droit français et européen</i> à l’Université de 
+                                Poitiers en 2016.<br>
+                                Sur le plan professionnel, ce master m’a donné l’occasion de découvrir en profondeur les droits
+                                français et européen des contrats et m’a permis de m’ouvrir à de multiples systèmes étrangers 
+                                tels que les droits allemand et italien. Tout au long de l’année, j’ai poursuivi mes études dans 
+                                un cadre méthodologique générique et flexible. Les enseignements dispensés s’inscrivaient, en 
+                                outre, parfaitement dans la logique de mon projet professionnel, mon objectif principal étant de 
+                                devenir juge et docteur en droit privé.<br>
+                                Sur le plan personnel, l’expérience prolongée en France m’a offert l’opportunité d’allier l’utile 
+                                à l’agréable ; d’explorer, en profondeur, ce pays fantastique, animé, et ouvert à toutes les 
+                                cultures, d'interagir avec sa chaleureuse et accueillante population. Plongée au cœur de ce pays 
+                                envoûtant, j’ai progressé dans mes études juridiques sans même m’en apercevoir.<br>
+                                Revenue au Liban une fois mon diplôme obtenu, j’ai préparé et réussi le concours d’entrée à 
+                                l’École nationale de la magistrature. J’ai également commencé une thèse de doctorat sur <i>Le 
+                                transfert conventionnel de la propriété immobilière (étude comparée : droit français – droit 
+                                libanais)</i> sous la direction de Madame le Professeur Rose-Noëlle Schütz. J’assure également 
+                                des travaux dirigés à l’Université Saint-Esprit de Kaslik.. &#187;
+                            </p>
+                            <span class="text-dark">
+                                Pia Zgheib<br>
+                                Promotion 2016-2017
+                                <p>
+                                    Élève-Magistrat à l’ENM-Liban<br>
+                                    Doctorante en droit privé à l’Université de Poitiers<br>
+                                    Chargée de Travaux dirigés à l’Université Saint-Esprit de Kaslik-Liban
+                                </p>
+                            </span>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                {% for tem in testimony %}
+                {% if tem.sector == "Avocature et Magistrature" %}
+                <div class="hero-slider-item">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="60" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">
+                                {{ tem.text|convert_markdown|safe }} 
+                                <span class="text-dark">
+                                    {{ tem.author}}<br>
+                                    Promotion {{ tem.promotion }}
+                                    {{ tem.job|convert_markdown|safe }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            {% else %}
+            <div class="">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="60" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">
+                            <p style="text-align: justify;">
+                                &#171; Attirée très tôt par le droit des contrats, dès ma deuxième année de licence, j’ai choisi 
+                                            d’effectuer en France le Master 2 <i>Contrats en droit français et européen</i> à l’Université de 
+                                            Poitiers en 2016.<br>
+                                            Sur le plan professionnel, ce master m’a donné l’occasion de découvrir en profondeur les droits
+                                            français et européen des contrats et m’a permis de m’ouvrir à de multiples systèmes étrangers 
+                                            tels que les droits allemand et italien. Tout au long de l’année, j’ai poursuivi mes études dans 
+                                            un cadre méthodologique générique et flexible. Les enseignements dispensés s’inscrivaient, en 
+                                            outre, parfaitement dans la logique de mon projet professionnel, mon objectif principal étant de 
+                                            devenir juge et docteur en droit privé.<br>
+                                            Sur le plan personnel, l’expérience prolongée en France m’a offert l’opportunité d’allier l’utile 
+                                            à l’agréable ; d’explorer, en profondeur, ce pays fantastique, animé, et ouvert à toutes les 
+                                            cultures, d'interagir avec sa chaleureuse et accueillante population. Plongée au cœur de ce pays 
+                                            envoûtant, j’ai progressé dans mes études juridiques sans même m’en apercevoir.<br>
+                                            Revenue au Liban une fois mon diplôme obtenu, j’ai préparé et réussi le concours d’entrée à 
+                                            l’École nationale de la magistrature. J’ai également commencé une thèse de doctorat sur <i>Le 
+                                            transfert conventionnel de la propriété immobilière (étude comparée : droit français – droit 
+                                            libanais)</i> sous la direction de Madame le Professeur Rose-Noëlle Schütz. J’assure également 
+                                            des travaux dirigés à l’Université Saint-Esprit de Kaslik.. &#187;
+                            </p>
+                            <span class="text-dark">
+                                Pia Zgheib<br>
+                                Promotion 2016-2017
+                                <p>
+                                    Élève-Magistrat à l’ENM-Liban<br>
+                                    Doctorante en droit privé à l’Université de Poitiers<br>
+                                    Chargée de Travaux dirigés à l’Université Saint-Esprit de Kaslik-Liban
+                                </p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+    <section class="section overlay bg-cover py-5" >
+        <div class="container">
+            <h3 style="color:#900c2f;font-family:futura">Enseignement et recherche</h3>
+            {% if "Enseignement et recherche" in testimony_type %}
+            <div class="hero-slider">
+                <div class="hero-slider-item">
+                    <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="60" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">
+                            <p style="text-align: justify;">
+                                &#171; Lorsque j’ai intégré le Master 2 <i>Contrats en droit français et européen</i> j’étais titulaire, d’un 
+                                Master 1 en <i>Droit des affaires</i> et d’un Master 2 <i>Gestion fiscale</i> à l’issue duquel j’ai travaillé 
+                                deux ans en cabinet d’expertise comptable et de commissariat aux comptes. Cette année au sein 
+                                du Master 2 Contrats fut l’occasion de revenir au droit privé et d’approfondir mes compétences 
+                                en droit des contrats et en droit des obligations grâce à une équipe pédagogique d’horizons 
+                                différents, mêlant approches pratique et théorique des matières enseignées. Intéressée par la 
+                                doctrine, j’ai fait le choix de rédiger un mémoire de recherche qui m’a conduite à entreprendre 
+                                la rédaction d’une thèse de doctorat sur <i>La propriété immobilière au prisme du droit de la 
+                                construction</i> sous la direction de Madame le Professeur Marianne Faure-Abbad, au sein de 
+                                l’Équipe de recherche en droit privé, laboratoire d’appui du Master. &#187;
+                            </p>
+                            <span class="text-dark">
+                                Lucie Portron<br>
+                                Promotion 2014-2015
+                                <p>
+                                    Doctorante en droit privé à l’Université de Poitiers<br>
+                                    Chargée de Travaux dirigés à l’Université de Poitiers<br>
+                                </p>
+                            </span>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                {% for tem in testimony %}
+                {% if tem.sector == "Enseignement et recherche" %}
+                <div class="hero-slider-item">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="60" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">
+                                {{ tem.text|convert_markdown|safe }} 
+                                <span class="text-dark">
+                                    {{ tem.author}}<br>
+                                    Promotion {{ tem.promotion }}
+                                    {{ tem.job|convert_markdown|safe }}
+                                </span>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            {% else %}
+            <div class="">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="60" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">
+                            <p style="text-align: justify;">
+                                &#171; Lorsque j’ai intégré le Master 2 <i>Contrats en droit français et européen</i> j’étais titulaire, d’un 
+                                Master 1 en <i>Droit des affaires</i> et d’un Master 2 <i>Gestion fiscale</i> à l’issue duquel j’ai travaillé 
+                                deux ans en cabinet d’expertise comptable et de commissariat aux comptes. Cette année au sein 
+                                du Master 2 Contrats fut l’occasion de revenir au droit privé et d’approfondir mes compétences 
+                                en droit des contrats et en droit des obligations grâce à une équipe pédagogique d’horizons 
+                                différents, mêlant approches pratique et théorique des matières enseignées. Intéressée par la 
+                                doctrine, j’ai fait le choix de rédiger un mémoire de recherche qui m’a conduite à entreprendre 
+                                la rédaction d’une thèse de doctorat sur <i>La propriété immobilière au prisme du droit de la 
+                                construction</i> sous la direction de Madame le Professeur Marianne Faure-Abbad, au sein de 
+                                l’Équipe de recherche en droit privé, laboratoire d’appui du Master. &#187;
+                            </p>
+                            <span class="text-dark">
+                                Lucie Portron<br>
+                                Promotion 2014-2015
+                                <p>
+                                    Doctorante en droit privé à l’Université de Poitiers<br>
+                                    Chargée de Travaux dirigés à l’Université de Poitiers<br>
+                                </p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </section>
 {% endblock %}

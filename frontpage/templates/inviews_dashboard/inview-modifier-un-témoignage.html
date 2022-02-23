@@ -1,0 +1,139 @@
+{% extends "dashboard.html" %}
+{% load static %}
+{% load convert_markdown %}
+{% block inview %}
+<!-- about us -->
+    <div class="section container-fluid overlay">
+      <div class="row align-items-start justify-content-center">
+        <div class="col-md-10 order-2 order-md-1">
+            <h2 class="section-title py-5 text-center" style="font-family:futura">Modifier les témoignages</h2>
+            {% for testi in testis %}
+            <div id="@{{testi.id}}" class="col-12 my-1 py-1 box-testi bg-primary" style="max-height:40px;overflow:hidden">
+                <h3 class="text-white">{{testi.author}}</h3>
+                <a onClick="" id="b@{{testi.id}}" class="d-inline-block text-color" style="position: absolute;right: 10px;top: 10px;"><i style="font-size: 20px;color:#fff" id="i@{{ testi.id }}" class="ti-arrow-down"></i></a>
+                <form class="bg-white p-5" method="post" action="/mod_data?id={{testi.id}}&dbdata=testimony">
+                    {% csrf_token %}
+                    <div class="col-12 my-2">
+                        Active : {% if testi.state %}
+                        <input checked id="" name="is_state" type="checkbox"/>
+                        {% else %}
+                        <input id="" name="is_state" type="checkbox"/>
+                        {% endif %}
+                        <input type="text" name="box" value="testimony" style="display: none;"/>
+                        <input autocomplete='off' type="text" name="author" class="form-control my-3" value="{{testi.author}}"/>
+    
+                        <input autocomplete='off' type="text" name="promotion" class="form-control my-3" value="{{testi.promotion}}"/>
+                        <select class="form-control my-3" name="sector">
+                            <option value="{{testi.sector}}">{{testi.sector}}</option>
+                            {% if testi.sector != "Secteur privé et public" %}
+                            <option value="Secteur privé et public">Secteur privé et public</option>
+                            {% endif %}
+                            {% if testi.sector != "Avocature et Magistrature" %}
+                            <option value="Avocature et Magistrature">Avocature et Magistrature</option>
+                            {% endif %}
+                            {% if testi.sector != "Enseignement et recherche" %}
+                            <option value="Enseignement et recherche">Enseignement et recherche</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                    <textarea style="height: 200px;resize:none;" maxlength="2000" autocomplete='off' row="6" cols="30" type="text" class="form-control" name="text">{{testi.text}}</textarea>
+
+                    <textarea style="height: 100px;resize:none;" maxlength="2000" autocomplete='off' row="6" cols="30" type="text" class="form-control" name="job">{{testi.job}}</textarea>
+                    <input style="margin-top:10px;padding: 6px 15px" type="submit" value="Modifier" class="btn btn-primary">
+                    <a style="margin-top:10px;padding: 6px 15px" href="/del_?id={{testi.id}}&t=testi" class="btn btn-primary">Supprimer</a>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+            
+        </div>
+    </div>
+
+  </section>
+  {% if response %}
+  <!-- MODAL RESPONSE -->
+  <div class="modal fade show bg-primary align-items-center" id="modal" style="padding-right: 9px; display: flex;">
+      <div class="modal-dialog modal-lg p-5" role="document">
+          <div class="modal-content rounded-0 border-0 p-5">
+              {% if response_error %}
+              <img class="modal-dialog" style='width:300px' src="{% static 'images/gifs/alert.gif' %}">
+              {% else %}
+              <img class="modal-dialog" style='width:300px' src="{% static 'images/gifs/validate.gif' %}">
+              {% endif %}
+              <h4 class="text-center">{{ response_text }}</h4>
+              <button class="btn btn-secondary" id="modal-close">FERMER</button>
+              <script>
+                  document.getElementById('modal-close').addEventListener(
+                      'click',
+                      function() {
+                          document.getElementById('modal').setAttribute(
+                              'class',
+                              'modal fade'
+                          )
+                          document.getElementById('modal').setAttribute(
+                              'style',
+                              ''
+                          )
+                      }
+                  )
+              </script>
+          </div>
+      </div>
+  </div>
+  <!-- MODAL RESPONSE -->
+  {% endif %}
+<!-- /about us -->
+<script>
+    let list_of_actu = document.getElementsByClassName('box-testi')
+    for (let actu of list_of_actu) {
+        let id_actu = actu.id;
+        let btn_show = document.getElementById('b' + id_actu);
+        btn_show.addEventListener('click', function() {
+            if ('ti-arrow-down' == document.getElementById('i' + id_actu).getAttribute('class')) {
+                document.getElementById(id_actu).setAttribute('style', '');
+                document.getElementById('i' + id_actu).setAttribute('class', 'ti-arrow-up')
+            }
+            else {
+                document.getElementById(id_actu).setAttribute('style', 'max-height:40px;overflow:hidden');
+                document.getElementById('i' + id_actu).setAttribute('class', 'ti-arrow-down')
+            }
+            
+        })
+    };
+</script>
+<!-- Style for text-area -->
+<script>
+    function modificateText(idoftextarea, style){
+        var textArea = document.getElementById(idoftextarea);
+        var text =textArea.value;
+        var indexStart=textArea.selectionStart;
+        var indexEnd=textArea.selectionEnd;
+        let newText = (
+            text.substring(0, indexStart) +
+            style +
+            text.substring(indexStart, indexEnd) + 
+            style +
+            text.substring(indexEnd)
+        )
+        return(newText)
+        
+    }
+
+    
+    let list_of_style_btn = document.getElementsByClassName('btn-style')
+
+    for (let btn of list_of_style_btn) {
+        btn.addEventListener('click', function() {
+            let id_ = btn.parentNode.id
+            let AREA = document.getElementById('text-area' + id_)
+            if (btn.id != "#") {
+                AREA.value = modificateText('text-area' + id_, btn.id)
+            }
+            else {
+                AREA.value = AREA.value + btn.id + '\n'
+            } 
+        })
+    };
+</script>
+<!-- Style for text-area -->
+{% endblock %}

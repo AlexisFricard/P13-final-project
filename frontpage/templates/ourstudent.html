@@ -1,62 +1,225 @@
-{% extends "index.html" %}
+{% extends "template_ref.html" %}
 {% load static %}
 {% block body %}
-<header class="top-ourstudent">
-</header>
-<section id="box-ourstudent">
-    {% if promotions %}
-    {% for promotion in promotions %}
-    <div class="bg-light py-3 text-dark slidefromleft row mx-0 justify-content-center" id="section-promo">
-        <h3 class="text-primary py-1 mt-2 text-center title_after w-75">{{ promotion.banner }}</h3>
-        <div class="row justify-content-center">
-            <img class="col-lg-6" src="{{media_location}}{{ promotion.img_title }}">
-            <div class="col-lg-4 fs-6">
-                {{ promotion.description }}
+<div id="page-name" style="display: none;">Promotions</div>
+<!-- hero slider -->
+<section class="section overlay bg-cover" style="padding:20vh 0" data-background="{% static 'a/images/promo2021.jpg' %}">
+    <div class="container" style="max-width: 95%;">
+        <div class="hero-slider">
+            <div class="hero-slider-item">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2 style="color:#900c2f;font-family:futura" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">
+                            Promotion 2020 - 2021
+                        </h2>
+                        <h3 style="font-family:futura" class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".4">
+                            Master 2 Contrats en droit français et européen
+                        </h3>
+                        <div class="col-lg-12 row">
+                            <div class="col-md-4 px-0" style="padding: 10px">
+                                <div class="col-lg-12" style="padding: 13px 0;min-height:77px">
+                                    <strong>De gauche à droite, rang du haut :</strong>
+                                </div>
+                                <a target="_blanck" href="https://www.linkedin.com/in/hugo-bonenfant-679163178/?originalSubdomain=fr"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                Hugo Bonenfant<br>
+                                <a target="_blanck" href="https://www.linkedin.com/in/fran%C3%A7ois-bouloux-786b9b1a6/"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                François Bouloux<br>
+                                <a target="_blanck" href=https://www.linkedin.com/in/pia-elias/"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                Pia Elias<br>
+                                <a target="_blanck" href="https://www.linkedin.com/in/m%C3%A9lodie-rambaud-57519b1a3/"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                Mélodie Rambaud<br>
+                                <a target="_blanck" href="https://www.linkedin.com/in/victoire-dellamaggiore-3b480b113/"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                Victoire Dellamaggiore<br>
+                                <a target="_blanck" href="https://www.linkedin.com/in/l%C3%A9a-calais-9022b71b7/"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                Léa Calais<br>
+                                <a target="_blanck" href="https://www.linkedin.com/in/marie-jamalkhan-2b6271206/"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                Marie Jamalkhan<br>
+                                <a target="_blanck" href="https://erdp.labo.univ-poitiers.fr/membres/helene-boucard/"><i class="ti-search" style="color: #900c2f;"></i></a>
+                                Pr. Hélène Boucard<br>
+                                <a><i class="ti-linkedin" style="color:transparent;"> </i></a>
+                                Thibault Faveri
+                            </div>
+                
+                            <div class="col-md-4 px-0" style="padding: 10px">
+                                <div class="col-lg-12" style="padding: 13px 0;min-height:77px">
+                                    <strong>De gauche à droite, rang du bas :</strong>
+                                </div>
+                                <a target="_blanck" href="https://fr.linkedin.com/in/ar050519"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                Amaury Reboul<br>
+                                <a target="_blanck" href="https://www.linkedin.com/in/alexandre-roy-7b09061a1/"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                Alexandre Roy<br>
+                                <a target="_blanck" href="https://www.linkedin.com/in/adrien-breton-08730a107/"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                Adrien Breton<br>
+                                <a target="_blanck" href="https://www.linkedin.com/in/camille-germaneau-b443a1141/"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                Camille Germaneau<br>
+                                <a target="_blanck" href="https://www.linkedin.com/in/hillary-hounkanrin-642753206/"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                Hillary Hounkanrin<br>
+                                <a target="_blanck" href="https://www.linkedin.com/in/c%C3%A9lyanne-c-7887b0155/"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                Celyanne Cafournet<br>
+                                <a target="_blanck" href="https://www.linkedin.com/in/mathieu-caillard-21581519b/"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                Mathieu Caillard<br>
+                                <a target="_blanck" href="https://www.linkedin.com/in/l%C3%A9o-bethoule-762382223/"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                Leo Bethoule
+                            </div>
+                            <div class="col-md-4 px-0" style="padding: 10px">
+                                <div class="col-lg-12"  style="padding: 13px 0;min-height:77px">
+                                    <strong>Absents de la photo :</strong>
+                                </div>
+                                <a target="_blanck" href="https://erdp.labo.univ-poitiers.fr/membres/lionel-andreu/"><i class="ti-search" style="color: #900c2f;"></i></a>
+                                Pr. Lionel Andreu<br>
+                                <a target="_blanck" href="https://www.linkedin.com/in/h%C3%A9lo%C3%AFse-aubry-35b207208/"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                Héloïse Aubry<br>
+                                <a target="_blanck" href="https://www.linkedin.com/in/diana-lozano-4219191b8/"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                Diana Lozano <br>
+                                <a target="_blanck" href="https://www.linkedin.com/in/madison-amsellem-1737a386/"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                Madison Amsellem<br>
+                                <a target="_blanck" href="https://www.linkedin.com/in/jeremy-achour-234b81138/"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                Jérémy Achour<br>
+                                <a ><i class="ti-linkedin" style="color:transparent;"> </i></a>
+                                Cécile Porte<br>
+                                <a ><i class="ti-linkedin" style="color:transparent;"> </i></a>
+                                Faycal Dourasse
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 row">
+                        <div class="box-photo" style="overflow: hidden;display: flex;justify-content: center;align-items: center;">
+                            <img class="img-promo" alt="" src="{% static 'images/promo2021.jpg' %}" style="width:100%;"/>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    {% endfor %}
-    {% endif %}
-    <div class="bg-light py-3 text-dark slidefromleft row mx-0 justify-content-center" id="section-promo">
-        <h3 class="text-primary py-1 mt-2 text-center title_after w-75">Promotion 2020 - 2021</h3>
-        <div class="row justify-content-center">
-            <img class="col-lg-6" src="{% static 'assets/img/promo2021.jpg' %}">
-            <div class="row col-lg-5">
-                <div class="col-lg-6 px-1 fs-6">
-                    <strong>De gauche à droite, rang du haut :</br></br></strong>
-                    Hugo Bonenfant</br>
-                    François Bouloux</br>
-                    Pia Elias</br>
-                    Mélodie Rambaud</br>
-                    Victoire Dellamaggiore</br>
-                    Léa Calais</br>
-                    Marie Jamalkhan</br>
-                    Madame le Professeur Hélène Boucard</br>
-                    Thibault Faveri </br></br>
+            {% for promotion in promotions %}
+            <div class="hero-slider-item">
+                <div class="row align-items-start">
+                    <!-- ==== PROMO BOX ==== -->
+                    {% if promotion.col1.students %}
+                        {% if promotion.col2.students %}
+                            {% if promotion.col3.students %}
+                            <div class="col-lg-6">
+                            {% else %}
+                            <div class="col-lg-5">
+                            {% endif %}
+                        {% else %}
+                        <div class="col-lg-4">
+                        {% endif %}
+                    {% else %}
+                    <div class="col-lg-12">
+                    {% endif %}
+                        <h2 style="color:#900c2f;font-family:futura" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">
+                            Promotion {{ promotion.date }}
+                        </h2>
+                        <h3 style="font-family:futura" class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".4">
+                            {{ promotion.formation }}
+                        </h3>
+                        <div class="col-lg-12 row  px-0">
+                            <!-- ==== COLUMN 1 ==== -->
+                            {% if promotion.col1.students %}
+                            {% if promotion.col2.students %}
+                            {% if promotion.col3.students %}
+                            <div class="col-lg-4 row">
+                            {% else %}
+                            <div class="col-lg-6 row">
+                            {% endif %}
+                            {% else %}
+                            <div class="col-lg-12 row">
+                            {% endif %}
+                                <div class="col-lg-12" style="min-height:77px">
+                                    <strong>{{promotion.col1.title}}</strong>
+                                </div>
+                                <div class="col-lg-12">
+                                    {% for student in promotion.col1.students %}
+                                    {% if student.link.target == "linkedin" %}
+                                    <a target="__blanck" href="{{ student.link.url }}"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                    {% elif student.link.target == "erdp" %}
+                                    <a target="__blanck" href="{{ student.link.url }}"><i class="ti-search" style="color: #900c2f;"></i></a>
+                                    {% endif %}
+                                    {{ student.name }}<br>
+                                    {% endfor %}
+                                </div>
+                                
+                            </div>
+                            {% endif %}
+                            <!-- ==== END COLUMN 1 ==== -->
+                            <!-- ==== COLUMN 2 ==== -->
+                            {% if promotion.col1.students %}
+                            {% if promotion.col2.students %}
+                            {% if promotion.col3.students %}
+                            <div class="col-lg-4 row">
+                            {% else %}
+                            <div class="col-lg-6 row">
+                            {% endif %}
+                            {% else %}
+                            <div class="col-lg-12 row">
+                            {% endif %}
+                                <div class="col-lg-12" style="min-height:77px">
+                                    <strong>{{promotion.col2.title}}</strong>
+                                </div>
+                                <div class="col-lg-12 ml-1 pr-0 pl-2">
+                                    {% for student in promotion.col2.students %}
+                                    {% if student.link.target == "linkedin" %}
+                                    <a target="__blanck" href="{{ student.link.url }}"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                    {% elif student.link.target == "erdp" %}
+                                    <a target="__blanck" href="{{ student.link.url }}"><i class="ti-search" style="color: #900c2f;"></i></a>
+                                    {% endif %}
+                                    {{ student.name }}<br>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endif %}
+                            <!-- ==== END COLUMN 2 ==== -->
+                            <!-- ==== COLUMN 3 ==== -->
+                            {% if promotion.col3.students %}
+                            <div class="col-lg-4 row">
+                                <div class="col-lg-12" style="min-height:77px">
+                                    <strong>{{promotion.col3.title}}</strong>
+                                </div>
+                                <div class="col-lg-12  align-items-end px-1">
+                                    {% for student in promotion.col3.students %}
+                                    {% if student.link.target == "linkedin" %}
+                                    <a target="__blanck" href="{{ student.link.url }}"><i class="ti-linkedin" style="color: rgb(66, 114, 204);"> </i></a>
+                                    {% elif student.link.target == "erdp" %}
+                                    <a target="__blanck" href="{{ student.link.url }}"><i class="ti-search" style="color: #900c2f;"></i></a>
+                                    {% endif %}
+                                    {{ student.name }}<br>
+                                {% endfor %}
+                                </div>
+                            </div>
+                            {% endif %}
+                            <!-- ==== END COLUMN 3 ==== -->
+                        </div>
+                    </div>
+                    <!-- IMAGE -->
+                    {% if promotion.col1.students %}
+                        {% if promotion.col2.students %}
+                            {% if promotion.col3.students %}
+                            <div class="col-lg-6 row">
+                            {% else %}
+                            <div class="col-lg-7 row">
+                            {% endif %}
+                        {% else %}
+                        <div class="col-lg-8 row">
+                        {% endif %}
+                    {% else %}
+                    <div class="col-lg-12 row" style="padding-right: 0">
+                    {% endif %}
+                    {% if promotion.media %}
+                    
+                        <div class="box-photo" style="overflow: hidden;display: flex;justify-content: center;align-items: center;">
+                            <img class="img-promo" alt="" src="{{media_location}}{{promotion.img_link}}" style="width:100%;"/>
+                        </div>
+                        {% else %}
+                        <div class="box-photo" style="overflow: hidden;display: flex;justify-content: center;align-items: center;">
+                            <img class="img-promo" alt="" src="{{promotion.img_link}}" style="width:100%;"/>
+                        </div>
+                    {% endif %}
                 </div>
-                <div class="col-lg-6 px-1 fs-6">
-                    <strong>De gauche à droite, rang du bas :</br></br></strong>
-                    Amaury Reboul</br>
-                    Alexandre Roy</br>
-                    Adrien Breton</br>
-                    Camille Germaneau</br>
-                    Hillary Hounkanrin</br>
-                    Celyanne Cafournet</br>
-                    Mathieu Caillard</br> 
-                    Leo Bethoule
-                </div>
-                <div class="col-lg-7 px-1 fs-6">
-                    <strong>Absents de la photo :</br></br></strong>
-                    Monsieur le Professeur Lionel Andreu</br>
-                    Héloïse Aubry</br>
-                    Diana Lozano </br>
-                    Madison Amsellem</br>
-                    Jérémy Achour</br>
-                    Cécile Porte</br>
-                    Faycal Dourasse</br>
-                </div>
+                <!-- ==== END ROW ITEM ==== -->
             </div>
+            <!-- ==== END ITEM ==== -->
+            {% endfor %} 
         </div>
     </div>
 </section>
+
 {% endblock %}

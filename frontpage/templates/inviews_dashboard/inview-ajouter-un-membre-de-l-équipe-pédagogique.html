@@ -1,0 +1,71 @@
+{% extends "dashboard.html" %}
+{% load static %}
+{% load convert_markdown %}
+{% block inview %}
+<!-- about us -->
+<div class="container-fluid overlay">
+    <div class="row align-items-start justify-content-center">
+        <div class="col-md-6 order-2 order-md-1 py-3">
+            <h2 class="section-title py-2 text-center" style="font-family:futura">Ajouter un membre de l'équipe pédagogique</h2>
+            <form action="/add_data" method="POST" class="my-3">
+                {% csrf_token %}
+                <input type="text" name="box" value="member" style="display: none;"/>
+                <input type="text" name="box-2" value="team" style="display: none;"/>
+                <input required autocomplete='off' type="text" name="name" class="form-control" placeholder="Nom"/>
+                <select autocomplete='off' id="grade" name="grade" class="form-control">
+                    <option value="none">Titre</option>
+                    <option value="director">Directeur</option>
+                    <option value="professor">Professeur</option>
+                    <option value="confmaster">Maître de conférence</option>
+                    <option value="none">Autre</option>
+                </select>
+                <input autocomplete='off' type="text" name="link" class="form-control" placeholder="Lien professionnel (ERDP ou Linkedin)"/>
+                <input autocomplete='off' type="text" name="img_link" class="form-control" placeholder="Lien de l'image"/>
+                <input required autocomplete='off' type="text" name="status1" class="form-control" placeholder="Status principal"/>
+                <input autocomplete='off' type="text" name="status2" class="form-control" placeholder="Status 2"/>
+                <input autocomplete='off' type="text" name="status3" class="form-control" placeholder="Status 3"/>
+                <input autocomplete='off' type="text" name="status4" class="form-control" placeholder="Status 4"/>
+                <input autocomplete='off' type="text" name="status5" class="form-control" placeholder="Status 5"/>
+
+                <br>
+                <button type="submit" value="send" class="btn btn-primary mt-2">AJOUTER L'UTILISATEUR</button>
+            </form>
+        </div>
+    </div>
+  </section>
+  <!-- /about us -->
+
+
+  {% if response %}
+  <!-- MODAL RESPONSE -->
+  <div class="modal fade show bg-primary align-items-center" id="modal" style="padding-right: 9px; display: flex;">
+      <div class="modal-dialog modal-lg p-5" role="document">
+          <div class="modal-content rounded-0 border-0 p-5">
+              {% if response_error %}
+              <img class="modal-dialog" style='width:300px' src="{% static 'images/gifs/alert.gif' %}">
+              {% else %}
+              <img class="modal-dialog" style='width:300px' src="{% static 'images/gifs/validate.gif' %}">
+              {% endif %}
+              <h4 class="text-center">{{ response_text }}</h4>
+              <button class="btn btn-secondary" id="modal-close">FERMER</button>
+              <script>
+                  document.getElementById('modal-close').addEventListener(
+                      'click',
+                      function() {
+                          document.getElementById('modal').setAttribute(
+                              'class',
+                              'modal fade'
+                          )
+                          document.getElementById('modal').setAttribute(
+                              'style',
+                              ''
+                          )
+                      }
+                  )
+              </script>
+          </div>
+      </div>
+  </div>
+  <!-- MODAL RESPONSE -->
+  {% endif %}
+{% endblock %}

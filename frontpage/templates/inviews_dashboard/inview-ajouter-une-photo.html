@@ -1,0 +1,56 @@
+{% extends "dashboard.html" %}
+{% load static %}
+{% load convert_markdown %}
+{% block inview %}
+<!-- about us -->
+<div class="container-fluid overlay">
+    <div class="row align-items-center justify-content-center py-5">
+        <div class="col-md-4 py-5">
+            <h2 class="section-title py-2 text-center" style="font-family:futura">Ajouter une photo</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="col-md-10">
+                    {{ form }}
+                </div>
+                <div class="col-md-2 text-end" style="margin-top:30px">
+                    <input type='submit' class="btn btn-primary" value="Ajouter"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% if response %}
+<!-- MODAL RESPONSE -->
+<div class="modal fade show bg-primary align-items-center" id="modal" style="padding-right: 9px; display: flex;">
+    <div class="modal-dialog modal-lg p-5" role="document">
+        <div class="modal-content rounded-0 border-0 p-5">
+            {% if response_error %}
+            <img class="modal-dialog" style='width:300px' src="{% static 'images/gifs/alert.gif' %}">
+            {% else %}
+            <img class="modal-dialog" style='width:300px' src="{% static 'images/gifs/validate.gif' %}">
+            {% endif %}
+            <h4 class="text-center">{{ response_text }}</h4>
+            <button class="btn btn-secondary" id="modal-close">FERMER</button>
+            <script>
+                document.getElementById('modal-close').addEventListener(
+                    'click',
+                    function() {
+                        document.getElementById('modal').setAttribute(
+                            'class',
+                            'modal fade'
+                        )
+                        document.getElementById('modal').setAttribute(
+                            'style',
+                            ''
+                        )
+                    }
+                )
+            </script>
+        </div>
+    </div>
+</div>
+<!-- MODAL RESPONSE -->
+{% endif %}
+{% endblock %}
+

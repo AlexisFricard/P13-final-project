@@ -1,0 +1,144 @@
+{% extends "dashboard.html" %}
+{% load static %}
+{% load convert_markdown %}
+{% block inview %}
+<div class="section container-fluid overlay">
+    <div class="row align-items-start justify-content-center">
+      <div class="col-md-10 order-2 order-md-1">
+          <h2 class="section-title py-5 text-center" style="font-family:futura">Modifier les membres de l'équipe pédagogique</h2>
+            {% for director in directors %}
+            <div id="@{{director.id}}" class="col-12 my-1 py-1 box-member bg-primary" style="max-height:60px;overflow:hidden">
+                <a onClick="" id="b@{{director.id}}" class="d-inline-block text-color" style="position: absolute;right: 10px;top: 10px;"><i style="font-size: 40px;color:#fff" id="i@{{ director.id }}" class="ti-arrow-down"></i></a>
+                <h4 class="pt-3 text-white">
+                    Directeur
+                    | {{ director.name }}
+                </h4>
+                <form method="post" action="/mod_data?id={{director.id}}&dbdata=team" class="p-3 mt-3">
+                    <div class="col-lg-12 row justify-content-center " style="padding:0">
+                        {% csrf_token %}
+                        <div class="col-lg-6 row justify-content-arround bg-white p-5" id="box_{{user.id}}" style="padding:0">
+                            <input type="text" name="box" value="member" style="display: none;"/>
+                            <input type="text" name="box-2" value="team" style="display: none;"/>
+                            Nom
+                            <input required autocomplete='off' type="text" name="name" class="form-control mb-2" value="{{director.name}}"/>
+                            Grade
+                            <select autocomplete='off' id="grade" name="grade" class="form-control mb-2">
+                                <option value="director">Directeur</option>
+                                <option value="professor">Professeur</option>
+                                <option value="confmaster">Maître de conférence</option>
+                                <option value="none">Autre</option>
+                            </select>
+                            Lien pro.
+                            <input autocomplete='off' type="text" name="link" class="form-control mb-2" value="{{director.link}}"/>
+                            Lien de l'image
+                            <input autocomplete='off' type="text" name="img_link" class="form-control mb-2" value="{{director.img_link}}"/>
+                            Status :
+                            <input required autocomplete='off' type="text" name="status1" class="form-control" value="{{director.status1}}"/>
+                            <input autocomplete='off' type="text" name="status2" class="form-control" value="{{director.status2}}"/>
+                            <input autocomplete='off' type="text" name="status3" class="form-control" value="{{director.status3}}"/>
+                            <input autocomplete='off' type="text" name="status4" class="form-control" value="{{director.status4}}"/>
+                            <input autocomplete='off' type="text" name="status5" class="form-control" value="{{director.status5}}"/>
+                            <input style="margin-top:10px;padding: 6px 15px" type="submit" value="Modifier" class="btn btn-primary mr-2">
+                            <a style="margin-top:10px;padding: 6px 15px" href="/del_?id={{director.id}}&t=team" class="btn btn-primary">Supprimer</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {% endfor %}
+            {% for staff in team %}
+            <div id="@{{staff.id}}" class="col-12 my-1 py-1 box-member bg-primary" style="max-height:60px;overflow:hidden">
+                <a onClick="" id="b@{{staff.id}}" class="d-inline-block text-color" style="position: absolute;right: 10px;top: 10px;"><i style="font-size: 40px;color:#fff" id="i@{{ staff.id }}" class="ti-arrow-down"></i></a>
+                <h4 class="pt-3 text-white">
+                    {{ staff.status1 }}
+                    | {{ staff.name }}
+                </h4>
+                <form method="post" action="/mod_data?id={{staff.id}}&dbdata=team" class="p-3 mt-3">
+                    <div class="col-lg-12 row justify-content-center " style="padding:0">
+                        {% csrf_token %}
+                        <div class="col-lg-6 row justify-content-arround bg-white p-5" id="box_{{user.id}}" style="padding:0">
+                            <input type="text" name="box" value="member" style="display: none;"/>
+                            <input type="text" name="box-2" value="team" style="display: none;"/>
+                            Nom
+                            <input autocomplete='off' type="text" name="name" class="form-control mb-2" value="{{staff.name}}"/>
+                            Grade
+                           
+
+                            <select autocomplete='off' id="grade" name="grade" class="form-control mb-2">
+                                <option value="{{ staff.grade }}"></option>
+                                <option value="director">Directeur</option>
+                                <option value="professor">Professeur</option>
+                                <option value="confmaster">Maître de conférence</option>
+                                <option value="lawer">Avocat</option>
+                            </select>
+                            Lien pro.
+                            <input autocomplete='off' type="text" name="link" class="form-control mb-2" value="{{staff.link}}"/>
+                            Lien de l'image
+                            <input autocomplete='off' type="text" name="img_link" class="form-control mb-2" value="{{staff.img_link}}"/>
+                            Status :
+                            <input required autocomplete='off' type="text" name="status1" class="form-control" value="{{staff.status1}}"/>
+                            <input autocomplete='off' type="text" name="status2" class="form-control" value="{{staff.status2}}"/>
+                            <input autocomplete='off' type="text" name="status3" class="form-control" value="{{staff.status3}}"/>
+                            <input autocomplete='off' type="text" name="status4" class="form-control" value="{{staff.status4}}"/>
+                            <input autocomplete='off' type="text" name="status5" class="form-control" value="{{staff.status5}}"/>
+                            <input style="margin-top:10px;padding: 6px 15px" type="submit" value="Modifier" class="btn btn-primary mr-2">
+                            <a style="margin-top:10px;padding: 6px 15px" href="/del_?id={{staff.id}}&t=team" class="btn btn-primary">Supprimer</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            {% endfor %}
+        <script>
+            let list_of_member = document.getElementsByClassName('box-member')
+            for (let member of list_of_member) {
+                let id_member = member.id;
+                let btn_show = document.getElementById('b' + id_member);
+                btn_show.addEventListener('click', function() {
+                    if ('ti-arrow-down' == document.getElementById('i' + id_member).getAttribute('class')) {
+                        document.getElementById(id_member).setAttribute('style', '');
+                        document.getElementById('i' + id_member).setAttribute('class', 'ti-arrow-up')
+                    }
+                    else {
+                        document.getElementById(id_member).setAttribute('style', 'max-height:60px;overflow:hidden');
+                        document.getElementById('i' + id_member).setAttribute('class', 'ti-arrow-down')
+                    }
+                })
+            };
+          </script>
+        </div>
+    </div>
+</section>
+
+{% if response %}
+<!-- MODAL RESPONSE -->
+<div class="modal fade show bg-primary align-items-center" id="modal" style="padding-right: 9px; display: flex;">
+    <div class="modal-dialog modal-lg p-5" role="document">
+        <div class="modal-content rounded-0 border-0 p-5">
+            {% if response_error %}
+            <img class="modal-dialog" style='width:300px' src="{% static 'images/gifs/alert.gif' %}">
+            {% else %}
+            <img class="modal-dialog" style='width:300px' src="{% static 'images/gifs/validate.gif' %}">
+            {% endif %}
+            <h4 class="text-center">{{ response_text }}</h4>
+            <button class="btn btn-secondary" id="modal-close">FERMER</button>
+            <script>
+                document.getElementById('modal-close').addEventListener(
+                    'click',
+                    function() {
+                        document.getElementById('modal').setAttribute(
+                            'class',
+                            'modal fade'
+                        )
+                        document.getElementById('modal').setAttribute(
+                            'style',
+                            ''
+                        )
+                    }
+                )
+            </script>
+        </div>
+    </div>
+</div>
+<!-- MODAL RESPONSE -->
+{% endif %}
+{% endblock %}

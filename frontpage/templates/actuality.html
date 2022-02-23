@@ -2,25 +2,80 @@
 {% load static %}
 {% load convert_markdown %}
 {% block body %}
-<header class="top-actu" id="">
-    {% if not img_exist %}
-    <img src="https://www.code-couleur.com/images/main/bordeaux-texture.jpg" class="bg-actu-b">
-    {% else %}
-    <img src="{{media_location}}{{ img_link }}" class="bg-actu">
-    {% endif %} 
-    <div class="row mx-2 mt-5" id="content-actuality">
-        <h3 class="my-2 text-start fw-bolder text-primary">{{ title }}</h3>
-        {% if same_day == 1 %}
-        <p class="text-start fw-bolder my-0 fs-5">Le {{ start }}</br></p>
-        {% elif same_day == 0 %}
-        <p class="text-start fw-bolder my-0 fs-5">Du {{ start }}</p>
-        <p class="text-start fs-5">au {{ end }}</br></p>
-        {% endif %}
-        <div class="mt-3 mb-5 fs-5" id="box-article">
-            <div class="row mx-3">
-                {{ article|convert_markdown|safe }}
+<!-- page title -->
+<div id="page-name" style="display: none;">Actualités</div>
+<section style="background-position: center;background-size: cover;" class="page-title-section overlay" data-background="{% static 'images/backgrounds/photo10.JPG' %}">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="list-inline custom-breadcrumb">
+                    <li class="list-inline-item"><a style="font-family:futura" class="h1 text-secondary font-secondary" href="actualités">Actualités</a></li>
+                    <li class="list-inline-item text-white h2 text-primary nasted">{{ title }}</li>
+                  </ul>
             </div>
         </div>
     </div>
-</header>
+</section>
+<!-- /page title -->
+<!-- blog details -->
+<section class="section-sm bg-gray pt-5">
+    <div class="container-fluid px-5">
+      <div class="row">
+        {% if img_format %}
+        <div class="col-12 my-4">
+            {% if media %}
+            <img src="{{media_location}}{{img_link}}" alt="photo actualité" class="img-fluid w-100">
+            {% else %}
+            <img src="{{img_link}}" alt="photo actualité" class="img-fluid w-100">
+            {% endif %}
+        </div>
+        {% else %}
+        <div class="col-4 my-4" style="border-right:solid 1px #900c2f2a">
+            {% if media %}
+            <img src="{{media_location}}{{img_link}}" alt="photo actualité" class="img-fluid w-100">
+            {% else %}
+            <img src="{{img_link}}" alt="photo actualité" class="img-fluid w-100">
+            {% endif %}
+        </div>
+        {% endif %}
+        {% if img_format %}
+        <div class="col-md-12 mb-4">
+        {% else %}
+        <div class="col-md-8 mb-4 py-5">
+
+        {% endif %}
+
+            <div class="col-12">
+            <ul class="list-inline">
+                <li class="list-inline-item mr-4 mb-3 mb-md-0 text-light">
+                    {% if same_day == 1 %}
+                    Le {{ start }}
+                    {% elif same_day == 0 %}
+                    Du {{ start }} au {{ end }}
+                    {% endif %}
+                </li>
+                {% if ext_link != "0" %}
+                {% if ext_link != "" %}
+                <li class="list-inline-item text-light">
+                    <a style="position:absolute;right:0;top:-10px" href="{{ext_link}}" target="_blanck" class="btn btn-primary-outline p-2">En savoir plus</a>
+                </li>
+                {% endif %}
+                {% endif %}
+            </ul>
+            </div>
+            
+            <!-- border -->
+            <div class="col-12 mt-4">
+            <div class="border-bottom border-primary" style="border-bottom:solid 1px #900c2f2a !important"></div>
+            </div>
+            <!-- blog contect -->
+            <div class="col-12 mb-5" style="color:#000">
+                <h2 class="py-3 px-0" style="color:#900c2f">{{ title}} </h2>
+                {{ article|convert_markdown|safe }}
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /blog details -->
 {% endblock %}

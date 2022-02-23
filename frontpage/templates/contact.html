@@ -1,0 +1,62 @@
+{% extends "template_ref.html" %}
+{% load static %}
+{% block body %}
+<div id="page-name" style="display: none;">Contact</div>
+<!-- page title -->
+<section style="background-position: center;background-size:cover" class="page-title-section overlay" data-background="{% static 'images/backgrounds/photo6.jpg' %}">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <ul class="list-inline custom-breadcrumb">
+          <li class="list-inline-item"><a style="font-family: futura" class="h2 text-primary font-secondary">Nous contacter</a></li>
+          <li class="list-inline-item text-white h3 font-secondary @@nasted"></li>
+        </ul>
+        <p class="h4 text-dark">Avez-vous d'autres questions ?<br>Ne vous inquiétez pas, il n'y a pas de questions idiotes. Remplissez simplement le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /page title -->
+
+<!-- contact -->
+<section class="section bg-gray">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 style="font-family: futura" class="section-title">Formulaire de contact</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-7 mb-4 mb-lg-0">
+        <form action="#" method="POST">
+          {% csrf_token %}
+          <input type="text" class="form-control mb-3" id="name" name="name" placeholder="Votre nom">
+          <input type="tel" name="phone_number" class="form-control mb-3" placeholder="Téléphone">
+          <input type="email" class="form-control mb-3" id="mail" name="email" placeholder="Votre Email">
+          <input type="text" class="form-control mb-3" id="subject" name="object" placeholder="Sujet">
+          <textarea name="message" id="message" class="form-control mb-3" placeholder="Message"></textarea>
+          <button type="submit" value="send" class="btn btn-primary">ENVOYER LE MESSAGE</button>
+        </form>
+      </div>
+      <div class="col-lg-5">
+        <h4>Informations</h4>
+        Téléphone du secrétariat
+        <a href="tel:0549454222" class="text-color h5 d-block">05 49 45 42 22</a>
+        Email
+        <a href="mailto:yourmail@email.com" class="mb-2 text-color h5 d-block">contact@masteraffairescontrats-poitiers.fr</a>
+        Adresse
+        <p class="text-color h5 d-block">43 Place Charles de Gaulle<br>86000 Poitiers</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /contact -->
+
+<!-- gmap -->
+<!-- <section class="section pt-0">
+  
+  <div id="map_canvas" data-latitude="51.507351" data-longitude="-0.127758"></div>
+</section> -->
+<!-- /gmap -->
+{% endblock %}
+

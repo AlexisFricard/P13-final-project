@@ -1,0 +1,59 @@
+{% extends "dashboard.html" %}
+{% load static %}
+{% load convert_markdown %}
+{% block inview %}
+<!-- about us -->
+<div class="container-fluid overlay">
+    <div class="row align-items-start justify-content-center">
+        <div class="col-md-4 order-2 order-md-1 py-3">
+            <h2 class="section-title py-2 text-center" style="font-family:futura">Ajouter un utilisateur</h2>
+            <form action="/add_data" method="POST" class="my-3">
+                {% csrf_token %}
+                <input value="user" style="display:none" name="box"/>
+                <input required autocomplete='off' type="text" name="firstname" class="form-control" placeholder="Prénom"/>
+                <input required autocomplete='off' type="text" name="lastname" class="form-control" placeholder="Nom"/>
+                <input required autocomplete='off' type="email" name="email" class="form-control" placeholder="Email"/>
+                <input required autocomplete='off' type="email" name="emailconfirm" class="form-control mb-2" placeholder="Confirmer l'email"/>
+                <strong class="mr-5">Administrateur : </strong><input autocomplete='off' id="is_staff" name="is_staff" type="checkbox"/>
+
+                <br><button type="submit" value="send" class="btn btn-primary mt-2">AJOUTER L'UTILISATEUR</button>
+            </form>
+        </div>
+    </div>
+  </section>
+  <!-- /about us -->
+
+
+  {% if response %}
+  <!-- MODAL RESPONSE -->
+  <div class="modal fade show bg-primary align-items-center" id="modal" style="padding-right: 9px; display: flex;">
+      <div class="modal-dialog modal-lg p-5" role="document">
+          <div class="modal-content rounded-0 border-0 p-5">
+              {% if response_error %}
+              <img class="modal-dialog" style='width:300px' src="{% static 'images/gifs/alert.gif' %}">
+              {% else %}
+              <img class="modal-dialog" style='width:300px' src="{% static 'images/gifs/validate.gif' %}">
+              {% endif %}
+              <h4 class="text-center">{{ response_text }}</h4>
+              <button class="btn btn-secondary" id="modal-close">FERMER</button>
+              <script>
+                  document.getElementById('modal-close').addEventListener(
+                      'click',
+                      function() {
+                          document.getElementById('modal').setAttribute(
+                              'class',
+                              'modal fade'
+                          )
+                          document.getElementById('modal').setAttribute(
+                              'style',
+                              ''
+                          )
+                      }
+                  )
+              </script>
+          </div>
+      </div>
+  </div>
+  <!-- MODAL RESPONSE -->
+  {% endif %}
+{% endblock %}

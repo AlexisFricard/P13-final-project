@@ -1,0 +1,86 @@
+{% extends "dashboard.html" %}
+{% load static %}
+{% load convert_markdown %}
+{% block inview %}
+<!-- about us -->
+<div class="container-fluid overlay">
+    <div class="row align-items-center justify-content-center py-5">
+        <div class="col-md-6 py-3">
+            <h2 class="section-title py-2 text-center" style="font-family:futura">Ajouter un lien</h2>
+            <form action="/add_data" method="POST" class="my-3">
+                {% csrf_token %}
+                <input type="text" name="box" value="link" style="display: none;"/>
+                <input required maxlength="200" autocomplete='off' type="text" id="title" name="title" class="form-control" placeholder="Titre du lien / Référence"/>
+                <input required maxlength="200" autocomplete='off' type="text" id="link_" name="link" class="form-control" placeholder="Lien (exemple : https://www.masteraffairescontrats-poitiers.fr)"/>
+                <button type="submit" value="send" class="btn btn-primary mt-2">AJOUTER</button>
+                <a onClick="" id="btn-show" class="btn btn-primary btn-prev mt-2">PRÉVISUALISER</a>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- MODAL PREVIEW -->
+<div id="modal-prev" class="bg-primary mt-3 py-5" style="display:none">
+    <div class="container">
+        <div class="row align-items-start">
+            <div class="col-md-12 bg-white ">
+                <div class="col-12 py-1 box-link" style="max-height:90px;overflow:hidden">
+                    <a id="modal-link" href="" target="_blank" class="d-inline-block text-color" style="position: absolute;right: 0;top: 0;"><i style="font-size: 30px" class="ti-plus"></i></a>
+                    <h4 id="modal-title" class="mb-0">
+
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL PREVIEW -->
+
+{% if response %}
+<!-- MODAL RESPONSE -->
+<div class="modal fade show bg-primary align-items-center" id="modal" style="padding-right: 9px; display: flex;">
+    <div class="modal-dialog modal-lg p-5" role="document">
+        <div class="modal-content rounded-0 border-0 p-5">
+            {% if response_error %}
+            <img class="modal-dialog" style='width:300px' src="{% static 'images/gifs/alert.gif' %}">
+            {% else %}
+            <img class="modal-dialog" style='width:300px' src="{% static 'images/gifs/validate.gif' %}">
+            {% endif %}
+            <h4 class="text-center">{{ response_text }}</h4>
+            <button class="btn btn-secondary" id="modal-close">FERMER</button>
+            <script>
+                document.getElementById('modal-close').addEventListener(
+                    'click',
+                    function() {
+                        document.getElementById('modal').setAttribute(
+                            'class',
+                            'modal fade'
+                        )
+                        document.getElementById('modal').setAttribute(
+                            'style',
+                            ''
+                        )
+                    }
+                )
+            </script>
+        </div>
+    </div>
+</div>
+<!-- MODAL RESPONSE -->
+{% endif %}
+
+
+<!-- PREVISUALISATION SCRIPT -->
+<script>
+    let btn_show = document.getElementById('btn-show');
+    btn_show.addEventListener('click', function() {
+        document.getElementById('modal-prev').setAttribute('style', '')
+        let title = document.getElementById('title').value
+        let link = document.getElementById('link_').value
+        // TODO: Fetch to have markdown
+        document.getElementById('modal-title').innerText = title
+        document.getElementById('modal-link').setAttribute('href', link)
+    })
+</script>
+{% endblock %}
+

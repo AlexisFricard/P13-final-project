@@ -1,104 +1,255 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html id="html" lang="fr">
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Master Contrats Poitiers</title>
+        <meta name="google-site-verification" content="tyj5N2HnXzcdvAwIBsV_GIwHy0q16g01fbSwDH4CEV8" />
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="application/javascript; charset=utf-8">
+        <!-- <meta http-equiv="Content-Type" content="text/javascript">  -->
+        <!-- SEO Meta Tags -->
+        <meta name="author" content="Alexis Bellamy">
+        <meta name="description" content="Site de l'association des masters Contrats en droit français et européen de l'Université de Poitiers" />
+
+        <!-- OG Meta Tags to improve the way the post looks when you share the page on Facebook, Twitter, LinkedIn -->
+        <meta property="og:site_name" content="Association des Masters Contrats en Droit français et européen de l'Université de Poitiers." /> <!-- website name -->
+        <meta property="og:site" content="www.MasterAffairesContrats-Poitiers.fr" /> <!-- website link -->
+        <meta property="og:title" content="Visiter le site internet"/> <!-- title shown in the actual shared post -->
+        <meta property="og:description" content="Vous souhaitez rejoindre ou vous faites déjà partit de l'association des Masters Contrats en Droit français et européen ?" /> <!-- description shown in the actual shared post -->
+        <meta property="og:image" content="{% static 'images/logo-asso.png' %}" /> <!-- image link, make sure it's jpg -->
+        <meta property="og:url" content="www.MasterAffairesContrats-Poitiers.fr" /> <!-- where do you want your post to link to -->
+        <meta name="twitter:card" content="summary_large_image"> <!-- to have large image post format in Twitter -->
+
+        <!-- Facebook and Twitter integration -->
+        <meta name="twitter:title" content="" />
+        <meta name="twitter:image" content="" />
+        <meta name="twitter:url" content="" />
+
+        <!-- mobile responsive meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <!-- ** Plugins Needed for the Project ** -->
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="{% static 'plugins/bootstrap/bootstrap.min.css' %}">
+        <!-- slick slider -->
+        <link rel="stylesheet" href="{% static 'plugins/slick/slick.css' %}">
+        <!-- themefy-icon -->
+        <link rel="stylesheet" href="{% static 'plugins/themify-icons/themify-icons.css' %}">
+        <!-- animation css -->
+        <link rel="stylesheet" href="{% static 'plugins/animate/animate.css' %}">
+        <!-- aos -->
+        <link rel="stylesheet" href="{% static 'plugins/aos/aos.css' %}">
+        <!-- venobox popup -->
+        <link rel="stylesheet" href="{% static 'plugins/venobox/venobox.css' %}">
+
+        <!-- Main Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+        <title>Association des Masters Contrats en Droit français et européen de l'Université de Poitiers.</title>
+        <meta name="description" content="Vous souhaitez rejoindre ou vous faites déjà partit de l'association des Masters Contrats en Droit français et européen ?">
+        
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
-        <!-- Bootstrap Icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
-        <!-- SimpleLightbox plugin CSS-->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}" />
     </head>
-    <body id="page-top">
-        <div class="container-fluid mx-0 px-0 fixed-top">
-        <!-- Navigation-->
-            <div class="top-index bg-light py-1">
-                <div class="cookie-bar">
-                </div>
-                <div class="row justify-content-around align-items-center" id="banner">
-                    <div class="row col-lg-5 align-items-center">
-                        <img class="px-0" src="{% static 'assets/img/logo/logo.jpg' %}" id="logo-banner">
-                        <h3 class="text-dark px-0 my-0 col-lg-9" id="nav-title">
-                            Master Contrats en droit</br>français et européen
-                        </h3>
-                    </div>
-                    <div class="col-lg-5 text-end">
-                        <a class="mx-2" target="_blanck" href="https://www.linkedin.com/in/master-2-contrats-en-droit-fran%C3%A7ais-et-europ%C3%A9en-66863a179/"><img src="{% static 'assets/img/logo/linkedin.png' %}" id="linkedin-link"/></a>
-                        <a class="btn mx-1 py-1 px-2 bg-primary text-light" id="mail-link" href="mailto:M2ContratsPoitiers@gmail.com">
-                            Nous contacter
-                        </a>
-                    </div>
-                </div>
+  <body>
+      <!-- preloader start -->
+      <div class="preloader">
+        <img src="{% static 'images/preloader.gif' %}" alt="preloader">
+      </div>
+      <!-- preloader end -->
+    
+    <!-- header -->
+    <header class="fixed-top header">
+      <!-- navbar -->
+      <div class="navigation w-100">
+        <div class="container-fluid p-0">
+          <nav class="navbar navbar-expand-lg navbar-dark p-0 bg-white m-0">
+            <a class="bg-white" href="/"><img src="{% static 'images/logo-asso.png' %}" style="padding-left:20px;height:58px;" alt="logo"></a>
+            <button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation"
+              aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navigation">
+              <ul class="navbar-nav ml-auto text-center p-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Accueil</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/actualités">Actualités</a>
+                </li>
+                <li class="nav-item dropdown view">
+                  <a class="nav-link dropdown-toggle" href="/présentation" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">Master</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/présentation">Présentation</a>
+                    <a class="dropdown-item" href="/présentation#le-programme">Programme</a>
+                    <a class="dropdown-item" href="/présentation#équipe-pédagogique">Équipe pédagogique</a>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/et-après">Témoignages</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/nos-diplômés">Promotions</a>
+                </li>
+                <li class="nav-item dropdown view">
+                  <a class="nav-link dropdown-toggle" href="/association" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">Association</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    
+                    {% if user.is_authenticated %}
+                      {% if user.is_superuser %}
+                      <a class="dropdown-item" href="/gestion-du-site/home"><strong>Dashboard</strong></a>
+                      {% endif %}
+                      <a class="dropdown-item" href="/espace-collaboratif/home"><strong>Espace collaboratif</strong></a>
+                      <a class="dropdown-item" href="/mon-compte">Mon compte</a>
+                      <a class="dropdown-item" href="/association">L'association</a>
+                      <a class="dropdown-item" href="/log_out">Se déconnecter</a>
+                    {% else %}
+                    <a class="dropdown-item" href="/association">L'association</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#loginModal">Se connecter</a>
+                    {% endif %}
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/contact">Contact</a>
+                </li>
+                <li class="nav-item p-0 m-0" style="margin-left:20px !important">
+                  <a class="nav-link" target="_blanck" href="https://www.linkedin.com/in/master-2-contrats-en-droit-fran%C3%A7ais-et-europ%C3%A9en-66863a179/?originalSubdomain=fr"><i class="ti-linkedin"></i></a>
+                </li>
+                <li class="nav-item p-0">
+                  <a class="nav-link" target="_blanck" href="https://www.instagram.com/m2contratspoitiers/"><i class="ti-instagram"></i></a>
+                </li>
+              </ul>
             </div>
-            <nav class="nav-bar navbar-expand-lg row px-0" id="nav-bar">
-                <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></br></button>
-                <div class="section-bar row justify-content-center collapse navbar-collapse px-0" id="navbarResponsive">
-                    <div class="navitem col-lg-2 px-0" >
-                        <a class="nav-link onglet text-center" href="/">Accueil</a>
-                    </div>
-                    <div class="navitem col-lg-2 px-0" >
-                        <a class="nav-link onglet text-center" href="/présentation">Présentation</a>
-                        <ul class="sous-menu px-0 text-start bg-light">
-                            <a class="nav-link py-1 px-2 fs-6" href="/présentation#master" >La formation</a>
-                            <a class="nav-link py-1 px-2 fs-6" href="/présentation#programme" >Le programme</a>
-                            <a class="nav-link py-1 px-2 fs-6" href="/présentation#team">L'équipe pédagogique</a>
-                            <a class="nav-link py-1 px-2 fs-6" href="/présentation#director-word">Le mot des directeurs</a>
-                            <a class="nav-link py-1 px-2 fs-6" href="/présentation#geo">La localisation</a>
-                        </ul>
-                    </div>
-                    <div class="navitem col-lg-2 px-0" >
-                        <a class="nav-link onglet text-center" href="/etAprès">Et après ?</a>
-                    </div>
-                    <div class="navitem col-lg-2 px-0" >
-                        <a class="nav-link onglet text-center" href="/nosDiplômés">Nos diplômé(e)s</a>
-                        <ul class="sous-menu px-0 text-start bg-light">
-                            <a class="nav-link py-1 px-2 fs-6" href="/nosDiplômés#2020">2020-2021</a>
-                        </ul>
-                    </div>
-                    <div class="navitem col-lg-2 px-0" >
-                        <a class="nav-link onglet text-center" href="/association">L'association</a>
-                        <ul class="sous-menu px-0 text-start bg-light">
-                            <a class="nav-link py-1 px-2 fs-6" href="/association#page-top">À propos</a>
-                            <a class="nav-link py-1 px-2 fs-6" href="/association#office">Le bureau</a>
-                            {% if request.user.is_superuser %}
-                            <a class="nav-link py-1 px-2 fs-6" href="/gestionDuSite">Gestion du site</a>
-                            {% endif %}
-                        </ul>
-                    </div>
-                    <div class="navitem col-lg-2 px-0" >
-                        <a class="nav-link onglet last text-center" href="/monEspace">Espace étudiant</a>
-                        <ul class="sous-menu px-2 text-start bg-light">
-                            {% if request.user.is_staff %}
-                            <a class="nav-link py-1 fs-6" href="helpdashboard">Espace entraide</a>
-                            {% endif %}
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div> 
-    </body>
-    {% block body %}
-    {% endblock %}
-    <!-- Footer-->
-    <footer class="bg-purple py-3">
-        <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2021 - A.B / Alexis.F</div></div>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- /header -->
+  <!-- Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content rounded-0 border-0 p-4">
+              <div class="modal-header border-0">
+                  <h3>Formulaire de connection</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <form method="post" action="log_in" class="row">
+                      {% csrf_token %}
+                      <div class="col-12">
+                          <input type="text" class="form-control mb-3" id="loginName" name="username" placeholder="Pseudo">
+                      </div>
+                      <div class="col-12">
+                          <input type="password" class="form-control mb-3" id="loginPassword" name="password" placeholder="Mot de passe">
+                      </div>
+                      <div class="col-12">
+                          <button type="submit" class="btn btn-primary">LOGIN</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  {% block body %}
+  {% endblock %}
+  <!-- footer -->
+  <footer>
+      <!-- footer content -->
+      <div class="footer bg-primary section border-bottom p-0 py-5">
+        <div class="container-fluid mx-2">
+          <div class="row">
+            <div class="col-lg-4 col-sm-8 mb-5 mb-lg-0 mt-5">
+              <!-- logo -->
+              <a class="logo-footer w-100 text-center" href="https://www.univ-poitiers.fr/"><img style="border-radius:50%;height:100px" class="img-fluid mb-4" src="{% static 'images/logo-master.png' %}" alt="logo"></a>
+              <h4 class="mt-3" style="color:white;text-align:center">Université & Bibliothèque Universitaire</h4>
+              <p class="mt-3 text-center text-white">
+                43 Place Charles de Gaulle, 86000 Poitiers
+              </p>
+              <p class="text-center">
+                <a class="text-white" href="telto:+335 49 45 42 22">05 49 45 42 22</a>
+              </p>
+              <p class="text-center">
+                <a  class="text-white" href="mailto:m2contrats.droit@univ-poitiers.fr">m2contrats.droit@univ-poitiers.fr</a>
+              </p>
+            </div>
+            <div class="col-lg-4 col-sm-8 mb-lg-0 row justify-content-center align-items-center">
+              <!-- logo -->
+              <a target="_blanck" href="https://www.google.com/maps/dir//43+Place+Charles+de+Gaulle,+Poitiers/@46.5836606,0.3392805,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0x47fdbe71d3ce12a7:0x6e87ee802be0249f!2m2!1d0.3436579!2d46.5836607">
+                <img style="border-radius:10%;height:300px" class="img-fluid" src="{% static 'images/backgrounds/photo2.jpeg' %}" alt="logo">
+              </a>
+            </div>
+            <div class="col-lg-4 col-sm-8 mb-lg-0 text-end mt-5">
+              <!-- logo -->
+              <a class="logo-footer w-100 text-center" href="">
+                <img style="border-radius:50%;height:100px" class="img-fluid mb-4" src="{% static 'images/logo-asso.png' %}" alt="logo">
+              </a>
+              
+              <h4 class="mt-3" style="color:white;text-align:center">Association des Masters Contrats</h4>
+              <p class="mt-3 text-center text-white">
+                43 Place Charles de Gaulle, 86000 Poitiers
+              </p>
+              <p class="text-center">
+                <a  class="text-white" href="mailto:M2ContratsPoitiers@gmail.com">M2ContratsPoitiers@gmail.com</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- copyright -->
+      <div class="copyright py-1" style="border:0">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 text-sm-left text-center">
+              <p class="mb-0 text-center">Copyright
+                <script>
+                  var CurrentYear = new Date().getFullYear()
+                  document.write(CurrentYear)
+                </script> 
+                © <a style="color:#5c5c77" href="https://alexisbellamy.fr" target="_blanck">Alexis Bellamy</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- SimpleLightbox plugin JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="{% static 'js/scripts.js' %}"></script>
-    <script src="{% static 'js/scripts_staff_box.js' %}"></script>
-    <script src="{% static 'js/scripts_student_dash.js' %}"></script>
+      <!-- Cookie bar -->
+      <!-- {% if cookie == False %}
+      <div class="cookie-bar animated fadeInDown" id="cookie-bar">
+          <p class="cookie-text">L'utilisation des cookies est pour vous garantir la meilleure expérience sur le site. Si vous continuez à naviguer sur ce dernier, cela signifie que vous acceptez leur utilisation.</p>
+          <button id="btn-cookie" class="btn-primary btn"><span>Ok</span></button>
+      </div>
+      {% endif %} -->
+    <!-- jQuery -->
+    <script src="{% static 'plugins/jQuery/jquery.min.js' %}"></script>
+    <!-- Bootstrap JS -->
+    <script src="{% static 'plugins/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- slick slider -->
+    <script src="{% static 'plugins/slick/slick.min.js' %}"></script>
+    <!-- aos -->
+    <script src="{% static 'plugins/aos/aos.js' %}"></script>
+    <!-- venobox popup -->
+    <script src="{% static 'plugins/venobox/venobox.min.js' %}"></script>
+    <!-- filter -->
+    <script src="{% static 'plugins/filterizr/jquery.filterizr.min.js' %}"></script>
+    <!-- google map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
+    <script src="{% static 'plugins/google-map/gmap.js' %}"></script>
+
+    <!-- Main Script -->
+    <script type="application/javascript" src="{% static 'js/script.js' %}"></script>
+    
+    <script>
+        let list_of_nav_link = document.getElementsByClassName('nav-link')
+        let page_name = document.getElementById('page-name').textContent
+        for (let nav_link of list_of_nav_link) {
+            if (nav_link.textContent == page_name) {
+                nav_link.parentElement.classList += ' active'
+            }
+        }
+    </script>
+  </body>
 </html>

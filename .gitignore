@@ -4,3 +4,10 @@ __pycache__
 *.jpg
 *.jpeg
 *.png
+static/
+Procfile_backup
+static/CACHE
+frontpage/static
+cors.json
+frontpage/back_ups
+static

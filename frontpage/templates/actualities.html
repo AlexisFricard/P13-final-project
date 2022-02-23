@@ -1,0 +1,61 @@
+{% extends "template_ref.html" %}
+{% load static %}
+{% load convert_markdown %}
+{% block body %}
+<!-- page title -->
+<div id="page-name" style="display: none;">Actualités</div>
+<section style="background-position: center;background-size: cover;" class="page-title-section overlay" data-background="{% static 'images/backgrounds/photo10.JPG' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="list-inline custom-breadcrumb">
+                    <li class="list-inline-item h1 text-primary font-secondary" style="font-family:futura" >Toutes les actualités</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /page title -->
+<!-- blogs -->
+<section class="section">
+    <div class="container">
+      <div class="row">
+        {% for actuality in data %}
+        <!-- blog post -->
+        <article class="col-lg-4 col-sm-6 mb-5">
+            <div class="card h-100 rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
+                {% if not actuality.media %}
+                <div style="height:350px;background:url({{actuality.img_link}});background-size:cover;background-position:center"></div>
+                {% else %}
+                <div style="height:350px;background:url({{media_location}}{{actuality.img_link}});background-size:cover;background-position:center"></div>
+                {% endif %}
+                <div class="card-body">
+                    <!-- post meta -->
+                    <ul class="list-inline mb-3">
+                        <!-- post date -->
+                        <li class="list-inline-item mr-3 ml-0">
+                            {% if actuality.same_day == 1 %}
+                            Le {{ actuality.start }}
+                            {% elif actuality.same_day == 0 %}
+                            Du {{ actuality.start }}<br>
+                            au {{ actuality.end }}
+                            {% endif %}
+                        </li>
+                        <!-- author -->
+                    </ul>
+                    <a href="blog-single.html">
+                      <h4 class="card-title">{{ actuality.title }}</h4>
+                    </a>
+                </div>
+                <div class="row mx-3 px-1">
+                    {{ actuality.short_desc|convert_markdown|safe }}
+                </div>
+                
+
+                <a href="/actualité?id={{ actuality.id }}" class="btn btn-primary btn-sm">Lire plus</a>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends "dashboard.html" %}
+{% load static %}
+{% load convert_markdown %}
+{% block inview %}
+<!-- about us -->
+<div class="container-fluid overlay">
+    <div class="row align-items-center justify-content-center">
+        {% for link in links %}
+        <div class="col-6 p-5">
+            <h4>ID: {{link.id}}</h4>
+            <form action="/mod_data?id={{link.id}}&dbdata=link" method="POST" class="my-3">
+                {% csrf_token %}
+                <input maxlength="200" autocomplete='off' type="text" name="title" class="form-control" value="{{ link.title }}"/>
+                <input maxlength="200" autocomplete='off' type="text" name="link" class="form-control" value="{{ link.link }}"/>
+                <p class="mt-3">
+                    Active :
+                    {% if link.state %}
+                    <input checked id="" name="is_state" type="checkbox"/>
+                    {% else %}
+                    <input id="" name="is_state" type="checkbox"/>
+                    {% endif %}<br>
+                    Supprimer : <input name="delete_it" type="checkbox"/>
+                </p>
+                <button type="submit" value="send" class="btn btn-primary mt-2">MODIFIER</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- MODAL PREVIEW -->
+<div id="modal-prev" class="bg-primary my-3 py-5" style="display:none">
+    <div class="container">
+        <div class="row align-items-start">
+            <div class="col-md-12 order-2 order-md-1">
+                <div id="@1" class="col-12 my-1 py-1 box-faq bg-white" style="height:80px;overflow:hidden">
+                    <a onClick="" id="b@1" class="d-inline-block text-color" style="position: absolute;right: 0;top: 0;"><i id="i@1" class="ti-arrow-down"></i></a>
+                    <h4 id="title-modal-prev" class="pt-3"></h4>
+                    <p id="text-modal-prev"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL PREVIEW -->
+
+{% if response %}
+<!-- MODAL RESPONSE -->
+<div class="modal fade show bg-primary align-items-center" id="modal" style="padding-right: 9px; display: flex;">
+    <div class="modal-dialog modal-lg p-5" role="document">
+        <div class="modal-content rounded-0 border-0 p-5">
+            {% if response_error %}
+            <img class="modal-dialog" style='width:300px' src="{% static 'images/gifs/alert.gif' %}">
+            {% else %}
+            <img class="modal-dialog" style='width:300px' src="{% static 'images/gifs/validate.gif' %}">
+            {% endif %}
+            <h4 class="text-center">{{ response_text }}</h4>
+            <button class="btn btn-secondary" id="modal-close">FERMER</button>
+            <script>
+                document.getElementById('modal-close').addEventListener(
+                    'click',
+                    function() {
+                        document.getElementById('modal').setAttribute(
+                            'class',
+                            'modal fade'
+                        )
+                        document.getElementById('modal').setAttribute(
+                            'style',
+                            ''
+                        )
+                    }
+                )
+            </script>
+        </div>
+    </div>
+</div>
+<!-- MODAL RESPONSE -->
+{% endif %}
+
+
+<!-- PREVISUALISATION SCRIPT -->
+<script>
+    let btn_show = document.getElementById('btn-show');
+    btn_show.addEventListener('click', function() {
+        document.getElementById('modal-prev').setAttribute('style', '')
+        let question = document.getElementById('question').value
+        let response = document.getElementById('text-area').value
+        if (response.match(/\n/g)) {
+            response = response.replace(/\n/g, '')
+        }
+        response = response.replace(/#/g, '\n')
+        // TODO: Fetch to have markdown
+        document.getElementById('title-modal-prev').innerText = question
+        document.getElementById('text-modal-prev').innerText = response
+    })
+</script>
+{% endblock %}
+

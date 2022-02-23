@@ -1,88 +1,175 @@
-{% extends "index.html" %}
+{% extends "template_ref.html" %}
 {% load static %}
 {% block body %}
-<header class="top-asso">
-    <div class="row justify-content-center align-items-center">
-        <img src="{% static 'assets/img/logo/logo.jpg' %}" class="logo-asso"></br>
-        <h3 class="text-light py-1 mt-2 text-center title_after">Association des Masters Contrats de l’Université de Poitiers</h3>
+<!-- page title -->
+<div id="page-name" style="display: none;">Association</div>
+<!-- about us -->
+<div class="section py-0" style="background: #900c2f;">
+    <div class="container" >
+        <div class="row py-5 mt-5 align-items-center">
+            <h2 style="font-family:futura;" class=" text-white col-lg-8 font-secondary">Association des Masters Contrats<br>en Droit français et européen</h2>
+            <div class="col-md-4 text-center">
+                <img class="img-fluid" src="{% static 'images/logo-asso.png' %}" alt="about image" style="width:50%;border-radius:50%;border:solid 1px #900c2f">
+            </div>
+        </div>
+        
     </div>
-</header>
-<section class="container-fluid mt-3 bg-light text-dark slidefromleft" id="pres-asso">
-    <div class="row justify-content-center slidefromleft">
-        <div class="col-lg-8 text-start ">
-            <h3 class="mt-0 text-primary" >Rejoignez-nous !</h3>
-            <div class='row'>
-                <p class="col-lg-12 px-3 text-start text-dark fs-6 mb-4">
-                    L'Association des Master Contrats de l’Université de Poitiers a été créée et est gérée par les 
-                    étudiants.
-                    </br>Elle a pour vocation de favoriser l'entraide, les rencontres et la construction d'un réseau 
-                    entre les différentes promotions du Master.                
+</div>
 
-                </p>
-                <a class="btn mx-2 py-1 px-2 bg-primary text-light w-25" id="mail-link" href="mailto:M2ContratsPoitiers@gmail.com">
-                    Nous contacter
-                </a>
-            </div>
+<section class="section overlay" data-background="{% static 'images/logo.png' %}">
+    
+    <div class="container">
+      <div class="row align-items-start">
+        <div class="col-md-6 order-1 order-md-1">
+            
+          <h2 style="font-family:futura" class="section-title">À propos de nous</h2>
+          <p>L'Association des Master Contrats de l’Université de Poitiers a été créée et est gérée par les 
+            étudiants.</p>
+          <p>Elle a pour vocation de favoriser l'entraide, les rencontres et la construction d'un réseau 
+            entre les différentes promotions du Master.</p>
+          <a href="contact" class="btn btn-primary-outline">Nous contacter</a>
+          <a href="https://m2contratspoitiers.s3.fr-par.scw.cloud/media/pdf/statut-association.pdf" class="btn btn-primary-outline">Statut de l'association</a>
         </div>
-        <div class="col-lg-4 text-start">
-            <h3 class="mt-0 text-primary">Les plus...</h3>
-            <ul class="text-dark px-0 fs-5 mb-4 text-start">
-                <li class="my-1 fs-6">Accès à des liens très utiles</li> <!--(renvoi à la page relative à la clinique juridique
-                de l’Université de Poitiers : https://droit.univ-poitiers.fr/la-faculte/clinique-juridique/ ) -->
-                <!-- <li class="my-1 fs-6">Accès à un chat d'entraide</li> -->
-                <li class="my-1 fs-6">Accès à une aide personnalisée</li>
-                <li class="my-1 fs-6">Accès aux soirées/évènements organisés par l'association</li>
+        <div class="col-md-6 order-1 order-md-1">
+            <h2 style="font-family:futura" class="section-title">L'adhésion</h2>
+            <ul class="text-start">
+                <li class="py-1" style="list-style-type: disc;">Accès à une aide personnalisée</li>
+                <li class="py-1" style="list-style-type: disc;">Possibilité de faire un stage à l’étranger</li>
+                <li class="py-1" style="list-style-type: disc;">Accès aux soirées/évènements organisés par l'association</li>
+                <li class="py-1" style="list-style-type: disc;">Espace collaboratif</li>
+                <li class="py-1" style="list-style-type: disc;">Discussions</li>
+                <li class="py-1" style="list-style-type: disc;">Accès à des liens et à une FAQs</li>
             </ul>
-        </div>
+          </div>
+      </div>
     </div>
-</section>
-<section class="container-fluid bg-light pb-5 text-dark slidefromleft" id="office">
-    <h3 class="text-primary py-1 mt-2 text-center title_after">Le bureau</h3>
-    <div class="col-lg-12 row mx-0 justify-content-center">
-        <div class="col-lg-3 mt-3 px-0 x-0" id="card-peda">
-            <div class="row justify-content-center">
-                <a class="col-lg-12 box-img-dir text-center" target="_blanck" href="https://fr.linkedin.com/in/adrien-breton-08730a107">
-                    <img class="img-dir col-lg-12" src="https://media-exp1.licdn.com/dms/image/C5603AQFz93siC7u01Q/profile-displayphoto-shrink_200_200/0/1576415538977?e=1635379200&v=beta&t=Pp-GyIDfXoq0d1RPO-p3jf5WmkvIuny6k2hfPFb6SrU">
-                </a>
-                <p class="mt-1 col-lg-12 fs-6 fw-bolder text-center">Adrien Breton</p>
-                <p class="col-lg-12 fs-6 text-center">
-                    Président
-                </p>
-            </div>
+  </section>
+  <!-- /about us -->
+<!-- success story -->
+<div id="frame" style="display:none" class="section row mx-0">
+  <video class="col-lg-7" id="demo" controls="controls">
+    <source src="{{media_location}}videos/video_remisedesdiplomes.mp4" type="video/mp4">
+  </video>
+  <a style="position:absolute;top:20px;right:20px" class="btn" onClick="document.getElementById('frame').setAttribute('style', 'display:none')">
+    <i style="font-size:40px;color:#fff" class="ti-close"></i>
+  </a>
+</div>
+<section class="section bg-cover" data-background="{% static 'images/backgrounds/success-story.jpg' %}">
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-lg-6 col-sm-4 row justify-content-center align-items-center">
+          <a style="border-radius:50%" class="btn p-4 bg-white" onClick="document.getElementById('frame').setAttribute('style', 'position:fixed;left:0;z-index: 2000;justify-content: center;align-items: center;height: 100vh;width: 100%;top: 0;background: #000000d9;')">
+            <i style="font-size:50px;color:#900c2f" class="ti-control-play pl-2"></i>
+          </a>
         </div>
-        <div class="col-lg-3 mt-3 px-0 mx-0" id="card-peda">
-            <div class="row justify-content-center">
-                <a class="col-lg-12 box-img-dir text-center">
-                    <img class="img-dir col-lg-12" src="{% static 'assets/img/Victoire.JPG' %}">
-                </a>
-                <p class="mt-1 col-lg-12 fs-6 px-0 fw-bolder text-center">Victoire Dellamaggiore</p>
-                <p class="col-lg-12 fs-6 text-center">
-                    Vice-présidente
-                </p>
-            </div>
+        <div class="col-lg-6 col-sm-8 order-2 order-md-1">
+          <div class="bg-white p-5">
+            <h2 class="section-title">
+                La dernière vidéo
+                
+            </h2>
+            <p>
+                Extraits de la cérémonie de
+                remise des diplômes <br>du Master 2 Contrats en droit français et européen, promotion 2020-2021
+            </p>
+            <p>
+                Merci à tous et félicitations aux nouveaux diplômés !
+            </p>
+          </div>
         </div>
-        <div class="col-lg-3 mt-3 px-0 mx-0" id="card-peda">
-            <div class="row justify-content-center">
-                <a class="col-lg-12 box-img-dir text-center" target="_blanck" href="https://fr.linkedin.com/in/m%C3%A9lodie-rambaud-57519b1a3">
-                    <img class="img-dir col-lg-12" src="{% static 'assets/img/Mélodie.jpg' %}">
-                </a>
-                <p class="mt-1 col-lg-12 fs-6 fw-bolder text-center">Mélodie Rambaud</p>
-                <p class="col-lg-12 fs-6 text-center">
-                    Secrétaire
-                </p>
-            </div>
-        </div>
-        <div class="col-lg-3 mt-3 px-0 mx-0" id="card-peda">
-            <div class="row justify-content-center">
-                <a class="col-lg-12 box-img-dir text-center" target="_blanck" href="https://fr.linkedin.com/in/ar050519">
-                    <img class="img-dir col-lg-12" src="https://media-exp1.licdn.com/dms/image/C4E03AQFRwEBwnuo1UA/profile-displayphoto-shrink_200_200/0/1568398689109?e=1635379200&v=beta&t=MtrpehwZNyofKPRg4wYjc_dzjvvMBBTm9TJbL1zBFYE">
-                </a>
-                <p class="mt-1 col-lg-12 fs-6 fw-bolder text-center">Amaury Reboul</p>
-                <p class="col-lg-12 fs-6 text-center">
-                    Trésorier
-                </p>
-            </div>
-        </div>
+      </div>
     </div>
+  </section>
+  <!-- teachers -->
+  <section class="section">
+    <div class="container-fluid">
+      <div class="row mx-5">
+        <div class="col-12">
+          <h2 class="section-title text-primary" style="font-family:futura">
+            Le bureau
+        </h2>
+        </div>
+      </div>
+      <!-- member list -->
+      <div class="row mx-5">
+        <!-- president -->
+        <div class="col-lg-3 col-sm-6 mb-5">
+          <div class="card border-0 rounded-0 hover-shadow">
+            <img class="card-img-top rounded-0" src="{{media_location}}{{president.img_link}}" alt="president">
+            <div class="card-body">
+                <a>
+                    <h4 class="card-title">{{president.name}}</h4>
+                </a>
+                {% if president.genre == "f" %}
+                <p>Présidente</p>
+                {% else %}
+                <p>Président</p>
+                {% endif %}
+              <ul class="list-inline">
+                <li class="list-inline-item"><a class="text-color" href="{{ president.link }}"><i class="ti-linkedin"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- president -->
+        <!-- vice -->
+        <div class="col-lg-3 col-sm-6 mb-5">
+            <div class="card border-0 rounded-0 hover-shadow">
+              <img class="card-img-top rounded-0" src="{{media_location}}{{vice.img_link}}" alt="vice-président">
+              <div class="card-body">
+                  <a >
+                      <h4 class="card-title">{{vice.name}}</h4>
+                  </a>
+                  {% if vice.genre == "f" %}
+                  <p>Vice-Présidente</p>
+                  {% else %}
+                  <p>Vice-Président</p>
+                  {% endif %}
+                <ul class="list-inline">
+                  <li class="list-inline-item"><a class="text-color" href="{{ vice.link }}"><i class="ti-linkedin"></i></a></li>
+                </ul>
+              </div>
+            </div>
+        </div>
+        <!-- vice -->
+        <!-- secretary -->
+        <div class="col-lg-3 col-sm-6 mb-5">
+            <div class="card border-0 rounded-0 hover-shadow">
+                <img class="card-img-top rounded-0" src="{{media_location}}{{secretary.img_link}}" alt="secrétaire">
+                <div class="card-body">
+                    <a >
+                        <h4 class="card-title">{{secretary.name}}</h4>
+                    </a>
+                    <p>Secrétaire</p>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a class="text-color" href="{{ secretary.link }}"><i class="ti-linkedin"></i></a></li>
+                </ul>
+                </div>
+            </div>
+        </div>
+        <!-- secretary -->
+        <!-- treasurer -->
+        <div class="col-lg-3 col-sm-6 mb-5">
+            <div class="card border-0 rounded-0 hover-shadow">
+                <img class="card-img-top rounded-0" src="{{media_location}}{{treasurer.img_link}}" alt="secrétaire">
+                <div class="card-body">
+                    <a >
+                        <h4 class="card-title">{{treasurer.name}}</h4>
+                    </a>
+                    {% if vice.genre == "f" %}
+                    <p>Trésorière</p>
+                    {% else %}
+                    <p>Trésorier</p>
+                    {% endif %}
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a class="text-color" href="{{ treasurer.link }}"><i class="ti-linkedin"></i></a></li>
+                </ul>
+                </div>
+            </div>
+        </div>
+        <!-- treasurer -->
+    </div>
+</div>
 </section>
 {% endblock %}

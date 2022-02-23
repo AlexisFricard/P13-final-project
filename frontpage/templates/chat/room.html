@@ -1,0 +1,141 @@
+<!-- chat/templates/chat/room.html -->
+{% extends "template_ref.html" %}
+{% load static %}
+{% block body %}
+{% if user.is_authenticated %}
+<div id="page-name" name="{{request.user.username}}" style="display:none">Association</div>
+<div id="actuality">
+    <div class="container py-5" style="margin-top: 56px;width:90%">
+        <div class="row animate-box">
+            <div class="col-lg-6">
+                <img class="w-100" src="{% static 'images/banner/discussion.png' %}">
+                {% if room_name == "publique" %}
+                <h4>Publique</h4>
+                {% else %}
+                <h4>Ticket N°{{ room_name }}</h4>
+                {% endif %}
+                <span><i class="ti-info-alt"></i> - Le serveur efface automatiquement les messages.</span>
+                <!-- <div id="user-connected">
+
+                </div> -->
+                
+                <!-- {% for user in users %}
+
+                {{user.username}}<br>
+                {% endfor %} -->
+            </div>
+            <div class="col-md-6 text-center">
+                <div class="col-md-12 col-xs-12 p-3" id="chat-log" style="border-radius:5px;border:solid 1px rgba(0, 0, 0, 0.267);border-bottom:0;height:400px;overflow-y:auto">
+                </div>
+                <div class="col-md-12 justify-content-between px-0">
+                    <input class="form-control w-100" id="chat-message-input" name="{{request.user}}" type="text" size="100">
+                    <input style="display:none" id="is_staff" name="{{ user.is_superuser }}"/>
+                    <a class="btn-send" id="chat-message-submit" type="button" class='{{ request.user.id|json_script:"user_id" }}' value="Envoyer"><i style="font-size:40px" class="ti-comment"></i></a>
+                </div>
+                {{ room_name|json_script:"room-name" }}
+                <script>
+                    const roomName = JSON.parse(document.getElementById('room-name').textContent);
+    
+                    const chatSocket = new WebSocket(
+                        'wss://'
+                        + window.location.host
+                        + '/wss/discussion/'
+                        + roomName
+                        + '/'
+                    );
+                    // CLIENT SIDE
+                    chatSocket.onopen = function() {
+                        
+
+                        //let user = document.getElementById('page-name').getAttribute('name')
+                        //let user_box = document.getElementById('user-connected')
+                        //const boxMsg = document.createElement('p')
+                        //boxMsg.setAttribute('id', user)
+                        //boxMsg.classList += 'mb-0'
+                        //boxMsg.innerHTML = user
+                        //user_box.appendChild(boxMsg)
+                    }
+                    chatSocket.onmessage = function(e) {
+                        const data = JSON.parse(e.data);
+                        const chat_log = document.querySelector('#chat-log');
+                        const boxMsg = document.createElement('div');
+
+                        if (data.staff == "True") {
+                            boxMsg.setAttribute('class', "is_staff")
+                        };
+                        
+                        boxMsg.innerHTML = (
+                            '<p>' + data.author + "</p><p id='msg'>" +
+                            data.message + '</p>')
+                        chat_log.appendChild(boxMsg);
+                        chat_log.scrollTo(0, chat_log.scrollHeight);
+                    };
+    
+                    chatSocket.onclose = function(e) {
+                        //let user = document.getElementById('page-name').getAttribute('name')
+                        //let name_box = document.getElementById(user)
+                        //name_box.remove()
+                    };
+    
+                    document.querySelector('#chat-message-input').focus();
+                    document.querySelector('#chat-message-input').onkeyup = function(e) {
+                        if (e.keyCode === 13) {  // enter, return
+                            document.querySelector('#chat-message-submit').click();
+                        }
+                    };
+    
+                    document.querySelector('#chat-message-submit').onclick = function(e) {
+                        const messageInputDom = document.querySelector('#chat-message-input');
+                        if (messageInputDom.value != "") {
+                            // AUTHOR
+                            const name_author =  messageInputDom.name;
+                            // MESSAGE
+                            const message = messageInputDom.value;
+                            // IS SUPERUSER
+                            const messageAuthor = document.querySelector('#is_staff');
+                            const author_s = messageAuthor.name;
+                            // SEND TO SERVER
+                            chatSocket.send(JSON.stringify({
+                                'message': message,
+                                'author': name_author,
+                                'staff': author_s,
+                            }));
+                            function callback(mutationsList) {
+                                mutationsList.forEach(mutation => {
+                                    if (mutation.type === 'childList') {
+                                        let client_ = document.getElementById('page-name').getAttribute('name')
+                        
+                                        let last_msg = document.getElementById('chat-log').lastElementChild
+                                        let sender_ = last_msg.firstChild.textContent
+                                        if (client_ == sender_) {
+                                            last_msg.classList += ' my-message'
+                                        }
+                                        else {
+                                            last_msg.classList += ' user-message'
+                                        }
+                                        
+                                    }
+                                })
+                            }
+                            const mutationObserver = new MutationObserver(callback)
+                            mutationObserver.observe(
+                                document.getElementById('chat-log'),
+                                { childList: true, subtree: true }
+                            )
+                            // RESET FORM
+                            messageInputDom.value = '';
+                        };
+                    };
+                </script>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<script>
+
+
+</script>
+{% endif %}
+{% endblock %}
+

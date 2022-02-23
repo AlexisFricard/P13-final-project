@@ -1,0 +1,164 @@
+{% extends "dashboard.html" %}
+{% load static %}
+{% load convert_markdown %}
+{% block inview %}
+<!-- about us -->
+<div class="container-fluid overlay">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-6 py-3">
+            <h2 class="section-title py-2 text-center" style="font-family:futura">Ajouter un témoignage</h2>
+            <form action="/add_data" method="POST" class="my-3">
+                {% csrf_token %}
+                <input type="text" name="box" value="testimony" style="display: none;"/>
+                <input autocomplete='off' type="text" name="author" class="form-control" placeholder="Auteur du témoignage"/>
+                <input autocomplete='off' type="text" name="promotion" class="form-control" placeholder="2018 - 2019"/>
+                <select class="form-control" name="sector">
+                    <option value="Secteur privé et public">Secteur privé et public</option>
+                    <option value="Avocature et Magistrature">Avocature et Magistrature</option>
+                    <option value="Enseignement et recherche">Enseignement et recherche</option>
+                </select>
+                <div class="col-12 py-3 px-0" id="1">
+                    Témoignage
+                    <textarea required id="text-area1" style="resize:none;height:150px" maxlength="2000" autocomplete='off' row="6" cols="30" type="text" class="form-control" name="text" placeholder="Texte (2000 caractères)">«  »</textarea>
+                     <!-- Style for text-area -->
+                    <a style="padding-left:20px;width:35px" id="#" onClick="" class="btn btn-primary btn-style p-0 mb-5 px-2"><i class="ti-back-left"></i></a>
+                    <a style="width:35px" id="**" onClick="" class="btn btn-primary btn-style p-0 mb-5 px-2"><strong>B</strong></a>
+                    <a style="width:35px" id="*" onClick="" class="btn btn-primary btn-style p-0 mb-5 px-2"><i>it</i></a>
+                    <a style="width:35px" id="***" onClick="" class="btn btn-primary btn-style p-0 mb-5 px-2"><i><strong>IB</strong></i></a><br>
+                    <!-- Style for text-area -->
+                </div>
+                <div class="col-12 py-3 px-0" id="2" style="margin-top:-50px">
+                    Travail / Status actuel
+                    <textarea required id="text-area2" style="resize:none;height:150px;"maxlength="2000" autocomplete='off' row="6" cols="30" type="text" class="form-control" name="job" placeholder="Poste actuel (2000 caractères)"></textarea>
+                     <!-- Style for text-area -->
+                    <a style="padding-left:20px;width:35px" id="#" onClick="" class="btn btn-primary btn-style p-0 mb-5 px-2"><i class="ti-back-left"></i></a>
+                    <a style="width:35px" id="**" onClick="" class="btn btn-primary btn-style p-0 mb-5 px-2"><strong>B</strong></a>
+                    <a style="width:35px" id="*" onClick="" class="btn btn-primary btn-style p-0 mb-5 px-2"><i>it</i></a>
+                    <a style="width:35px" id="***" onClick="" class="btn btn-primary btn-style p-0 mb-5 px-2"><i><strong>IB</strong></i></a><br>
+                    <!-- Style for text-area -->
+                </div>
+
+                <button type="submit" value="send" class="btn btn-primary mt-2">AJOUTER</button>
+                <!-- <a onClick="" id="btn-show" class="btn btn-primary btn-prev mt-2">PRÉVISUALISER</a> -->
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- MODAL PREVIEW -->
+<div id="modal-prev" class="bg-primary my-3 py-5" style="display:none">
+    <div class="container">
+        <div class="row align-items-start">
+            <div class="col-md-12 order-2 order-md-1">
+                <div id="@1" class="col-12 my-1 py-1 box-faq bg-white" style="height:80px;overflow:hidden">
+                    <a onClick="" id="b@1" class="d-inline-block text-color" style="position: absolute;right: 0;top: 0;"><i id="i@1" class="ti-arrow-down"></i></a>
+                    <h4 id="title-modal-prev" class="pt-3"></h4>
+                    <p id="text-modal-prev"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL PREVIEW -->
+
+{% if response %}
+<!-- MODAL RESPONSE -->
+<div class="modal fade show bg-primary align-items-center" id="modal" style="padding-right: 9px; display: flex;">
+    <div class="modal-dialog modal-lg p-5" role="document">
+        <div class="modal-content rounded-0 border-0 p-5">
+            {% if response_error %}
+            <img class="modal-dialog" style='width:300px' src="{% static 'images/gifs/alert.gif' %}">
+            {% else %}
+            <img class="modal-dialog" style='width:300px' src="{% static 'images/gifs/validate.gif' %}">
+            {% endif %}
+            <h4 class="text-center">{{ response_text }}</h4>
+            <button class="btn btn-secondary" id="modal-close">FERMER</button>
+            <script>
+                document.getElementById('modal-close').addEventListener(
+                    'click',
+                    function() {
+                        document.getElementById('modal').setAttribute(
+                            'class',
+                            'modal fade'
+                        )
+                        document.getElementById('modal').setAttribute(
+                            'style',
+                            ''
+                        )
+                    }
+                )
+            </script>
+        </div>
+    </div>
+</div>
+<!-- MODAL RESPONSE -->
+{% endif %}
+
+
+<!-- PREVISUALISATION SCRIPT -->
+<script>
+    let btn_show = document.getElementById('btn-show');
+    btn_show.addEventListener('click', function() {
+        document.getElementById('modal-prev').setAttribute('style', '')
+        let question = document.getElementById('question').value
+        let response = document.getElementById('text-area').value
+        if (response.match(/\n/g)) {
+            response = response.replace(/\n/g, '')
+        }
+        response = response.replace(/#/g, '\n')
+        // TODO: Fetch to have markdown
+        document.getElementById('title-modal-prev').innerText = question
+        document.getElementById('text-modal-prev').innerText = response
+    })
+</script>
+ <!-- Style for text-area -->
+<script>
+    function modificateText(idoftextarea, style){
+        var textArea = document.getElementById(idoftextarea);
+        var text =textArea.value;
+        var indexStart=textArea.selectionStart;
+        var indexEnd=textArea.selectionEnd;
+        let newText = (
+            text.substring(0, indexStart) +
+            style +
+            text.substring(indexStart, indexEnd) + 
+            style +
+            text.substring(indexEnd)
+        )
+        return(newText)
+        
+    }
+
+    let list_of_style_btn = document.getElementsByClassName('btn-style')
+
+    for (let btn of list_of_style_btn) {
+        btn.addEventListener('click', function() {
+            let id_ = btn.parentNode.id
+            let AREA = document.getElementById('text-area' + id_)
+            if (btn.id != "#") {
+                AREA.value = modificateText('text-area' + id_, btn.id)
+            }
+            else {
+                AREA.value = AREA.value + btn.id + '\n'
+            } 
+        })
+    };
+</script>
+ <!-- Style for text-area -->
+ <!-- FAQ Animation -->
+<script>
+    let btn_more = document.getElementById('b@1')
+    btn_more.addEventListener('click', function() {
+        if ('ti-arrow-down' == document.getElementById('i@1').getAttribute('class')) {
+            document.getElementById('@1').setAttribute('style', '');
+            document.getElementById('i@1').setAttribute('class', 'ti-arrow-up')
+        }
+        else {
+            document.getElementById('@1').setAttribute('style', 'height:80px;overflow:hidden');
+            document.getElementById('i@1').setAttribute('class', 'ti-arrow-down')
+        }
+    })
+</script>
+<!-- FAQ Animation -->
+{% endblock %}
+
