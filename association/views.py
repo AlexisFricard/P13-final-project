@@ -10,8 +10,6 @@ from mastercontrat.settings import MEDIA_URL
 
 
 def association(request):
-    print(MEDIA_URL)
-
     # === For automatic selection ===
     # now = datetime.now()
     # year = str(now.year) + " - " + str(now.year + 1)
