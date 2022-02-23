@@ -12,9 +12,9 @@ from chat.views import room
 
 
 def test_chat():
-    request = RequestFactory().get("")
+    request = RequestFactory().get("/discussion/publique")
     request.user = ADMIN
-
+    request.method = 'GET'
     view = room(request, 'publique')
 
     assert view.status_code == 200
