@@ -163,24 +163,24 @@
         {% for staff in team %}
         <div class="col-lg-6 col-sm-6 mb-4 mb-lg-0 box-teacher mt-5" id="@{{staff.id}}">
             <div class="media" style="height: 200px;">
-              <img class="mr-3 img-fluid h-100" src="{{staff.img_link}}" alt="speaker">
-              <div class="media-body">
-                <h4 class="mt-0">
-                    <a style="color:#900c2f" href="{{staff.link}}" target="_blanck">{{ staff.name }}</a>
-                    <a onClick="" id="b@{{staff.id}}" class="d-inline-block text-color" style="position: absolute;right: 0;top: 0;"><i id="i@{{ staff.id }}" class="ti-plus"></i></a>
-                </h4>
-                
-                <p class="m-0" style="line-height:normal">
-                    <strong>{{ staff.status1 }}</strong><br>
-                </p>
-                <div class="text-teacher" id="t@{{staff.id}}" style="display:none">
-                    <p class="m-0" style="line-height:normal">{{ staff.status2 }}</p>
-                    <p class="m-0" style="line-height:normal">{{ staff.status3 }}</p>
-                    <p class="m-0" style="line-height:normal">{{ staff.status4 }}</p>
-                    <p class="m-0" style="line-height:normal">{{ staff.status5 }}</p>
-                </div>
+                <div style="background:url({{staff.img_link}});height:200px;width: 30%;" class="mr-2"></div>
+                <div class="media-body">
+                    <h4 class="mt-0">
+                        <a style="color:#900c2f" href="{{staff.link}}" target="_blanck">{{ staff.name }}</a>
+                        <a onClick="" id="b@{{staff.id}}" class="d-inline-block text-color" style="position: absolute;right: 0;top: 0;"><i id="i@{{ staff.id }}" class="ti-plus"></i></a>
+                    </h4>
+                    
+                    <p class="m-0" style="line-height:normal">
+                        <strong>{{ staff.status1 }}</strong><br>
+                    </p>
+                    <div class="text-teacher" id="t@{{staff.id}}" style="display:none">
+                        <p class="m-0" style="line-height:normal">{{ staff.status2 }}</p>
+                        <p class="m-0" style="line-height:normal">{{ staff.status3 }}</p>
+                        <p class="m-0" style="line-height:normal">{{ staff.status4 }}</p>
+                        <p class="m-0" style="line-height:normal">{{ staff.status5 }}</p>
+                    </div>
 
-              </div>
+                </div>
             </div>
         </div>
         {% endfor %}
