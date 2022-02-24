@@ -1,14 +1,10 @@
 {% extends "dashboard.html" %}
 {% load static %}
 {% block inview %}
-<!-- about us -->
-    <div class="container-fluid overlay" style="min-height: 581px;background: url({% static 'images/backgrounds/photo3.jpg' %});background-size:cover">
-      <div class="row align-items-start">
-        <div class="col-md-12 order-2 order-md-1">
-            <h2 class="section-title py-5" style="font-family:futura;text-align:center">Bienvenue sur le tableau de bord</h2>
-      </div>
-    </div>
-    
-  <!-- /about us -->
-
+<div class="container-fluid overlay" style="min-height: calc(100vh - 116px);;background: url({% static 'images/backgrounds/photo3.jpg' %});background-size:cover">
+  <div class="row align-items-start">
+    <div class="col-md-12 order-2 order-md-1">
+        <h2 class="section-title py-5" style="font-family:futura;text-align:center">Bienvenue sur le tableau de bord</h2>
+  </div>
+</div>
 {% endblock %}
