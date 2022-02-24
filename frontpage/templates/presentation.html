@@ -163,7 +163,7 @@
         {% for staff in team %}
         <div class="col-lg-6 col-sm-6 mb-4 mb-lg-0 box-teacher mt-5" id="@{{staff.id}}">
             <div class="media" style="height: 200px;">
-                <div style="background:url({{staff.img_link}});height:200px;width: 30%;" class="mr-2"></div>
+                <div style="background:url({{staff.img_link}});height:200px;width: 30%;background-size:cover;background-position:center" class="mr-2"></div>
                 <div class="media-body">
                     <h4 class="mt-0">
                         <a style="color:#900c2f" href="{{staff.link}}" target="_blanck">{{ staff.name }}</a>
