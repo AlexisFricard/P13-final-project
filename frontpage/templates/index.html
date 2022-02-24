@@ -75,11 +75,11 @@
       {% for actuality in actualities %}
       <!-- blog post -->
       <article class="col-lg-4 col-sm-6 mb-5">
-        <div class="card h-100 rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
+        <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow" style="height:500px">
             {% if not actuality.media %}
-            <div style="height:350px;background:url({{actuality.img_link}});background-size:cover;background-position:center"></div>
+            <div style="height:200px;background:url({{actuality.img_link}});background-size:cover;background-position:center"></div>
             {% else %}
-            <div style="height:350px;background:url({{media_location}}{{actuality.img_link}});background-size:cover;background-position:center"></div>
+            <div style="height:200px;background:url({{media_location}}{{actuality.img_link}});background-size:cover;background-position:center"></div>
             {% endif %}
             <div class="card-body">
                 <!-- post meta -->
