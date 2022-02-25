@@ -14,7 +14,7 @@ mimetypes.add_type("text/javascript", ".js", True)
 mimetypes.add_type("application/javascript", ".js", True)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DEBUG = False
+DEBUG = True
 # This is for redirect http to https
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
