@@ -299,10 +299,9 @@
         </div>
     </section>
     <script>
-        list_of_btn = document.getElementsByClassName('select')
+        const list_of_btn = document.getElementsByClassName('select')
         for (let btn of list_of_btn) {
             btn.addEventListener('click', function(){
-                list_of_btn = document.getElementsByClassName('select')
                 let section = document.getElementById('s-' + btn.id)
                 section.setAttribute('style', 'display:flex')
                 for (let other_btn in list_of_btn) {
