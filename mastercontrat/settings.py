@@ -189,7 +189,7 @@ if os.getenv('ENV') != "GITHUB":
     EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
     EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
     EMAIL_USE_TLS = True
-    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+    DEFAULT_FROM_EMAIL = os.environ.get("SENDGRID_USERNAME")
 
     # Keep our policy as strict as possible
     # CSP_DEFAULT_SRC = ("'self'", f'{STATIC_URL}', f'{MEDIA_URL}')
