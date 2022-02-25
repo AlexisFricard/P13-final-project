@@ -24,13 +24,13 @@
     <div class="col-12">
       <!-- teacher category list -->
       <ul class="list-inline text-center filter-controls">
-        <li class="list-inline-item m-3 text-uppercase" data-filter="SPP">Secteur privé et public</li>
-        <li class="list-inline-item m-3 text-uppercase" data-filter="AM">Avocature et Magistrature</li>
-        <li class="list-inline-item m-3 text-uppercase" data-filter="ER">Enseignement et recherche</li>
+        <li class="list-inline-item m-3 text-uppercase select" id="SPP">Secteur privé et public</li>
+        <li class="list-inline-item m-3 text-uppercase select" id="AM">Avocature et Magistrature</li>
+        <li class="list-inline-item m-3 text-uppercase select" id="ER">Enseignement et recherche</li>
       </ul>
     </div>
 </div>
-    <section class="section bg-cover pb-5">
+    <section class="section bg-cover pb-5" id="s-SPP">
         <div class="container">
             <h3 style="color:#900c2f;font-family:futura">Secteur privé et public</h3>
             {% if "Secteur privé et public" in testimony_type %}
@@ -114,7 +114,7 @@
             {% endif %}
         </div>
     </section>
-    <section class="section bg-cover py-5" >
+    <section class="section bg-cover py-5" id="s-AM">
         <div class="container">
             <h3 style="color:#900c2f;font-family:futura">Avocature et Magistrature</h3>
             {% if "Avocature et Magistrature" in testimony_type %}
@@ -213,7 +213,7 @@
             {% endif %}
         </div>
     </section>
-    <section class="section bg-cover py-5" >
+    <section class="section bg-cover py-5" id="s-ER">
         <div class="container">
             <h3 style="color:#900c2f;font-family:futura">Enseignement et recherche</h3>
             {% if "Enseignement et recherche" in testimony_type %}
@@ -296,4 +296,19 @@
             {% endif %}
         </div>
     </section>
+    <script>
+        list_of_btn = document.getElementsByClassName('select')
+        for (let btn of list_of_btn) {
+            btn.addEventListener('click', function(){
+                let section = document.getElementById('s-' + btn.id)
+                section.setAttribute('style', 'display:flex')
+                for (let other_btn in list_of_btn) {
+                    if (other_btn.id != btn.id) {
+                        let other_section = document.getElementById('s-' + other_btn.id)
+                        other_section.setAttribute('style', 'display:none')
+                    }
+                }
+            })
+        }
+    </script>
 {% endblock %}
