@@ -143,7 +143,9 @@
               <div class="media-body">
                 <h4 class="mt-0">
                     <a style="color:#900c2f" href="{{director.link}}" target="_blanck">{{ director.name }}</a>
+                    {% if director.status2 %}
                     <a onClick="" id="b@{{director.id}}" class="d-inline-block text-color" style="position: absolute;right: 2vw;top: 0;"><i id="i@{{ director.id }}" class="ti-plus"></i></a>
+                    {% endif %}
                 </h4>
                 <p class="m-0" style="line-height:normal">
                     <strong>{{ director.status1 }}</strong>
@@ -160,7 +162,7 @@
         </div>
         {% endfor %}
         {% for staff in team %}
-        <div class="col-lg-6 col-sm-6 mb-4 mb-lg-0 box-teacher py-2 px-5" id="@{{staff.id}}">
+        <div class="col-lg-6 col-sm-6 mb-4 mb-lg-0 box-teacher py-2" id="@{{staff.id}}">
             <div class="media h-100">
                 <div style="min-width:150px;background:url({{staff.img_link}});height:200px;width: 30%;background-size:cover;background-position:center" class="mr-2"></div>
                 <div class="media-body">
