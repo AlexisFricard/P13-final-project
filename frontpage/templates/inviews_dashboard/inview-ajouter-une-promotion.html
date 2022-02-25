@@ -5,17 +5,665 @@
 <!-- about us -->
 <div class="container-fluid overlay">
     <div class="row align-items-start justify-content-center">
-        <div class="col-md-4 order-2 order-md-1 py-3">
-            <h2 class="section-title py-2 text-center" style="font-family:futura">Ajouter un utilisateur</h2>
-            <form action="/add_user" method="POST" class="my-3">
+        <div class="col-md-12 order-2 order-md-1 py-3">
+            <h2 class="section-title py-2 text-center" style="font-family:futura">Ajouter une promotion</h2>
+            <form method="post" action="/add_data" >
                 {% csrf_token %}
-                <input required autocomplete='off' type="text" name="firstname" class="form-control" placeholder="Prénom"/>
-                <input required autocomplete='off' type="text" name="lastname" class="form-control" placeholder="Nom"/>
-                <input required autocomplete='off' type="email" name="email" class="form-control" placeholder="Email"/>
-                <input required autocomplete='off' type="email" name="emailconfirm" class="form-control mb-2" placeholder="Confirmer l'email"/>
-                <strong class="mr-5">Administrateur : </strong><input autocomplete='off' id="is_staff" name="is_staff" type="checkbox"/>
+                <div class="col-md-12 text-center" style="margin-bottom: 20px;">
+                    <a class="btn btn-primary" href="/gestion-du-site/toutes-les-photos" target='_blanck'>
+                        * Voir les photos ajoutées
+                    </a>
+                    <a style="margin-left:10px" href="/gestion-du-site/ajouter-une-photo" id="btn_add_photo" class="btn btn-primary">Ajouter une photo</a>
+                </div>
+                <input type="text" name="box" value="promotion" style="display: none;"/>
+                <!-- GENERAL INFORMATIONS -->
+                <div id="form-promotion" class="row form-group py-3">
+                    <h4 class="col-lg-12 text-center">Données principales</h4>
+                    <div class="col-md-6">
+                        <span>Nom de la formation</span>
+                        <input required autocomplete='off' type="text" name="formation" class="form-control" value="Master 2 Contrats en droit français et européen"/>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <span>Titre de la colonne 1</span>
+                        <input required autocomplete='off' type="text" name="col1-title" class="form-control" placeholder="De gauche à droite, rang du haut"/>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <span>Lien de l'image *</span>
+                        <select type="text" name="img_link" class="form-control" placeholder="Lien de l'image">
+                            <option value="none">____</option>
+                            {% for img in imgs %}
+                            <option value="{{img.image}}">{{img.image}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <span>Titre de la colonne 2</span>
+                        <input  required autocomplete='off' type="text" name="col2-title" class="form-control" placeholder="De gauche à droite, rang du bas"/>
+                    </div>
+                    <div class="col-md-6">
+                        <span>Années de la promotion</span>
+                        <input required autocomplete='off' type="text" name="date" class="form-control" placeholder="2021 - 2022"/>
+                    </div>
 
-                <br><button type="submit" value="send" class="btn btn-primary mt-2">AJOUTER L'UTILISATEUR</button>
+                    <div class="col-md-6">
+                        <span>Titre de la colonne 3</span>
+                        <input autocomplete='off' type="text" name="col3-title" class="form-control" placeholder="Absents"/>
+                    </div>
+                    <div class="col-md-12 text-center" style="margin-top: 20px;">
+                        <a href="#" id="btn-step-2" class="btn btn-primary">Suivant</a>
+                    </div>
+
+                </div>
+                <!-- COLUMN (1) -->
+                <div id="form-colonne-1" class="row form-group" style="display: none;">
+                    <h4 class="col-lg-12 text-center">Colonne 1</h4>
+                    <div class="row text-center" style="overflow-y: auto;height:100%" id="student1">
+                        <div class="col-md-3"  style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 1</span>
+                                <input autocomplete='off' type="text" name="col1-student1-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col1-student1-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col1-student1-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 2</span>
+                                <input autocomplete='off' type="text" name="col1-student2-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col1-student2-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col1-student2-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 3</span>
+                                <input autocomplete='off' type="text" name="col1-student3-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col1-student3-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col1-student3-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 4</span>
+                                <input autocomplete='off' type="text" name="col1-student4-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col1-student4-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col1-student4-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 5</span>
+                                <input autocomplete='off' type="text" name="col1-student5-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col1-student5-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col1-student5-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 6</span>
+                                <input autocomplete='off' type="text" name="col1-student6-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col1-student6-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col1-student6-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 7</span>
+                                <input autocomplete='off' type="text" name="col1-student7-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col1-student7-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col1-student7-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 8</span>
+                                <input autocomplete='off' type="text" name="col1-student8-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col1-student8-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col1-student8-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 9</span>
+                                <input autocomplete='off' type="text" name="col1-student9-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col1-student9-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col1-student9-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 10</span>
+                                <input autocomplete='off' type="text" name="col1-student10-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col1-student10-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col1-student10-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 11</span>
+                                <input autocomplete='off' type="text" name="col1-student11-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col1-student11-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col1-student11-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 12</span>
+                                <input autocomplete='off' type="text" name="col1-student12-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col1-student12-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col1-student12-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center" style="padding-left:0;margin-top: 20px;">
+                        <a href="#" id="btn-step-3-b" class="btn btn-primary">Retour</a>
+                        <a href="#" style="margin-left:10px"  id="btn-step-3" class="btn btn-primary">Suivant</a>
+                    </div>
+                </div>
+                <!-- COLUMN (2) -->
+                <div id="form-colonne-2" class="row form-group" style="display: none;">
+                    <h4 class="col-lg-12 text-center">Colonne 2</h4>
+                    <div class="row text-center" style="overflow-y: auto;height:100%" id="student1">
+                        <div class="col-md-3 " style='margin-bottom:5px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 1</span>
+                                <input autocomplete='off' type="text" name="col2-student1-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col2-student1-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col2-student1-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 2</span>
+                                <input autocomplete='off' type="text" name="col2-student2-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col2-student2-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col2-student2-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 3</span>
+                                <input autocomplete='off' type="text" name="col2-student3-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col2-student3-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col2-student3-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 4</span>
+                                <input autocomplete='off' type="text" name="col2-student4-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col2-student4-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col2-student4-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 5</span>
+                                <input autocomplete='off' type="text" name="col2-student5-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col2-student5-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col2-student5-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 6</span>
+                                <input autocomplete='off' type="text" name="col2-student6-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col2-student6-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col2-student6-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 7</span>
+                                <input autocomplete='off' type="text" name="col2-student7-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col2-student7-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col2-student7-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 8</span>
+                                <input autocomplete='off' type="text" name="col2-student8-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col2-student8-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col2-student8-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 9</span>
+                                <input autocomplete='off' type="text" name="col2-student9-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col2-student9-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col2-student9-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 10</span>
+                                <input autocomplete='off' type="text" name="col2-student10-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col2-student10-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col2-student10-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 11</span>
+                                <input autocomplete='off' type="text" name="col2-student11-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col2-student11-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col2-student11-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 12</span>
+                                <input autocomplete='off' type="text" name="col2-student12-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col2-student12-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col2-student12-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center" style="padding-left:0;margin-top: 20px;">
+                        <a href="#" id="btn-step-4-b" class="btn btn-primary">Retour</a>
+                        <a href="#" style="margin-left:10px"  id="btn-step-4" class="btn btn-primary">Suivant</a>
+                    </div>
+                </div>
+                <!-- COLUMN (3) -->
+                <div id="form-colonne-3" class="row form-group" style="display: none;">
+                    <h4 class="col-lg-12 text-center">Colonne 3</h4>
+                    <div class="row text-center" style="overflow-y: auto;height:100%" id="student1">
+                        <div class="col-md-3 " style='margin-bottom:5px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 1</span>
+                                <input autocomplete='off' type="text" name="col3-student1-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col3-student1-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col3-student1-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 2</span>
+                                <input autocomplete='off' type="text" name="col3-student2-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col3-student2-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col3-student2-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 3</span>
+                                <input autocomplete='off' type="text" name="col3-student3-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col3-student3-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col3-student3-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 4</span>
+                                <input autocomplete='off' type="text" name="col3-student4-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col3-student4-target">-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col3-student4-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 5</span>
+                                <input autocomplete='off' type="text" name="col3-student5-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col3-student5-target">  
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col3-student5-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 6</span>
+                                <input autocomplete='off' type="text" name="col3-student6-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col3-student6-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col3-student6-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 7</span>
+                                <input autocomplete='off' type="text" name="col3-student7-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col3-student7-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col3-student7-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 8</span>
+                                <input autocomplete='off' type="text" name="col3-student8-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col3-student8-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col3-student8-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 9</span>
+                                <input autocomplete='off' type="text" name="col3-student9-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col3-student9-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col3-student9-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 10</span>
+                                <input autocomplete='off' type="text" name="col3-student10-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col3-student10-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col3-student10-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 11</span>
+                                <input autocomplete='off' type="text" name="col3-student11-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col3-student11-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col3-student11-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 " style='margin-bottom:10px;'>
+                            <div class="col-md-12">
+                                <span>Étudiant 12</span>
+                                <input autocomplete='off' type="text" name="col3-student12-name" class="form-control" placeholder="Nom / Prénom"/>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-control" name="col3-student12-target">
+                                    <option value="none">Aucun</option>
+                                    <option value="linkedin">Linkedin</option>
+                                    <option value="erdp">ERDP</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <input autocomplete='off' type="text" name="col3-student12-link" class="form-control" placeholder="Lien du réseau"/>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="#" class="btn btn-primary" id="btn-step-5-b" class="">Retour</a>
+                        </div>
+                        <div class="col-md-10" style="text-align:end">
+                            <input type="submit" value="Ajouter la promotion" class="btn btn-primary">
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
@@ -55,4 +703,45 @@
   </div>
   <!-- MODAL RESPONSE -->
   {% endif %}
+  <script>
+    
+    if (document.getElementById('form-promotion')) {
+        let btnStep2 = document.getElementById('btn-step-2')
+        let btnStep3 = document.getElementById('btn-step-3')
+        let btnStep3back = document.getElementById('btn-step-3-b')
+        let btnStep4 = document.getElementById('btn-step-4')
+        let btnStep4back = document.getElementById('btn-step-4-b')
+        let btnStep5back = document.getElementById('btn-step-5-b')
+
+
+        btnStep2.addEventListener('click', function() {
+            document.getElementById('form-promotion').setAttribute('style' ,"display: none;")
+            document.getElementById('form-colonne-1').setAttribute('style' ,"display: flex;")
+        })
+        btnStep3.addEventListener('click', function() {
+            document.getElementById('form-colonne-1').setAttribute('style' ,"display: none;")
+            document.getElementById('form-colonne-2').setAttribute('style' ,"display: flex;")
+           
+        })
+        btnStep3back.addEventListener('click', function() {
+            document.getElementById('form-promotion').setAttribute('style' ,"display: flex;")
+            document.getElementById('form-colonne-1').setAttribute('style' ,"display: none;")
+        }) 
+        btnStep4.addEventListener('click', function() {
+            document.getElementById('form-colonne-2').setAttribute('style' ,"display: none;")
+            document.getElementById('form-colonne-3').setAttribute('style' ,"display: flex;")
+           
+        })
+        btnStep4back.addEventListener('click', function() {
+            document.getElementById('form-colonne-1').setAttribute('style' ,"display: flex;")
+            document.getElementById('form-colonne-2').setAttribute('style' ,"display: none;")
+           
+        })
+        btnStep5back.addEventListener('click', function() {
+            document.getElementById('form-colonne-2').setAttribute('style' ,"display: flex;")
+            document.getElementById('form-colonne-3').setAttribute('style' ,"display: none;")
+        })
+        
+    }
+</script>
 {% endblock %}
