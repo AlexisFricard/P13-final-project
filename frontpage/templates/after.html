@@ -23,15 +23,14 @@
 <div class="row overlay">
     <div class="col-12">
       <!-- teacher category list -->
-      <ul class="list-inline text-center filter-controls mb-5">
-        <li class="list-inline-item m-3 text-uppercase active" data-filter="all">Tout</li>
+      <ul class="list-inline text-center filter-controls">
         <li class="list-inline-item m-3 text-uppercase" data-filter="SPP">Secteur privé et public</li>
         <li class="list-inline-item m-3 text-uppercase" data-filter="AM">Avocature et Magistrature</li>
         <li class="list-inline-item m-3 text-uppercase" data-filter="ER">Enseignement et recherche</li>
       </ul>
     </div>
 </div>
-    <section class="section overlay bg-cover pb-5">
+    <section class="section bg-cover pb-5">
         <div class="container">
             <h3 style="color:#900c2f;font-family:futura">Secteur privé et public</h3>
             {% if "Secteur privé et public" in testimony_type %}
@@ -55,11 +54,11 @@
                                 d’acquérir de solides bases en droit des contrats et des affaires, que j’ai enrichies grâce à mes 
                                 différentes expériences professionnelles. &#187; 
                             </p>
-                            <span class="text-dark">
+                            <p class="text-dark" style="text-align:end">
                                 Benjamin Tolleron<br>
                                 Promotion 2016-2017
                                 <p>Salarié du privé</p>
-                            </span>
+                            </p>
                         </div>
                     </div>
                     </div>
@@ -71,11 +70,11 @@
                         <div class="col-md-12">
                             <div class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="60" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">
                                 {{ tem.text|convert_markdown|safe }} 
-                                <span class="text-dark">
+                                <p class="text-dark" style="text-align:end">
                                     {{ tem.author}}<br>
                                     Promotion {{ tem.promotion }}
                                     {{ tem.job|convert_markdown|safe }}
-                                </span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -103,11 +102,11 @@
                                 d’acquérir de solides bases en droit des contrats et des affaires, que j’ai enrichies grâce à mes 
                                 différentes expériences professionnelles. &#187; 
                             </p>
-                            <span class="text-dark">
+                            <p class="text-dark" style="text-align:end">
                                 Benjamin Tolleron<br>
                                 Promotion 2016-2017
                                 <p>Salarié du privé</p>
-                            </span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -115,7 +114,7 @@
             {% endif %}
         </div>
     </section>
-    <section class="section overlay bg-cover py-5" >
+    <section class="section bg-cover py-5" >
         <div class="container">
             <h3 style="color:#900c2f;font-family:futura">Avocature et Magistrature</h3>
             {% if "Avocature et Magistrature" in testimony_type %}
@@ -144,7 +143,7 @@
                                 libanais)</i> sous la direction de Madame le Professeur Rose-Noëlle Schütz. J’assure également 
                                 des travaux dirigés à l’Université Saint-Esprit de Kaslik.. &#187;
                             </p>
-                            <span class="text-dark">
+                            <p class="text-dark" style="text-align:end">
                                 Pia Zgheib<br>
                                 Promotion 2016-2017
                                 <p>
@@ -152,7 +151,7 @@
                                     Doctorante en droit privé à l’Université de Poitiers<br>
                                     Chargée de Travaux dirigés à l’Université Saint-Esprit de Kaslik-Liban
                                 </p>
-                            </span>
+                            </p>
                         </div>
                     </div>
                     </div>
@@ -164,11 +163,11 @@
                         <div class="col-md-12">
                             <div class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="60" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">
                                 {{ tem.text|convert_markdown|safe }} 
-                                <span class="text-dark">
+                                <p class="text-dark" style="text-align:end">
                                     {{ tem.author}}<br>
                                     Promotion {{ tem.promotion }}
                                     {{ tem.job|convert_markdown|safe }}
-                                </span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -200,15 +199,13 @@
                                             libanais)</i> sous la direction de Madame le Professeur Rose-Noëlle Schütz. J’assure également 
                                             des travaux dirigés à l’Université Saint-Esprit de Kaslik.. &#187;
                             </p>
-                            <span class="text-dark">
+                            <p class="text-dark">
                                 Pia Zgheib<br>
                                 Promotion 2016-2017
-                                <p>
-                                    Élève-Magistrat à l’ENM-Liban<br>
-                                    Doctorante en droit privé à l’Université de Poitiers<br>
-                                    Chargée de Travaux dirigés à l’Université Saint-Esprit de Kaslik-Liban
-                                </p>
-                            </span>
+                                Élève-Magistrat à l’ENM-Liban<br>
+                                Doctorante en droit privé à l’Université de Poitiers<br>
+                                Chargée de Travaux dirigés à l’Université Saint-Esprit de Kaslik-Liban
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -216,37 +213,37 @@
             {% endif %}
         </div>
     </section>
-    <section class="section overlay bg-cover py-5" >
+    <section class="section bg-cover py-5" >
         <div class="container">
             <h3 style="color:#900c2f;font-family:futura">Enseignement et recherche</h3>
             {% if "Enseignement et recherche" in testimony_type %}
             <div class="hero-slider">
                 <div class="hero-slider-item">
                     <div class="row">
-                    <div class="col-md-12">
-                        <div class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="60" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">
-                            <p style="text-align: justify;">
-                                &#171; Lorsque j’ai intégré le Master 2 <i>Contrats en droit français et européen</i> j’étais titulaire, d’un 
-                                Master 1 en <i>Droit des affaires</i> et d’un Master 2 <i>Gestion fiscale</i> à l’issue duquel j’ai travaillé 
-                                deux ans en cabinet d’expertise comptable et de commissariat aux comptes. Cette année au sein 
-                                du Master 2 Contrats fut l’occasion de revenir au droit privé et d’approfondir mes compétences 
-                                en droit des contrats et en droit des obligations grâce à une équipe pédagogique d’horizons 
-                                différents, mêlant approches pratique et théorique des matières enseignées. Intéressée par la 
-                                doctrine, j’ai fait le choix de rédiger un mémoire de recherche qui m’a conduite à entreprendre 
-                                la rédaction d’une thèse de doctorat sur <i>La propriété immobilière au prisme du droit de la 
-                                construction</i> sous la direction de Madame le Professeur Marianne Faure-Abbad, au sein de 
-                                l’Équipe de recherche en droit privé, laboratoire d’appui du Master. &#187;
-                            </p>
-                            <span class="text-dark">
-                                Lucie Portron<br>
-                                Promotion 2014-2015
-                                <p>
-                                    Doctorante en droit privé à l’Université de Poitiers<br>
-                                    Chargée de Travaux dirigés à l’Université de Poitiers<br>
+                        <div class="col-md-12">
+                            <div class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="60" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">
+                                <p style="text-align: justify;">
+                                    &#171; Lorsque j’ai intégré le Master 2 <i>Contrats en droit français et européen</i> j’étais titulaire, d’un 
+                                    Master 1 en <i>Droit des affaires</i> et d’un Master 2 <i>Gestion fiscale</i> à l’issue duquel j’ai travaillé 
+                                    deux ans en cabinet d’expertise comptable et de commissariat aux comptes. Cette année au sein 
+                                    du Master 2 Contrats fut l’occasion de revenir au droit privé et d’approfondir mes compétences 
+                                    en droit des contrats et en droit des obligations grâce à une équipe pédagogique d’horizons 
+                                    différents, mêlant approches pratique et théorique des matières enseignées. Intéressée par la 
+                                    doctrine, j’ai fait le choix de rédiger un mémoire de recherche qui m’a conduite à entreprendre 
+                                    la rédaction d’une thèse de doctorat sur <i>La propriété immobilière au prisme du droit de la 
+                                    construction</i> sous la direction de Madame le Professeur Marianne Faure-Abbad, au sein de 
+                                    l’Équipe de recherche en droit privé, laboratoire d’appui du Master. &#187;
                                 </p>
-                            </span>
+                                <p class="text-dark" style="text-align:end">
+                                    Lucie Portron<br>
+                                    Promotion 2014-2015
+                                    <p>
+                                        Doctorante en droit privé à l’Université de Poitiers<br>
+                                        Chargée de Travaux dirigés à l’Université de Poitiers<br>
+                                    </p>
+                                </p>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
                 {% for tem in testimony %}
@@ -256,11 +253,12 @@
                         <div class="col-md-12">
                             <div class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="60" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">
                                 {{ tem.text|convert_markdown|safe }} 
-                                <span class="text-dark">
+                                <p class="text-dark" style="text-align:end">
                                     {{ tem.author}}<br>
                                     Promotion {{ tem.promotion }}
                                     {{ tem.job|convert_markdown|safe }}
-                                </span>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
