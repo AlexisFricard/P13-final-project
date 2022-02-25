@@ -14,7 +14,7 @@ mimetypes.add_type("text/javascript", ".js", True)
 mimetypes.add_type("application/javascript", ".js", True)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DEBUG = True
+DEBUG = False
 # This is for redirect http to https
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
@@ -175,15 +175,12 @@ if os.getenv('ENV') != "GITHUB":
         f'/{PUBLIC_MEDIA_LOCATION}'
     )
 
-    # TODO: Add file storage_backends in frontpage/
     DEFAULT_FILE_STORAGE = 'frontpage.storage_backends.PublicMediaStorage'
 
     # Default primary key field type
     # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
     DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-    # TODO: Email service for passwords_reset and
-    #       send user username & password & contact
     EMAIL_HOST = os.environ.get("EMAIL_HOST")
     EMAIL_PORT = os.environ.get("EMAIL_PORT")
     EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
