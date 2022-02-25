@@ -306,6 +306,7 @@
                 section.setAttribute('style', 'display:flex')
                 for (let other_btn in list_of_btn) {
                     if (other_btn.id != btn.id) {
+                        alert(other_btn.id)
                         let other_section = document.getElementById('s-' + other_btn.id)
                         other_section.setAttribute('style', 'display:none')
                     }
