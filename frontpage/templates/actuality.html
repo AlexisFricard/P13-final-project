@@ -19,7 +19,7 @@
 <!-- /page title -->
 <!-- blog details -->
 <section class="section-sm bg-gray pt-5">
-    <div class="container-fluid px-5">
+    <div class="container">
       <div class="row">
         {% if img_format %}
         <div class="col-12 my-4">
@@ -30,7 +30,7 @@
             {% endif %}
         </div>
         {% else %}
-        <div class="col-4 my-4" style="border-right:solid 1px #900c2f2a">
+        <div class="col-lg-4 col-md-12 my-4" style="border-right:solid 1px #900c2f2a">
             {% if media %}
             <img src="{{media_location}}{{img_link}}" alt="photo actualité" class="img-fluid w-100">
             {% else %}
