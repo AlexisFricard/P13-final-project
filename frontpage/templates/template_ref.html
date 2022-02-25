@@ -100,7 +100,7 @@
                     
                     {% if user.is_authenticated %}
                       {% if user.is_superuser %}
-                      <a class="dropdown-item" href="/gestion-du-site/home"><strong>Dashboard</strong></a>
+                      <a id="btn-dash" class="dropdown-item" href="/gestion-du-site/home"><strong>Dashboard</strong></a>
                       {% endif %}
                       <a class="dropdown-item" href="/espace-collaboratif/home"><strong>Espace collaboratif</strong></a>
                       <a class="dropdown-item" href="/mon-compte">Mon compte</a>
@@ -251,5 +251,12 @@
             }
         }
     </script>
+    <script>
+      if (window.innerWidth < 1146) {
+        let btn_dashboard = document.getElementById('btn-dash')
+        btn_dashboard.setAttribute('style', 'display:none')
+      }
+    </script>
+
   </body>
 </html>
