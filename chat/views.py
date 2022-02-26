@@ -27,7 +27,7 @@ def get_data(request):
         img_obj = Image.objects.get(title=f'img_{user.id}')
         img_link = img_obj.image
     except:
-        img_link = 'grey.png'
+        img_link = "grey.png"
 
-    data = {'img_link': img_link}
+    data = {"img_link": img_link}
     return JsonResponse(data)
