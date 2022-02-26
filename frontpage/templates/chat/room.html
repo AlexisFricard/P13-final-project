@@ -60,13 +60,18 @@
                         const chat_log = document.querySelector('#chat-log');
                         const boxMsg = document.createElement('div');
 
+                        // let client_ = document.getElementById('page-name').getAttribute('name')
+
                         if (data.staff == "True") {
                             boxMsg.setAttribute('class', "is_staff")
                         };
-                        
+
                         boxMsg.innerHTML = (
-                            '<p>' + data.author + "</p><p id='msg'>" +
-                            data.message + '</p>')
+                            '<p style="width:calc(100% - 50px)" id="' + data.author + '">' +
+                                data.author + '<br><br>' +  data.message +
+                            "</p>" +
+                            '<div class="m-2" style="height:30px;width:30px"></div>'
+                        )
                         chat_log.appendChild(boxMsg);
                         chat_log.scrollTo(0, chat_log.scrollHeight);
                     };
@@ -100,32 +105,56 @@
                                 'author': name_author,
                                 'staff': author_s,
                             }));
-                            function callback(mutationsList) {
-                                mutationsList.forEach(mutation => {
-                                    if (mutation.type === 'childList') {
-                                        let client_ = document.getElementById('page-name').getAttribute('name')
-                        
-                                        let last_msg = document.getElementById('chat-log').lastElementChild
-                                        let sender_ = last_msg.firstChild.textContent
-                                        if (client_ == sender_) {
-                                            last_msg.classList += ' my-message'
-                                        }
-                                        else {
-                                            last_msg.classList += ' user-message'
-                                        }
-                                        
-                                    }
-                                })
-                            }
-                            const mutationObserver = new MutationObserver(callback)
-                            mutationObserver.observe(
-                                document.getElementById('chat-log'),
-                                { childList: true, subtree: true }
-                            )
                             // RESET FORM
                             messageInputDom.value = '';
                         };
                     };
+                </script>
+                <script>
+                    function getCookie(name) {
+                        let cookie = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+                        return cookie ? cookie[2] : null;
+                    }
+                    function callback(mutationsList) {
+                        mutationsList.forEach(mutation => {
+                            if (mutation.type === 'childList') {
+                                let client_ = document.getElementById('page-name').getAttribute('name')
+                                let last_msg = document.getElementById('chat-log').lastElementChild
+                                let sender_ = last_msg.firstChild.id
+                                
+                                if (client_ == sender_) {
+                                    last_msg.classList += ' row my-message'
+                                }
+                                else {
+                                    last_msg.classList += ' row user-message'
+                                    last_msg.lastChild.classList += ' order-1'
+                                    last_msg.firstChild.classList += ' order-2'
+                                }
+                                let author = `{"author": "${sender_}"}`
+                                let url = '/get_data'
+                                fetch(url, {
+                                    headers: {
+                                        "X-CSRFToken": getCookie("csrftoken"),
+                                    },
+                                    method: 'POST',
+                                    body: author,
+                                })
+                                .then(response => response.json())
+                                .then(response => last_msg.lastChild.setAttribute('style',
+                                    'background:url({{media_url}}' + response.img_link + ');' +
+                                    'background-position:center;background-size:cover;border-radius:50%;' +
+                                    'height:30px;width:30px'
+                                )
+                                )
+                            }
+                        })
+                    }
+                    const mutationObserver = new MutationObserver(callback)
+                    mutationObserver.observe(
+                        document.getElementById('chat-log'),
+                        { childList: true, subtree: true }
+                    )
+
                 </script>
             </div>
             
