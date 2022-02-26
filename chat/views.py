@@ -16,10 +16,13 @@ def room(request, room_name):
         'media_url': MEDIA_URL
     })
 
+
 def get_data(request):
+
     data = json.loads(request.body)
     username_ = data['author']
     user = User.objects.get(username=username_)
+
     try:
         img_obj = Image.objects.get(title=f'img_{user.id}')
         img_link = img_obj.image
