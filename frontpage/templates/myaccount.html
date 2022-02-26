@@ -7,8 +7,8 @@
         <h3 class="col-lg-12">Paramètres du compte</h3>
         <div class="col-lg-12 mt-5 row align-items-center">
           <div class="col-lg-3 col-sm-6 row justify-content-center">
-            {% if media_url %}
-            <div style="border-radius:50%;height:20vh;width:20vh;background:url('{{media_url}}img_user_id_{{request.user.id}}');background-position:center;background-size:cover">
+            {% if media %}
+            <div style="border-radius:50%;height:20vh;width:20vh;background:url('{{media_url}}{{img}}');background-position:center;background-size:cover">
             </div>
             {% else %}
             <div style="border-radius:50%;height:20vh;width:20vh;background:url('https://s3.fr-par.scw.cloud/m2contratspoitiers/media/grey.png');background-position:center">
@@ -22,7 +22,7 @@
             <a href="password-reset" class="btn btn-primary-outline my-3 px-0 w-100">Modifier mon mot de passe</a>
           </div>
           <div class="col-lg-3"> 
-            <a href="ajouter-une-photo-de-profil" class="btn btn-primary-outline my-3 px-0 w-100">Ajouter une photo de profil</a>
+            <a href="espace-collaboratif/ajouter-une-photo" class="btn btn-primary-outline my-3 px-0 w-100">Ajouter une photo de profil</a>
           </div>
           <div class="col-lg-3">
             <a href="del_?id={{request.user.id}}&t=user&username={{request.user.username}}" class="btn btn-danger my-3 px-0 w-100">Supprimer mon compte</a>

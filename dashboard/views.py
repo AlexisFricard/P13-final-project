@@ -12,6 +12,8 @@ from frontpage.models import (
 from collabspace.models import (
     Link, Faq
 )
+from modules.add_img import add_photo
+
 from testimony.models import Testimony
 from ourstudent.models import Promotion
 from association.models import MemberOffice
@@ -61,15 +63,9 @@ def dashboard(request, inview):
         # PHOTO
         if request.method == "POST":
             response_state(True)
-            form = ImageForm(request.POST, request.FILES)
-            form.instance.title = form.instance.image
-            if form.is_valid():
-                try:
-                    form.save()
-                    response_text("Fichier ajouté")
-                except:    # noqa
-                    response_error(1)
-                    response_text("Erreur lors de l'ajout du fichier")
+            data = add_photo(request)
+            response_text(data['text'])
+            response_error(data['error'])
 
         users_obj = User.objects.all().order_by('id')
         faq_obj = Faq.objects.all().order_by('id')

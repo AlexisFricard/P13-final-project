@@ -1,4 +1,4 @@
-{% extends "dashboard.html" %}
+{% extends "myspace.html" %}
 {% load static %}
 {% load convert_markdown %}
 {% block inview %}
@@ -10,12 +10,13 @@
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="col-md-10">
-                    {{ form.image }}
-                    <div style="display:none">{{ form.title }}</div>
-                </div>
-                <script>
-                    document.getElementById('id_title').setAttribute('value', 'xxx')
-                </script>
+                    <div class="col-md-10">
+                        {{ form.image }}
+                        <div style="display:none">{{ form.title }}</div>
+                    </div>
+                    <script>
+                        document.getElementById('id_title').setAttribute('value', 'img_{{request.user.id}}')
+                    </script>
                 <div class="col-md-2 text-end" style="margin-top:30px">
                     <input type='submit' class="btn btn-primary" value="Ajouter"/>
                 </div>

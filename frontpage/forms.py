@@ -9,7 +9,7 @@ class ImageForm(forms.ModelForm):
     """Form for the image model"""
     class Meta:
         model = Image
-        fields = ('image',)
+        fields = ('image', 'title')
 
 
 class RegistrationForm(forms.Form):

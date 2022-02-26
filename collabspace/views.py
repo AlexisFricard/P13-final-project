@@ -5,7 +5,13 @@ COLLABSPACE | Main file
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
+
+from mastercontrat.settings import MEDIA_URL
+from frontpage.forms import ImageForm
+from frontpage.models import Image
+from modules.add_img import add_photo
 
 from .models import (
     Faq, Link
@@ -14,7 +20,16 @@ from .models import (
 
 @login_required
 def myspace(request, inview):
-
+    if request.method == "POST":
+        imgs = Image.objects.filter(title=f'img_{request.user.id}')
+        
+        #TODO : delete img from bucket
+        for img in imgs:
+            img.delete()
+        
+        data = add_photo(request)
+        return redirect('myaccount')
+    
     if request.method == "GET":
         if inview:
             inview = 'inview_' + inview
@@ -43,6 +58,7 @@ def myspace(request, inview):
         data = {
             "faq": faq_list,
             "links": link_list,
+            "form": ImageForm(),
         }
         if inview:
             return render(request, f'inviews_myspace/{inview}.html', data)
@@ -52,7 +68,21 @@ def myspace(request, inview):
 
 @login_required
 def myaccount(request):
-    return render(request, "myaccount.html")
+
+    try:
+        img = Image.objects.get(title=f'img_{request.user.id}')
+        media = 1
+        media_url = MEDIA_URL
+    except ObjectDoesNotExist:
+        img = None
+        media = 0
+        media_url = None
+
+    return render(request, "myaccount.html", {
+        "img": img.image,
+        'media': media,
+        'media_url': media_url,
+        })
 
 
 @login_required
