@@ -71,15 +71,16 @@ def myaccount(request):
 
     try:
         img = Image.objects.get(title=f'img_{request.user.id}')
+        link = img.image
         media = 1
         media_url = MEDIA_URL
     except ObjectDoesNotExist:
-        img = None
+        link = None
         media = 0
         media_url = None
 
     return render(request, "myaccount.html", {
-        "img": img.image,
+        "img": link,
         'media': media,
         'media_url': media_url,
         })
