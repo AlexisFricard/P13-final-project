@@ -141,10 +141,10 @@
                                     body: author,
                                 })
                                 .then(response => {
-                                    alert(response.json());
                                     return response.json()
                                 })
                                 .then(data => {
+                                    alert(data.img_link)
                                     last_msg.lastChild.setAttribute(
                                         'style',
                                         'background:url({{media_url}}' + data.img_link + ');' +
