@@ -140,6 +140,7 @@
                                     method: 'POST',
                                     body: author,
                                 })
+                                .then(response => alert(response))
                                 .then(response => response.json())
                                 .then(response => {
                                     console.log('in fetch');
@@ -151,7 +152,7 @@
                                         'height:30px;width:30px'
                                     )
                                 })
-                                console.log('after fetch')
+                                .then(response =>console.log('end of fetch'))
                             }
                         })
                     }
