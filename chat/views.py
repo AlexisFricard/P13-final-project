@@ -29,5 +29,9 @@ def get_data(request):
     except:
         img_link = 'grey.png'
 
-    data = {'img_link':img_link}
+    print(img_link)
+    data = {
+        'img_link':img_link
+    }
+
     return JsonResponse(data)
