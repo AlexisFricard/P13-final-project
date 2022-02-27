@@ -68,8 +68,11 @@
 
                         boxMsg.innerHTML = (
                             '<p style="width:calc(100% - 50px)" id="' + data.author + '">' +
-                                data.author + '<br><br>' +  data.message +
-                            "</p>" +
+                                data.author +
+                            '</p>' +
+                            '<p class="order-3">' +
+                                data.message +
+                            '</p>' +
                             '<div class="m-2" style="height:30px;width:30px"></div>'
                         )
                         chat_log.appendChild(boxMsg);
