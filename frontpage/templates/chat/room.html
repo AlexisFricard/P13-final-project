@@ -132,6 +132,7 @@
                                 }
                                 let author = `{"author": "${sender_}"}`
                                 let url = '/get_data'
+                                console.log('before fetch')
                                 fetch(url, {
                                     headers: {
                                         "X-CSRFToken": getCookie("csrftoken"),
@@ -139,7 +140,7 @@
                                     method: 'POST',
                                     body: author,
                                 })
-                                .then(response => response.json()).then(response => alert(response))
+                                .then(response => response.json())
                                 .then(response => {
                                     last_msg.lastChild.setAttribute(
                                         'style',
@@ -148,6 +149,7 @@
                                         'height:30px;width:30px'
                                     )
                                 })
+                                console.log('after fetch')
                             }
                         })
                     }
