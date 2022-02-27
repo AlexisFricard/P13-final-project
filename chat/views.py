@@ -7,6 +7,7 @@ import json
 from frontpage.models import Image
 from mastercontrat.settings import MEDIA_URL
 
+
 @login_required
 def room(request, room_name):
     users = User.objects.all()
@@ -26,12 +27,11 @@ def get_data(request):
     try:
         img_obj = Image.objects.get(title=f'img_{user.id}')
         img_link = img_obj.image
-    except:
+    except:    # noqa
         img_link = 'grey.png'
 
-    print(img_link)
     data = {
-        'img_link':img_link
+        'img_link':f'{img_link}'
     }
 
     return JsonResponse(data)
