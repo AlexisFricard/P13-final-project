@@ -54,7 +54,7 @@
         </div>
         <div class="col-lg-12">
             <div class="row mt-5">
-                <form action="mod_user?id={{request.user.id}}" method="POST" class="row w-100">
+                <form action="mod_data?id={{request.user.id}}&dbdata=user" method="POST" class="row w-100">
                   {% csrf_token %}
                   <div class="col-lg-5">
                     Pseudo de connection :
