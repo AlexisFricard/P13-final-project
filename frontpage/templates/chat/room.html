@@ -142,6 +142,8 @@
                                 })
                                 .then(response => response.json())
                                 .then(response => {
+                                    console.log('in fetch');
+                                    console.log(response);
                                     last_msg.lastChild.setAttribute(
                                         'style',
                                         'background:url({{media_url}}' + response.img_link + ');' +
