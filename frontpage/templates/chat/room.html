@@ -139,14 +139,15 @@
                                     method: 'POST',
                                     body: author,
                                 })
-                                .then(response => response.json())
-                                .then(response => 
-                                last_msg.lastChild.setAttribute(
-                                    'style',
-                                    'background:url({{media_url}}' + response.img_link + ');' +
-                                    'background-position:center;background-size:cover;border-radius:50%;' +
-                                    'height:30px;width:30px'
-                                ))
+                                .then(response => response.json()).then(response => alert(response))
+                                .then(response => {
+                                    last_msg.lastChild.setAttribute(
+                                        'style',
+                                        'background:url({{media_url}}' + response.img_link + ');' +
+                                        'background-position:center;background-size:cover;border-radius:50%;' +
+                                        'height:30px;width:30px'
+                                    )
+                                })
                             }
                         })
                     }
