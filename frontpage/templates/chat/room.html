@@ -140,19 +140,17 @@
                                     method: 'POST',
                                     body: author,
                                 })
-                                .then(response => alert(response))
-                                .then(response => response.json())
                                 .then(response => {
-                                    console.log('in fetch');
-                                    console.log(response);
+                                    return response.json()
+                                })
+                                .then(data => {
                                     last_msg.lastChild.setAttribute(
                                         'style',
-                                        'background:url({{media_url}}' + response.img_link + ');' +
+                                        'background:url({{media_url}}' + data.img_link + ');' +
                                         'background-position:center;background-size:cover;border-radius:50%;' +
                                         'height:30px;width:30px'
                                     )
                                 })
-                                .then(response =>console.log('end of fetch'))
                             }
                         })
                     }
