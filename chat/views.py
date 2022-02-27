@@ -30,4 +30,4 @@ def get_data(request):
         img_link = "grey.png"
 
     data = {"img_link":img_link}
-    return JsonResponse(data)
+    return JsonResponse(json.dumps(data))
