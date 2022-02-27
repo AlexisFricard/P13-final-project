@@ -22,14 +22,14 @@ from .models import (
 def myspace(request, inview):
     if request.method == "POST":
         imgs = Image.objects.filter(title=f'img_{request.user.id}')
-        
-        #TODO : delete img from bucket
+
+        # TODO : delete img from bucket
         for img in imgs:
             img.delete()
-        
+
         data = add_photo(request)
         return redirect('myaccount')
-    
+
     if request.method == "GET":
         if inview:
             inview = 'inview_' + inview

@@ -31,7 +31,7 @@ def get_data(request):
         img_link = 'grey.png'
 
     data = {
-        'img_link':f'{img_link}'
+        'img_link':f'{img_link}'    # noqa
     }
 
     return JsonResponse(data)

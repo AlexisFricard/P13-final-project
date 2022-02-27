@@ -8,7 +8,6 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 import chat.routing
 
 
-
 if os.environ.get('ENV') == "DEV":
     os.environ.setdefault(
         'DJANGO_SETTINGS_MODULE',

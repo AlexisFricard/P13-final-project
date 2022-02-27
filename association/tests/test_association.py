@@ -25,7 +25,7 @@ def test_association():
             promotion='xxx',
             role='president'
         )
-    
+
     try:
         MemberOffice.objects.get(role='vice')
         vice = False
@@ -38,7 +38,7 @@ def test_association():
             promotion='xxx',
             role='vice'
         )
-    
+
     try:
         MemberOffice.objects.get(role='secretary')
         secre = False
@@ -51,7 +51,7 @@ def test_association():
             promotion='xxx',
             role='secretary'
         )
-    
+
     try:
         MemberOffice.objects.get(role='treasurer')
         treasu = False
