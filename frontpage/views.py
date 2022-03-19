@@ -100,6 +100,7 @@ def index(request):
     # Actualities
     actualities_obj = Actuality.objects.all().order_by('-date').filter(state=1)
     actu_list = []
+    actu_list_debug = []
     actualities_nb = False
 
     for actu in actualities_obj:
@@ -112,6 +113,8 @@ def index(request):
 
             actu_list.append(wrap_actu(actu))
 
+        actu_list_debug.append(wrap_actu(actu))
+
     # If more than 2 actuality
     # Else, return list or no one
     if len(actu_list) > 3:
@@ -121,6 +124,7 @@ def index(request):
         actualities_nb = True
     else:
         # To keep fixed actu
+        actu_list = actu_list_debug[-3:]
         actualities_nb = False
 
     # Set data dict
